@@ -20,7 +20,6 @@ const App = () => {
     category:"",
     image:""
   })
-  console.log("hello")
   
   return (
     <div>
