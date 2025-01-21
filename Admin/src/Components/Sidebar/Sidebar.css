@@ -1,0 +1,35 @@
+.sidebar{
+    width: 10%;
+    min-height: 100vh;
+    border: 1.5px solid dimgray;
+    border-top: 0;
+    font-size:max(1vw ,10px ) ;
+}
+.sidebar-options{
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.sidebar-option{
+    display: flex;
+    align-items: center;
+    gap: 2%;
+    border: 1px solid dimgray;
+    border-left: 0;
+    padding: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    overflow: hidden;
+}
+.sidebar-option.active{
+    background-color: bisque;
+    color: black;
+    border-color: brown;
+}
+
+@media (max-width:900px) {
+    .sidebar-option p{
+        display: none;
+    }
+}

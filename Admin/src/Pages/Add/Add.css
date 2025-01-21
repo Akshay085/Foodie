@@ -1,0 +1,89 @@
+.add{
+    width: 70%;
+    margin-left:5%;
+    margin-top: 50px;
+    color: dimgray;
+    font-size: 16px;
+}
+.add form{
+    gap: 20px;
+}
+.flex-col{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.add-image-upload img{
+    width: 120px;
+    height: 120px;
+    z-index: 2;
+}
+.add-product-name,.add-product-description{
+    width: max(50%);
+}
+.add-product-name input,.add-product-description textarea{
+    padding: 10px; 
+    border-radius: 20px;   
+}
+.add-category-price{
+    display: flex;
+    gap: 30px;
+}
+.add-category-price select ,.add-category-price input{
+    max-width: 120px;
+    padding: 7px;
+    border-radius: 20px;
+}
+.add-button{
+    max-width: 120px;
+    border: none;
+    padding: 10px;
+    background-color: black;
+    color: azure;
+    cursor: pointer;
+    border-radius: 20px;
+}
+.add-category button{
+    max-width: 120px;
+    padding: 7px;
+    border: 0.1px solil black;
+    border-radius: 20px;
+    background-color: white;
+
+}
+.addcategory-model{
+    position: relative;
+    display: flex;
+    flex-direction: column; 
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 40%;     
+}
+.form{
+    display: flex;
+    flex-direction: column;
+}
+.form form{
+    display: flex;
+    flex-direction: column;
+    padding: 5% 5% 5% 5%;
+    gap: 10px;
+}
+form img{
+    width: 60%;
+    height: 60%;
+}
+form input{
+    border-radius: 50px;
+}
+.form button{
+    color: white;
+    max-width: 120px;
+    padding: 7px;
+    border: 0.1px solil black;
+    border-radius: 20px;
+    background-color: black;
+}
+
+
+
