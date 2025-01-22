@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { StoreContext } from "../../Context/StoreContext";
 import "./Cart.css";
 import { useNavigate } from "react-router-dom";
+import SelfService from "../../components/Self-service/SelfService";
 
 const Cart = () => {
   const { cartItems, foodlist, removefromCart , getTotalCartAmount } = useContext(StoreContext);
-  const navigate=useNavigate();
+  const [selectedservice, setSelectedservice] = useState(false);
+  const navigate=useNavigate(false);
+  const btnClick=()=>{
+    setSelectedservice(!selectedservice);
+  }
   return (
     <div className="cart">
       <div className="cartItems">
@@ -38,6 +43,19 @@ const Cart = () => {
           }
         })}
       </div>
+      <div className="button-container">
+      <button
+        className="button" 
+        onClick={() => btnClick}
+      >
+        Button 1
+      </button>
+      <Routes>
+          <Route path="/cart/SelfService" element={<SelfService />} />
+          <Route path="/cart/SelfService" element={<Placeorder />} />
+      </Routes>
+    <button className="button">Home Delivery</button>
+        </div>
       <div className="cart-bottom">
         <div className="cart-total">
           <h2>Cart Total</h2>

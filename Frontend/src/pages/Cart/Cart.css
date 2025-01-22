@@ -1,5 +1,5 @@
 .cart{
-    margin-top: 100px;
+    margin-top: 5%;
 }
 .cart-item-titles{
     display: grid;
@@ -84,4 +84,42 @@
     border-radius: 4px;
     margin-top: 15px;
 }
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    gap: 10px;
+  }
+  .button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: tomato;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    transition: background-color 0.2s ease;
+    width: 20%;
+  }
+  
+  .button:hover {
+    color: black;
+    background-color:yellow;
+  }
+  
+  @media (max-width: 768px) {
+    .button {
+      width: 80%;
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .responsive-button {
+      width: 100%;
+      font-size: 12px;
+    }
+  }
+  
 
