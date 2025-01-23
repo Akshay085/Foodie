@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import { StoreContext } from "../../Context/StoreContext";
-import "./Cart.css";
 import { useNavigate } from "react-router-dom";
-import SelfService from "../../components/Self-service/SelfService";
+import "./Cart.css";
+
+import DeliveryComponent from "../../components/DeliveryComponent/DeliveryComponent";
+
 
 const Cart = () => {
-  const { cartItems, foodlist, removefromCart , getTotalCartAmount } = useContext(StoreContext);
-  const [selectedservice, setSelectedservice] = useState(false);
+  const { cartItems, foodlist,addtoCart, removefromCart , getTotalCartAmount } = useContext(StoreContext);
+  
   const navigate=useNavigate(false);
-  const btnClick=()=>{
-    setSelectedservice(!selectedservice);
-  }
+  
   return (
     <div className="cart">
       <div className="cartItems">
@@ -21,6 +21,7 @@ const Cart = () => {
           <p>Price</p>
           <p>Quantity</p>
           <p>Total</p>
+          <p>Add-Item</p>
           <p>Remove</p>
         </div>
         <br />
@@ -35,7 +36,9 @@ const Cart = () => {
                   <p>{item.price}</p>
                   <p>{cartItems[item._id]}</p>
                   <p>₹{item.price * cartItems[item._id]}</p>
+                  <img onClick={()=>addtoCart(item._id)} src="\Images\add_icon_green.png"  />
                   <img onClick={()=>removefromCart(item._id)} src="\Images\bin.png"  />
+                  
                 </div>
                 <hr />
               </div>
@@ -43,20 +46,9 @@ const Cart = () => {
           }
         })}
       </div>
-      <div className="button-container">
-      <button
-        className="button" 
-        onClick={() => btnClick}
-      >
-        Button 1
-      </button>
-      <Routes>
-          <Route path="/cart/SelfService" element={<SelfService />} />
-          <Route path="/cart/SelfService" element={<Placeorder />} />
-      </Routes>
-    <button className="button">Home Delivery</button>
-        </div>
-      <div className="cart-bottom">
+      <DeliveryComponent />
+
+      {/*<div className="cart-bottom">
         <div className="cart-total">
           <h2>Cart Total</h2>
           <div className="cart-total-details">
@@ -75,7 +67,7 @@ const Cart = () => {
           </div>
           <button  onClick={()=>navigate('/Placeorder')}>Proceed to Checkout</button>
         </div>
-        {/*<div className="cart-promocode">
+        <div className="cart-promocode">
           <div>
             <p>If You Have Promo Code, Enter it here.</p>
             <div className="cart-promo">
@@ -83,8 +75,8 @@ const Cart = () => {
               <button>Submit</button>
             </div>
           </div>
-        </div>*/}
-      </div>
+        </div>
+      </div>*/}
     </div>
   );
 };
