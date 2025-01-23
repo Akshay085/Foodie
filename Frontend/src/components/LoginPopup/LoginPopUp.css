@@ -1,6 +1,6 @@
 .LoginPopUp{
     position: absolute;
-    z-index:1;
+    z-index:10001;
     width: 100%;
     height: 100%;
     background-color: #00000090;
@@ -63,4 +63,7 @@
     color: tomato;
     font-weight: 600;
     cursor: pointer;
+}
+.LoginPopUp p{
+   font-size: medium;
 }

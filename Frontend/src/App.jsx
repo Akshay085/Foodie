@@ -9,6 +9,7 @@ import LoginPopUp from "./components/LoginPopup/LoginPopUp";
 import SelfService from "./components/Self-service/SelfService";
 import Homedelivery from "./components/Homedelivery/Homedelivery";
 import './App.css'
+import Search from "./pages/Search/Search";
 
 const App = () => {
   const [showlogin,SetShowlogin]=useState(false);
@@ -23,6 +24,7 @@ const App = () => {
         <Routes>
         <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/search" element={<Search />} />
           <Route path="/cart/self-service" element={<SelfService />} />
           <Route path="/cart/home-delivery" element={<Homedelivery />} />
           <Route path="/Placeorder" element={<Placeorder />} />
