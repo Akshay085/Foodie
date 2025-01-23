@@ -23,6 +23,19 @@ const addFood = async (req , res) => {
     }
 }
 
+const searchFood = async (req , res) => {
+  try {
+    const { name } = req.query;
+    const regex = new RegExp(name , "i");
+    const food = await foodModel.find({name: regex}); 
+    res.status(200).json({success: true , data: food});
+  } 
+  catch (error) {
+    console.log(error);
+    res.status(500).json({success: false , message: "Error"});
+  }
+}
+
 const listFood = async (req , res) => {
     try {
         const foods = await foodModel.find({});
@@ -94,4 +107,4 @@ const editFood = async (req, res) => {
     }
   };
   
-export { addFood , listFood , removeFood , editFood }  
+export { addFood , listFood , removeFood , editFood , searchFood}  
