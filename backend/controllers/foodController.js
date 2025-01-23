@@ -27,7 +27,7 @@ const searchFood = async (req , res) => {
   try {
     const { name } = req.query;
     const regex = new RegExp(name , "i");
-    const food = await foodModel.find({name: regex}); 
+    const food = await foodModel.find({category: regex}); 
     res.status(200).json({success: true , data: food});
   } 
   catch (error) {
