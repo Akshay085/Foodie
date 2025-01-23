@@ -63,11 +63,24 @@
 .Food-item-counter p{
    font-size: x-large;
 }
+
 @media ((min-width:400px)) {
     .food-item{
         
         padding-left: 0px;
         justify-content: center;
+    }
+    p{
+        font-size: xx-large;
+    }
+}
+@media ((max-width:400px)) {
+    .food-item{
+        padding-left: 0px;
+        justify-content: center;
+    }
+    .food-item-name-rating p{
+        font-size: x-large;
     }
 }
 

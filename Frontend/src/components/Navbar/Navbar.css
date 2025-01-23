@@ -1,8 +1,8 @@
 .navbar{ 
-    padding: 10px;
-    z-index: 1000;
+    width: 100%;
     position: sticky;
-    top:1;
+    z-index: 1000;
+    top:0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -27,8 +27,7 @@
     align-items: center;
     justify-content: center;
     gap: 50px;
-   
-    
+    padding-left: 20px;
 }
 .btnsignin button{
     background: transparent;
@@ -165,10 +164,15 @@ button:hover{
  
 }
 @media (max-width:400px) {
+    .navbar{
+        width: 100%;
+    position: sticky;
+    z-index: 1000;
+    top:0;
+    }
     .navbar .logo{
         width: 80px;
     }
-    .
     .login-button button{
         padding:0;
         margin: 0;        

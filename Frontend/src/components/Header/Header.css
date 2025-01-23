@@ -1,6 +1,5 @@
 .header{
     height: 35vw; 
-    
     background:url('/Images/headerbg.png') no-repeat ;
     margin: 30px auto ;
     background-size:contain; 
@@ -67,7 +66,7 @@
 }
 @media (max-width:500px) {
     .header{
-        min-width: 350px;
+        
     }
     .headercontents{
         max-width: 75%;
