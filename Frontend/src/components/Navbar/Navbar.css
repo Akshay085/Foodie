@@ -1,13 +1,18 @@
-.navbar{
-    padding: 20px 0;
+.navbar{ 
+    padding: 10px;
+    z-index: 1000;
+    position: sticky;
+    top:1;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color:rgba(255,255,255,0.8);
+    backdrop-filter: blur(5px);
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .navbar .logo{
-    width: 150px;
-    height: 100px;
+    width: 120px;
+    height: 60px;
 }
 .navbar .navbar-menu{
   display: flex;
@@ -22,7 +27,8 @@
     align-items: center;
     justify-content: center;
     gap: 50px;
-    padding-left: 20px;
+   
+    
 }
 .btnsignin button{
     background: transparent;
@@ -162,6 +168,7 @@ button:hover{
     .navbar .logo{
         width: 80px;
     }
+    .
     .login-button button{
         padding:0;
         margin: 0;        

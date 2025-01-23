@@ -10,15 +10,17 @@ const Navbar = ({ SetShowlogin }) => {
   const navigate = useNavigate();
 
   const logout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("token");    
     setToken("");
+    window.location.reload();
     navigate("/");
+    
   };
 
   return (
     <div className="navbar">
       <Link to="/">
-        <img src="\Images\foodieslogo.png" className="logo" alt="brandlogo" />
+        <img src="\Images\logof.png" className="logo" alt="brandlogo" />
       </Link>
       <ul className="navbar-menu">
         <Link

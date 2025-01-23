@@ -1,0 +1,11 @@
+.app{
+    width: 80%;
+    margin: auto;
+  }
+  .navbar-main{
+    position: fixed;
+    z-index: 5;
+    width: 80%;
+    margin: auto;
+    background-color: aliceblue;
+  }

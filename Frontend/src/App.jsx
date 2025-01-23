@@ -8,7 +8,7 @@ import Footer from "./components/Footer/Footer";
 import LoginPopUp from "./components/LoginPopup/LoginPopUp";
 import SelfService from "./components/Self-service/SelfService";
 import Homedelivery from "./components/Homedelivery/Homedelivery";
-
+import './App.css'
 
 const App = () => {
   const [showlogin,SetShowlogin]=useState(false);
@@ -16,7 +16,10 @@ const App = () => {
     <>
     {showlogin ? <LoginPopUp  SetShowlogin={SetShowlogin}/> : <></>}
       <div className="app">
+      
         <Navbar SetShowlogin={SetShowlogin}/>
+        
+        <div className="app-body">
         <Routes>
         <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
@@ -24,6 +27,7 @@ const App = () => {
           <Route path="/cart/home-delivery" element={<Homedelivery />} />
           <Route path="/Placeorder" element={<Placeorder />} />
         </Routes>
+      </div>
       </div>
       <Footer />
     </>
