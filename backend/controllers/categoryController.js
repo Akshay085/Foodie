@@ -46,7 +46,7 @@ const removeCategory = async (req , res) => {
 
 const editCategory = async (req , res) => {
     try {
-        const category = await categoryModel.findById(req.params.id).exec();
+        const category = await categoryModel.findById(req.body._id).exec();
         
         await cloudinary.uploader.destroy(category.cloudinary_id);
 
@@ -57,12 +57,12 @@ const editCategory = async (req , res) => {
         
         const newCategory = {
             name: req.body.name || category.name,
-            image: image_filename.secure_url || category.image,
-            cloudinary_id: image_filename.public_id || category.cloudinary_id,
+            image: req.body.image || image_filename.secure_url,
+            cloudinary_id: req.body.cloudinary_id || image_filename._public_id,
         };
 
 
-        await categoryModel.findByIdAndUpdate(req.params.id , newCategory , {new: true});
+        await categoryModel.findByIdAndUpdate(req.body._id , newCategory , {new: true});
         res.status(200).json({success: true , message: "Category Updated"});
     } 
     catch (error) {
