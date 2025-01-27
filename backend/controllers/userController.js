@@ -3,21 +3,6 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
 
-function validateMobileNumber(phoneNumber){
-    const regex = "/^\d{10}$/";
-
-    if(!regex.test(phoneNumber)){
-        return false
-    }
-
-    const firstDigit = phoneNumber.charAt(0);
-    if(firstDigit < 6 || firstDigit > 9){
-        return false
-    }
-
-    return true;
-}
-
 // login user
 const loginUser = async (req , res) => {
     const {email , password} = req.body;
@@ -67,7 +52,7 @@ const registerUser = async (req , res) => {
             return res.status(401).json({success: false , message: "Please enter strong password"});
         }
 
-        if(!validateMobileNumber(contact)){
+        if(!validator.isMobilePhone(contact , 'en-IN')){
             return res.status(401).json({success: false , message: "Please enter valid phone Number"});
         }
 
