@@ -3,6 +3,21 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
 
+function validateMobileNumber(phoneNumber){
+    const regex = "/^\d{10}$/";
+
+    if(!regex.test(phoneNumber)){
+        return false
+    }
+
+    const firstDigit = phoneNumber.charAt(0);
+    if(firstDigit < 6 || firstDigit > 9){
+        return false
+    }
+
+    return true;
+}
+
 // login user
 const loginUser = async (req , res) => {
     const {email , password} = req.body;
@@ -36,7 +51,7 @@ const createToken = (id) => {
 
 // register user
 const registerUser = async (req , res) => {
-    const {name , email , password} = req.body;
+    const {name , email , number , password} = req.body;
     
     try {
         const exists = await userModel.findOne({email});
@@ -52,12 +67,17 @@ const registerUser = async (req , res) => {
             return res.status(401).json({success: false , message: "Please enter strong password"});
         }
 
+        if(!validateMobileNumber(number)){
+            return res.status(401).json({success: false , message: "Please enter valid phone Number"});
+        }
+
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(password , salt);
 
         const newUser = new userModel({
             name: name,
             email: email,
+            number: number,
             password: hashPassword
         });
 
@@ -71,6 +91,16 @@ const registerUser = async (req , res) => {
         res.status(500).json({success: false , message: "Error"});
     }
      
+}
+
+const updateUser = async(req , res) => {
+    try{
+
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({success: false , message: "Error"});
+    }
 }
 
 export { loginUser , registerUser }
