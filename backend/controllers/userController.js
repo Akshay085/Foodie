@@ -51,7 +51,7 @@ const createToken = (id) => {
 
 // register user
 const registerUser = async (req , res) => {
-    const {name , email , number , password} = req.body;
+    const {name , email , contact , password} = req.body;
     
     try {
         const exists = await userModel.findOne({email});
@@ -67,7 +67,7 @@ const registerUser = async (req , res) => {
             return res.status(401).json({success: false , message: "Please enter strong password"});
         }
 
-        if(!validateMobileNumber(number)){
+        if(!validateMobileNumber(contact)){
             return res.status(401).json({success: false , message: "Please enter valid phone Number"});
         }
 
@@ -77,7 +77,7 @@ const registerUser = async (req , res) => {
         const newUser = new userModel({
             name: name,
             email: email,
-            number: number,
+            contact: contact,
             password: hashPassword
         });
 
