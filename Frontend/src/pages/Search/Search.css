@@ -1,6 +1,7 @@
 .search-box-main {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 .search-box {
   display: flex;
@@ -36,18 +37,29 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
   gap: 2%; 
+  min-height: 100%;
 }
+
 @media ((max-width:400px)) {
+  .search-box-main{
+     min-height: 100vh;
+  }
     .view-menu{
         grid-template-columns: 1fr;
     }
 }
 @media ((min-width:401px)) {
+  .search-box-main{
+    min-height: 100vh;
+ }
     .view-menu{
         grid-template-columns: repeat(2,1fr)
     }
 }
 @media ((min-width:900px)) {
+  .search-box-main{
+    min-height: 100vh;
+ }
     .view-menu{
         grid-template-columns: repeat(3,1fr)
     }

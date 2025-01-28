@@ -6,8 +6,7 @@ import { toast } from "react-toastify";
 
 const Add = ({ url }) => {
   const [image, SetImage] = useState(false);
-  const [category, setCategory] = useState(false);
-  const [categoryimg, setCategoryimg] = useState(false);
+ 
   const [data, SetData] = useState({
     name: "",
     description: "",
@@ -41,9 +40,7 @@ const Add = ({ url }) => {
       toast.error(response.data.message);
     }
   };
-  const toggleCategory = () => {
-    setCategory(!category);
-  };
+  
   return (
     <div className="add">
       <form className="flex-col" onSubmit={onSubmitHandler}>
@@ -103,6 +100,7 @@ const Add = ({ url }) => {
               <option value="Frankie">Frankie</option>
               <option value="Beverages">Beverages</option>
               <option value="Desert">Desert</option>
+              <option value="Combo">Combo</option>
             </select>
           </div>
           <div className="add-price flex-col">
@@ -117,37 +115,8 @@ const Add = ({ url }) => {
             />
           </div>
         </div>
-        <div className="add-category">
-          <button onClick={toggleCategory}>Add New Category</button>
-        </div>
-        {category ? (
-          <div className="addcategory-model">
-            
-            <div className="form">
-              <form action="">
-                <label htmlFor="image">
-                  <img
-                    src={image ? URL.createObjectURL(image) : Imgs.upload}
-                    alt="upload"
-                  />
-                </label>
-                <input
-                  onChange={(e) => setCategoryimg(e.target.files[0])}
-                  type="file"
-                  id="image"
-                  hidden
-                  required
-                />
-                <br />
-                <label>Category Name:</label>
-                <input type="text" name="categoryname" id=""/>
-                <button type="submit">Add Category</button>
-              </form>
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
+        
+              
         <button type="submit" className="add-button">
           ADD
         </button>

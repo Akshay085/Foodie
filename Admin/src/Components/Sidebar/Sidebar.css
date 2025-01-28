@@ -22,11 +22,13 @@
     cursor: pointer;
     overflow: hidden;
 }
+
 .sidebar-option.active{
     background-color: bisque;
     color: black;
     border-color: brown;
 }
+
 
 @media (max-width:900px) {
     .sidebar-option p{

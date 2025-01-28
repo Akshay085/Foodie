@@ -1,12 +1,12 @@
-.listadd{
-    width: 100%;  
+.category-main{
+    width: 100%; 
 }
 .list-table{
     margin-top: 1%;
 }
-.list-table-format{
+.list-category-table-format{
     display: grid;
-    grid-template-columns: 0.5fr 2fr 1fr 1fr 0.5fr 0.5fr;
+    grid-template-columns: repeat(4,1fr);
     align-items: center;
     gap: 10px;
     padding: 12px 15px;
@@ -15,29 +15,34 @@
 }
 
 .list-table-format.title{
-    background-color: tomato;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
     align-items: center;
+    background-color: tomato;
+    align-items: center;
+    justify-content: end;
     color: black;
 }
+
 
 .delete-item{
     cursor: pointer;
 }
-.list-table-format img{
-    width: 120px;
-    height: 120px;
-}
-.list-table-format p{
-    font-size:x-large;
-}
-.list-table-format img{
-    height: 50px;
-    width: 50px;
-}
 .update-item{
     cursor: pointer;
 }
+.list-category-table-format img{
+    width: 120px;
+    height: 120px;
+}
+.list-category-table-format p{
+    font-size:x-large;
+}
+.list-category-table-format img{
+    height: 50px;
+    width: 50px;
+}
+
 
 @media (max-width:600px) {
     .listadd{
@@ -45,12 +50,12 @@
             font-size: smaller;
         }
     }
-    .list-table-format{
-        grid-template-columns: repeat(6,1fr);
+    .list-category-table-format{
+        grid-template-columns: repeat(4,1fr);
         gap: 15px;
     }
     
-    .list-table-format.title{
+    .list-category-table-format.title{
         display: none;
     }
     
