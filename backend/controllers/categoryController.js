@@ -62,7 +62,22 @@ const editCategory = async (req , res) => {
         };
 
 
-        await categoryModel.findByIdAndUpdate(req.body._id , newCategory , {new: true});
+        const update = await categoryModel.findByIdAndUpdate(req.body._id , newCategory , {new: true})
+        .then(async (update) => {
+            return {
+              status: true,
+              message: "Updated",
+              code: 200,
+            };
+          })
+          .catch((error) => {
+            console.log("error =======>>>", error);
+            return {
+              status: false,
+              message: error?.message,
+              code: 200,
+            };
+          });
         res.status(200).json({success: true , message: "Category Updated"});
     } 
     catch (error) {
