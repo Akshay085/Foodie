@@ -48,17 +48,17 @@ const editCategory = async (req , res) => {
     try {
         const category = await categoryModel.findById(req.body._id).exec();
         
-        await cloudinary.uploader.destroy(category.cloudinary_id);
-
+        
         let image_filename;
         if(req.file){
+            await cloudinary.uploader.destroy(category?.cloudinary_id);
             image_filename = await uploadResult(req.file.path);
         }
         
         const newCategory = {
             name: req.body.name || category.name,
             image: req.body.image || image_filename.secure_url,
-            cloudinary_id: req.body.cloudinary_id || image_filename._public_id,
+            cloudinary_id: req.body.cloudinary_id || image_filename?._public_id,
         };
 
 
