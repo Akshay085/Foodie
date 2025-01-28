@@ -6,9 +6,9 @@ const userSchema = new mongoose.Schema({
     email: { type: String , required: true , unique: true },
     password: { type: String , required: true },
     contact: { type: Number , required: true , unique: true },
-    address: { type: String , default: "Update your address" },
-    city:{ type:String , default:"Update your city"},
-    country:{ type:String , default:"Update your country" },
+    address: { type: String , default: "" },
+    city:{ type:String , default: "" },
+    country:{ type:String , default: "" },
     cartData: { type: Object , default: {} }
 },{minimize: false});
 
