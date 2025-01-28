@@ -10,6 +10,6 @@ categoryRouter.get("/list",listCategory);
 
 categoryRouter.post("/remove",removeCategory);
 
-categoryRouter.post("/edit/:id" , upload.single("image") , editCategory);
+categoryRouter.post("/edit" , upload.single("image") , editCategory);
 
 export default categoryRouter;
