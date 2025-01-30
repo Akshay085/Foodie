@@ -39,6 +39,14 @@
   gap: 2%; 
   min-height: 100%;
 }
+.search-box-main h1{
+  color: tomato;
+  align-items: center;
+}
+.search-box-main hr{
+  padding: 2px;
+  background-color: black;
+}
 
 @media ((max-width:400px)) {
   .search-box-main{

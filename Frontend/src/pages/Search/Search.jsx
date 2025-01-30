@@ -4,6 +4,7 @@ import "./Search.css";
 import { StoreContext } from "../../Context/StoreContext";
 import FoodItem from "../../components/Food-Item/FoodItem";
 import axios from "axios";
+import Errormessage from "../../components/Errormessage/Errormessage";
 
 const Search = () => {
   const { foodlist, url } = useContext(StoreContext);
@@ -44,7 +45,7 @@ const Search = () => {
         </button>
       </div>
       <div className="view-menu">
-      {!inputvalue ?null:<>
+      {!inputvalue ?<></>:<>
              
             {foodlist
               .filter((foodname) =>
@@ -64,7 +65,9 @@ const Search = () => {
               })}
          </>}
          </div>
+         <hr />
       <h1>All Foods</h1>
+      <hr />
 
       <div className="view-menu">
             {foodlist.map((item, i) => { 

@@ -51,7 +51,9 @@ const CategoryPopUp = ({
           image: "",
         });
         SetImage(false);
+        
         toast.success(response.data.message);
+        
       } 
       else {
         toast.error(response.data.message);
@@ -67,6 +69,7 @@ const CategoryPopUp = ({
   const closeEditpopup = () => {
     categorysetEditpopup(!categoryeditpopup);
   };
+  
 
   return (
     <div className="category-popup-main">
@@ -105,7 +108,7 @@ const CategoryPopUp = ({
               />
             </div>
             <div className="edit-button">
-              <button type="submit">submit</button>
+              <button type="submit" onClick={()=>{window.location.reload();}}>submit</button>
             </div>
           </form>
         </div>

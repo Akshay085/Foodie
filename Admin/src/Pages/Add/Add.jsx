@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 const Add = ({ url }) => {
   const [image, SetImage] = useState(false);
- 
+  const [categorylist, setcategoryList] = useState([]);
   const [data, SetData] = useState({
     name: "",
     description: "",
@@ -40,6 +40,19 @@ const Add = ({ url }) => {
       toast.error(response.data.message);
     }
   };
+  const fetchCategorylist = async () => {
+    const response = await axios.get(url+"/api/category/list");
+    setcategoryList(response.data.data)
+  };
+  useEffect(() => {
+    async function LoadData() {
+        await fetchCategorylist();     
+    }
+    LoadData();
+  }, []);
+  
+     console.log(categorylist);
+
   
   return (
     <div className="add">
@@ -92,15 +105,8 @@ const Add = ({ url }) => {
               value={data.category}
               name="category"
             >
-              <option value="Burger">Burger</option>
-              <option value="Pizza">Pizza</option>
-              <option value="FrenchFries">FrenchFries</option>
-              <option value="Sandwich">Sandwich</option>
-              <option value="Pasta">Pasta</option>
-              <option value="Frankie">Frankie</option>
-              <option value="Beverages">Beverages</option>
-              <option value="Desert">Desert</option>
-              <option value="Combo">Combo</option>
+              {categorylist.map((item,i)=><option value={item.name} key={i}>{item.name}</option>)}
+              
             </select>
           </div>
           <div className="add-price flex-col">

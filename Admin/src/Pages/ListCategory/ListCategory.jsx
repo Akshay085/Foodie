@@ -13,6 +13,7 @@ const ListCategory = ({url,category,Setcategory,categoryeditpopup,categorysetEdi
     //console.log(response.data);
     if (response.data.success) {
       Setlist(response.data.data);
+      
     } else {
       toast.error("Error");
     }
@@ -26,6 +27,7 @@ const ListCategory = ({url,category,Setcategory,categoryeditpopup,categorysetEdi
     await fetchList();
     if (responce.data.success) {
       toast.success(responce.data.message);
+      
     }
     else{
       toast.error("Error");

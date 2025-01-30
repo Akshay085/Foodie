@@ -1,22 +1,25 @@
-import React from 'react'
+import React,{useContext}  from 'react'
 import './ExploreMenu.css'
-import menu_list from '../../assets/Menu.js'
+
+import { StoreContext } from '../../Context/StoreContext.jsx'
 const ExploreMenu = ({category,setCategory}) => {
+   const {categorylist} =useContext(StoreContext);
     if(!category){
         setCategory((category)=>category="All");
       }
+      console.log(categorylist);
   return (
     <div className='explore-menu' id='exploremenu'>
         <h1>Explore Menu</h1>
         <p className='explore-menu-text'>Choose From This Menu.</p>
         <div className="explore-menu-list">
             {
-                menu_list.map(({menu_image,menu_name},i)=>{
+                categorylist.map((item,i)=>{
                     
                     return (
-                        <div onClick={()=>{setCategory(prev => prev===menu_name ? "All" : menu_name)}}  key={i} className='explore-menu-list-item'>
-                            <img  className={category===menu_name ? "active" : " "} src={menu_image} alt="items" />
-                            <p>{menu_name}</p>
+                        <div onClick={()=>{setCategory(prev => prev===item.name ? "All" : item.name)}}  key={i} className='explore-menu-list-item'>
+                            <img  className={category===item.name ? "active" : " "} src={item.image} alt="items" />
+                            <p>{item.name}</p>
                         </div>
                     )
                 })
