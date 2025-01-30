@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { type } from "os";
 
 
 const userSchema = new mongoose.Schema({
@@ -6,6 +7,8 @@ const userSchema = new mongoose.Schema({
     email: { type: String , required: true , unique: true },
     password: { type: String , required: true },
     contact: { type: Number , required: true , unique: true },
+    otp: {type: Number , default: ""},
+    expriredOn: {type: Date , default: "" },
     address: { type: String , default: "" },
     city:{ type:String , default: "" },
     country:{ type:String , default: "" },

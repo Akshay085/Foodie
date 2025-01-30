@@ -2,6 +2,17 @@ import userModel from "../models/userModel.js";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
+import { sendMail } from "../helper/sendMail.js";
+import { loginMail } from "../public/loginMail.js";
+import { registerMail } from "../public/registerMail.js";
+import { otpMail } from "../public/otpMail.js";
+import crypto from 'crypto';
+
+const generateOTP = (length = 6) => {
+    const otp = crypto.randomInt(100000, 999999); 
+    const expiryTimestamp = Date.now() + 3 * 60 * 1000;
+    return  {otp , expiryTimestamp};
+}
 
 // login user
 const loginUser = async (req , res) => {
@@ -20,6 +31,15 @@ const loginUser = async (req , res) => {
         }
 
         const token = createToken(user._id);
+        let data = {
+            name: user.name
+        }
+
+        const generateEmail = (template, data) => {
+            return template.replace(/{{(.*?)}}/g, (match, key) => data[key.trim()] || '');
+        };
+        let template = generateEmail(loginMail, data);
+        sendMail(email , "Welcome to our FOODIES Website" ,  `${template}`);
         res.status(200).json({success: true , token });
         
     } 
@@ -67,7 +87,18 @@ const registerUser = async (req , res) => {
         });
 
         const user = await newUser.save();
+        
         const token = createToken(user._id);
+
+        let data = {
+            name
+        }
+
+        const generateEmail = (template, data) => {
+            return template.replace(/{{(.*?)}}/g, (match, key) => data[key.trim()] || '');
+        };
+        let template = generateEmail(registerMail, data);
+        sendMail(email , "Welcome to our FOODIES Website" , ` ${template}`);
         res.status(201).json({success: true , token});
 
     } 
@@ -77,6 +108,102 @@ const registerUser = async (req , res) => {
     }
      
 }
+
+const sendOtp = async(req , res) => {
+    try {
+        const { email } = req.body;
+        const user = await userModel.findOne({email});
+
+        if(!user){
+            return res.status(404).json({success: false , message: "User Doesn't exist"});
+        }
+
+        const token = createToken(user._id);
+
+        const {otp , expiryTimestamp} = generateOTP();
+       
+        const newOtp = {
+            otp: otp,
+            expriredOn: expiryTimestamp,
+        }
+
+        const update = await userModel.findOneAndUpdate({email}, newOtp , { new: true } );
+
+        let data = {
+            otp: otp
+        }
+
+        const generateEmail = (template, data) => {
+            return template.replace(/{{(.*?)}}/g, (match, key) => data[key.trim()] || '');
+        };
+        let template = generateEmail(otpMail, data);
+        sendMail(email , "Reset Your Password - OTP Inside" , ` ${template}`);
+        res.status(201).json({success: true , token});
+        
+    } 
+    catch (error) {
+        console.log(error);
+        res.status(500).json({success: false , message: "Error"});
+    }
+}
+
+const verifyOtp = async (req , res)=> {
+    try {
+        const { email , otp } = req.body;
+        const user = await userModel.findOne({email});
+
+        if(!user) {
+            return res.status(404).json({success: false , message: "User Doesn't exist"});
+        }
+
+        if(!user.otp || !user.expriredOn) {
+            return res.status(400).json({success: false , message: "OTP not generated"});
+        }
+
+        if(Date.now() > user.expriredOn) {
+            return res.status(400).json({ success: false, message: "OTP has expired" });
+        }
+
+        if(user.otp !== otp) {
+            return res.status(400).json({ success: false, message: "Invalid OTP" });
+        }
+
+        user.otp = "";
+        user.expiredOn = null;
+        await user.save();
+
+        res.status(200).json({ success: true, message: "OTP verified successfully" });
+    } 
+    catch (error) {
+        console.error("Error verifying OTP:", error);
+        res.status(500).json({ success: false, message: "Internal server error" });
+    }
+}
+
+const updatePassword = async (req , res) => {
+    try {
+        const {email , newPassword} = req.body;
+        const user = await userModel.findOne({email});
+        
+        if(!user) {
+            return res.status(404).json({success: false , message: "User Doesn't exist"});
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        const hashPassword = await bcrypt.hash(newPassword , salt);
+
+        user.password = hashPassword;
+        await user.save();
+
+        res.status(200).json({ success: true, message: "Password updated successfully" });
+    } 
+    catch (error) {
+        console.error("Error resetting password:", error);
+        res.status(500).json({ success: false, message: "Internal server error" });
+    }
+}
+
+
 
 const updateUser = async(req , res) => {
     try{
@@ -88,4 +215,4 @@ const updateUser = async(req , res) => {
     }
 }
 
-export { loginUser , registerUser }
+export { loginUser , registerUser , sendOtp , verifyOtp , updatePassword }
