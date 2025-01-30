@@ -203,7 +203,35 @@ const updatePassword = async (req , res) => {
     }
 }
 
+const resetPassword = async (req , res) => {
+    try {
+        const { oldPassword , newPassword } = req.body;
+        const user = await userModel.findById(req.body._id);
 
+        if(!user) {
+            return res.status(404).json({success: false , message: "User Doesn't exist"});
+        }
+
+        const isMatch = await bcrypt.compare(oldPassword , user.password);
+
+        if(!isMatch) {
+            return res.status(400).json({ message: 'Old password is incorrect' });
+        }
+
+
+        const salt = await bcrypt.genSalt(10);
+        const hashPassword = await bcrypt.hash(newPassword , salt);
+
+        user.password = hashPassword;
+        await user.save();
+
+        res.status(200).json({ success: true, message: "Password updated successfully" });
+    } 
+    catch (error) {
+        console.error("Error resetting password:", error);
+        res.status(500).json({ success: false, message: "Internal server error" });
+    }
+}
 
 const updateUser = async(req , res) => {
     try{
@@ -215,4 +243,4 @@ const updateUser = async(req , res) => {
     }
 }
 
-export { loginUser , registerUser , sendOtp , verifyOtp , updatePassword }
+export { loginUser , registerUser , sendOtp , verifyOtp , updatePassword , resetPassword}
