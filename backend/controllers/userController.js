@@ -151,7 +151,7 @@ const verifyOtp = async (req , res)=> {
     try {
         const { email , otp } = req.body;
         const user = await userModel.findOne({email});
-
+        const otpNumber = parseInt(otp);
         if(!user) {
             return res.status(404).json({success: false , message: "User Doesn't exist"});
         }
@@ -164,7 +164,7 @@ const verifyOtp = async (req , res)=> {
             return res.status(400).json({ success: false, message: "OTP has expired" });
         }
 
-        if(user.otp !== otp) {
+        if(user.otp !== otpNumber) {
             return res.status(400).json({ success: false, message: "Invalid OTP" });
         }
 
@@ -235,7 +235,37 @@ const resetPassword = async (req , res) => {
 
 const updateUser = async(req , res) => {
     try{
+        const user = await userModel.findById(req.body._id).exec();
 
+        if(!validator.isMobilePhone(contact , 'en-IN')){
+            return res.status(401).json({success: false , message: "Please enter valid phone Number"});
+        }
+
+        const newUser = { 
+            name: req.body.name || user.name,
+            contact: req.body.contact || user.contact,
+            address: req.body.address || user.address, 
+            city: req.body.city || user.city,
+            country: req.body.country || user.country
+        };
+
+        const update = await userModel
+        .findByIdAndUpdate(req.body?._id , newUser , { new: true })
+        .then(async (update) => {
+            return {
+                status: true,
+                message: "Updated",
+                code: 200,
+            };
+        })
+        .catch((error) => {
+            return {
+              status: false,
+              message: error?.message,
+              code: 200,
+            };
+          });
+        res.status(200).json(update);
     }
     catch (error) {
         console.log(error);
