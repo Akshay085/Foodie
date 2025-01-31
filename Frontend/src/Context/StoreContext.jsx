@@ -8,6 +8,7 @@ const StoreContextProvider = (props) => {
   const [token, setToken] = useState("");
   const [foodlist, setFoodList] = useState([]);
   const [categorylist, setcategoryList] = useState([]);
+   const [email,setEmail]=useState("");
   const addtoCart = async (itemId) => {
     if (!cartItems[itemId]) {
       setCartItem((prev) => ({ ...prev, [itemId]: 1 }));
@@ -69,6 +70,8 @@ const StoreContextProvider = (props) => {
     cartItems,
     url,
     token,
+    email,
+    setEmail,
     setCartItem,
     addtoCart,
     removefromCart,

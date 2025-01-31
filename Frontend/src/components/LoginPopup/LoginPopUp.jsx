@@ -2,10 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import "./LoginPopUp.css";
 import { StoreContext } from "../../Context/StoreContext";
 import axios from "axios"
+import { Link, Links } from "react-router-dom";
 import { toast } from "react-toastify";
 import'react-toastify/dist/ReactToastify.css';
 
-const LoginPopUp = ({ SetShowlogin }) => {
+const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
   const { url, setToken } = useContext(StoreContext);
   const [currentState, SetCurrentState] = useState("Login");
   const [data, setData] = useState({
@@ -33,7 +34,6 @@ const LoginPopUp = ({ SetShowlogin }) => {
         localStorage.setItem("token", response.data.token);
         toast.success("Welcome!");
         
-        // Simulate sign-in transition
         SetShowlogin(false);
         window.location.reload(); 
       } else {
@@ -72,6 +72,14 @@ const LoginPopUp = ({ SetShowlogin }) => {
   useEffect(() => {
     console.log("Current Data:", data);
   }, [data]);
+
+
+  
+  const forgetPopup=()=>{
+    SetShowlogin(false)
+    SetForget(true)
+   
+  }
 
   return (
     <div className="LoginPopUp">
@@ -128,8 +136,13 @@ const LoginPopUp = ({ SetShowlogin }) => {
         </div>
         <div className="login-popup-condition">
           <input type="checkbox" required />
-          <p>By continuing, I agree to the Terms of Use & Privacy Policy.</p>
+          <p>By continuing, I agree to the Terms of Use & Privacy Policy.</p> 
         </div>
+
+       <div className="forget-link-container">
+       {currentState==='Login'?<span onClick={forgetPopup}>Forget Password</span>:null}
+       </div>
+
         <button type="submit">
           {currentState === "Sign Up" ? "Create Account" : "Login"}
         </button>

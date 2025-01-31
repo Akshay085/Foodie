@@ -16,19 +16,30 @@ import UserProfile from "./components/UserProfile/UserProfile";
 import LogOut from "./components/LogOut/LogOut";
 import OrderPage from "./components/OrderPage/OrderPage";
 import { StoreContext } from "./Context/StoreContext";
+import ForgetPassword from "./components/ForgetPassword/ForgetPassword";
+import ConfirmPassword from "./components/ConfirmPassword/ConfirmPassword";
+
 
 
 const App = () => {
   const [showlogin,SetShowlogin]=useState(false);
+  const [forget,SetForget]=useState(false);
+  const [Otpvarification,SetOtpvarification] = useState(false);
   const {token,setToken}=useContext(StoreContext);
+   const [email,setEmail]=useState("")
+   const [confirmPopUP,SetconfirmPopUP]=useState();
+  
   return (
-    <>
-    
-       
+    <> 
       <div className="app" style={{position:"relative"}}>
-    {showlogin ? <LoginPopUp  SetShowlogin={SetShowlogin}/> : null}
-       
-        <Navbar SetShowlogin={SetShowlogin}/>
+    {showlogin ? <LoginPopUp  SetShowlogin={SetShowlogin} forget={forget} SetForget={SetForget}/> : null}
+
+       {forget ?<ForgetPassword forget={forget} SetForget={SetForget} email={email} setEmail={setEmail} SetShowlogin={SetShowlogin} Otpvarification={Otpvarification} SetOtpvarification={SetOtpvarification} SetconfirmPopUP={SetconfirmPopUP}/>: null} 
+        {/* {OtpPopup ? <OtpVarification  OtpPopup={OtpPopup} SetOtpPopup={SetOtpPopup} SetForget={SetForget}  />: null} */}
+       {confirmPopUP ?<ConfirmPassword email={email} SetconfirmPopUP={SetconfirmPopUP}  SetOtpvarification={SetOtpvarification}/>:null}
+
+
+        <Navbar SetShowlogin={SetShowlogin} />
         
         <div className="app-body">
         <Routes>

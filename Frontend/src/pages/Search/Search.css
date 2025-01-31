@@ -36,7 +36,7 @@
 .view-menu {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
-  gap: 2%; 
+  gap: 20px; 
   min-height: 100%;
 }
 .search-box-main h1{
