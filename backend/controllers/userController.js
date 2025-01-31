@@ -117,22 +117,17 @@ const sendOtp = async(req , res) => {
         if(!user){
             return res.status(404).json({success: false , message: "User Doesn't exist"});
         }
-
         const token = createToken(user._id);
-
         const {otp , expiryTimestamp} = generateOTP();
-       
         const newOtp = {
             otp: otp,
             expriredOn: expiryTimestamp,
         }
-
         const update = await userModel.findOneAndUpdate({email}, newOtp , { new: true } );
 
         let data = {
             otp: otp
         }
-
         const generateEmail = (template, data) => {
             return template.replace(/{{(.*?)}}/g, (match, key) => data[key.trim()] || '');
         };
@@ -189,6 +184,10 @@ const updatePassword = async (req , res) => {
             return res.status(404).json({success: false , message: "User Doesn't exist"});
         }
 
+        if(password.length < 8){
+            return res.status(401).json({success: false , message: "Please enter strong password"});
+        }
+
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(newPassword , salt);
 
@@ -218,6 +217,11 @@ const resetPassword = async (req , res) => {
             return res.status(400).json({ message: 'Old password is incorrect' });
         }
 
+        const isMatchPassword = await bcrypt.compare(newPassword , user.password);
+
+        if(isMatchPassword){
+            return res.status(422).json({success: false , message: "Old Password and new Password must be different"});
+        }
 
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(newPassword , salt);
@@ -273,4 +277,4 @@ const updateUser = async(req , res) => {
     }
 }
 
-export { loginUser , registerUser , sendOtp , verifyOtp , updatePassword , resetPassword}
+export { loginUser , registerUser , sendOtp , verifyOtp , updatePassword , resetPassword  , updateUser }
