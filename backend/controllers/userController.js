@@ -14,6 +14,17 @@ const generateOTP = (length = 6) => {
     return  {otp , expiryTimestamp};
 }
 
+const getUser = async (req , res) => {
+    try {
+        const user = await userModel.findById(req.body._id);
+        res.status(200).json({success: true , data: user});
+    } 
+    catch (error) {
+        console.log(error);
+        res.status(500).json({success: false , message: "Error"});
+    }
+}
+
 // login user
 const loginUser = async (req , res) => {
     const {email , password} = req.body;
@@ -220,7 +231,7 @@ const resetPassword = async (req , res) => {
         const isMatchPassword = await bcrypt.compare(newPassword , user.password);
 
         if(isMatchPassword){
-            return res.status(422).json({success: false , message: "Old Password and new Password must be different"});
+            return res.status(422).json({success: false , message: "Old Password and New Password to simler"});
         }
 
         const salt = await bcrypt.genSalt(10);
@@ -277,4 +288,4 @@ const updateUser = async(req , res) => {
     }
 }
 
-export { loginUser , registerUser , sendOtp , verifyOtp , updatePassword , resetPassword  , updateUser }
+export { loginUser , getUser , registerUser , sendOtp , verifyOtp , updatePassword , resetPassword  , updateUser }
