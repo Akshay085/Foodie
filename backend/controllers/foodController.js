@@ -48,10 +48,8 @@ const removeFood = async (req , res) => {
 }
 
 const editFood = async (req, res) => {
-    console.log("req =======>>>", req.body);
     try {
       const food = await foodModel.findById(req.body._id).exec();
-      console.log("food =======>>>", food);
   
       let image_filename;
       if (req.file) {
@@ -67,7 +65,6 @@ const editFood = async (req, res) => {
         image: req.body.image || image_filename.secure_url,
         cloudinary_id: req.body.cloudinary_id || image_filename?.public_id,
       };
-      console.log("newFood =======>>>", newFood);
   
       const update = await foodModel
         .findByIdAndUpdate(req?.body?._id, newFood, { new: true })
@@ -86,7 +83,6 @@ const editFood = async (req, res) => {
             code: 200,
           };
         });
-      console.log("update =======>>>", update);
       res.status(200).json(update);
     } catch (error) {
       console.log(error);
