@@ -61,7 +61,6 @@ const editCategory = async (req , res) => {
             cloudinary_id: req.body.cloudinary_id || image_filename?._public_id,
         };
 
-
         const update = await categoryModel.findByIdAndUpdate(req.body._id , newCategory , {new: true})
         .then(async (update) => {
             return {

@@ -6,6 +6,7 @@ import userRouter from './routes/userRoute.js';
 import categoryRouter from './routes/categoryRoute.js';
 import cartRouter from './routes/cartRoute.js';
 import 'dotenv/config';
+import orderRouter from './routes/orderRoute.js';
 
 
 //app config
@@ -24,6 +25,7 @@ app.use("/api/food" , foodRouter);
 app.use("/api/user" , userRouter);
 app.use("/api/category" , categoryRouter);
 app.use("/api/cart" , cartRouter);
+app.use("/api/order" , orderRouter);
 
 app.get('/',(req,res)=>{
     res.send("API Working");

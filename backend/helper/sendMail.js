@@ -14,7 +14,6 @@ const sendMail = async (to,subject,html) => {
         from: "foodies.0905@gmail.com", 
         to, 
         subject,
-         
         html, 
       });
 }
