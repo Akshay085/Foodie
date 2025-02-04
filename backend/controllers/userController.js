@@ -40,7 +40,16 @@ const loginUser = async (req , res) => {
         };
         let template = generateEmail(loginMail, data);
         sendMail(email , "Welcome to our FOODIES Website" ,  `${template}`);
-        res.status(200).json({success: true , token , user});
+        const userData = {
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            contact: user.contact,
+            address: user.address,
+            city: user.city,
+            country: user.country
+        }
+        res.status(200).json({success: true , token , userData});
         
     } 
     catch (error) {
@@ -241,7 +250,7 @@ const updateUser = async(req , res) => {
     try{
         const user = await userModel.findById(req.body._id).exec();
 
-        if(!validator.isMobilePhone(contact , 'en-IN')){
+        if(!validator.isMobilePhone(req.body.contact , 'en-IN')){
             return res.status(401).json({success: false , message: "Please enter valid phone Number"});
         }
 
