@@ -1,10 +1,9 @@
 import express from 'express';
-import { getUser, loginUser , registerUser , resetPassword, sendOtp, updatePassword , verifyOtp } from '../controllers/userController.js';
+import { loginUser , registerUser , resetPassword, sendOtp, updatePassword , verifyOtp } from '../controllers/userController.js';
 
 const userRouter = express.Router();
 
 userRouter.post("/register" , registerUser);
-userRouter.get("/getUser" , getUser);
 userRouter.post("/login" , loginUser);
 userRouter.post("/sendOtp" , sendOtp);
 userRouter.post("/verifyOtp" , verifyOtp);
