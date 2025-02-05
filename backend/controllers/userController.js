@@ -286,6 +286,7 @@ const updateUser = async(req , res) => {
               code: 200,
             };
           });
+          console.log(update);
         res.status(200).json(update);
     }
     catch (error) {
