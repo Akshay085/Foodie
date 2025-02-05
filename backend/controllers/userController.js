@@ -249,10 +249,19 @@ const resetPassword = async (req , res) => {
 const updateUser = async(req , res) => {
     try{
         const user = await userModel.findById(req.body._id).exec();
-
-        if(!validator.isMobilePhone(req.body.contact , 'en-IN')){
-            return res.status(401).json({success: false , message: "Please enter valid phone Number"});
+        
+        if (!user) {
+            return res.status(404).json({success: false,message: "User not found",});
         }
+
+        if(req.body.contact){
+            const contact = String(req.body.contact);
+
+            if(!validator.isMobilePhone(contact , 'en-IN')){
+                return res.status(401).json({success: false , message: "Please enter valid phone Number"});
+            }
+        }
+        
 
         const newUser = { 
             name: req.body.name || user.name,
