@@ -193,7 +193,7 @@ const updatePassword = async (req , res) => {
             return res.status(404).json({success: false , message: "User Doesn't exist"});
         }
 
-        if(password.length < 8){
+        if(newPassword.length < 8){
             return res.status(401).json({success: false , message: "Please enter strong password"});
         }
 
