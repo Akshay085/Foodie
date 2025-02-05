@@ -262,7 +262,6 @@ const updateUser = async(req , res) => {
             }
         }
         
-
         const newUser = { 
             name: req.body.name || user.name,
             contact: req.body.contact || user.contact,
