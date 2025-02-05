@@ -271,7 +271,6 @@ const updateUser = async(req , res) => {
             city: req.body.city || user.city,
             country: req.body.country || user.country
         };
-        console.log(newUser);;
         
         const update = await userModel
         .findByIdAndUpdate(req.params?.id , newUser , { new: true })
@@ -290,7 +289,6 @@ const updateUser = async(req , res) => {
               code: 200,
             };
           });
-          console.log(update);
         res.status(200).json(update);
     }
     catch (error) {
