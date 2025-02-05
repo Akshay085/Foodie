@@ -248,7 +248,7 @@ const resetPassword = async (req , res) => {
 
 const updateUser = async(req , res) => {
     try{
-        const user = await userModel.findById(req.body._id).exec();
+        const user = await userModel.findById(req.params.id).exec();
         
         if (!user) {
             return res.status(404).json({success: false,message: "User not found",});
@@ -263,20 +263,24 @@ const updateUser = async(req , res) => {
         }
         
         const newUser = { 
+            _id: user._id,
             name: req.body.name || user.name,
+            email: user.email,
             contact: req.body.contact || user.contact,
             address: req.body.address || user.address, 
             city: req.body.city || user.city,
             country: req.body.country || user.country
         };
-
+        console.log(newUser);;
+        
         const update = await userModel
-        .findByIdAndUpdate(req.body?._id , newUser , { new: true })
+        .findByIdAndUpdate(req.params?.id , newUser , { new: true })
         .then(async (update) => {
             return {
                 status: true,
                 message: "Updated",
                 code: 200,
+                data: newUser
             };
         })
         .catch((error) => {
