@@ -4,6 +4,7 @@ import SideBar from '../../components/SideBar/SideBar'
 import { Outlet } from "react-router-dom";
 
 const ProfileMain = () => {
+  
   return (
     <div className='Profile-Main'>
         <div className="Profile-Header">
@@ -14,8 +15,7 @@ const ProfileMain = () => {
             <SideBar />
             </div>
             <div className="Bodycontent">
-           <Outlet />
-            
+            <Outlet /> 
             </div>
         </div>  
     </div>

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
 import Placeorder from "./pages/Placeorder/Placeorder";
@@ -18,6 +19,7 @@ import OrderPage from "./components/OrderPage/OrderPage";
 import { StoreContext } from "./Context/StoreContext";
 import ForgetPassword from "./components/ForgetPassword/ForgetPassword";
 import ConfirmPassword from "./components/ConfirmPassword/ConfirmPassword";
+import EditProfile from "./components/EditProfile/EditProfile";
 
 
 
@@ -31,6 +33,7 @@ const App = () => {
   
   return (
     <> 
+    <ToastContainer />
       <div className="app" style={{position:"relative"}}>
     {showlogin ? <LoginPopUp  SetShowlogin={SetShowlogin} forget={forget} SetForget={SetForget}/> : null}
 
@@ -50,12 +53,14 @@ const App = () => {
           <Route path="/cart/home-delivery" element={<Homedelivery />} />
           <Route path="/Placeorder" element={<Placeorder />} />
           {token ?
-          <Route path="/userprofile" element={<ProfileMain />}>
-            <Route path="/userprofile/" element={<UserProfile />} /> 
-              <Route path="profile" element={<UserProfile />} />
-              <Route path="orders" element={<OrderPage />} />
-              <Route path="logout" element={<LogOut  token={token} setToken={setToken} />} />
-            </Route>
+           <Route path="/userprofile" element={<ProfileMain />}>
+           <Route index element={<UserProfile />} /> 
+           <Route path="profile" element={<UserProfile />} />
+           <Route path="editprofile" element={<EditProfile />} />
+           <Route path="orders" element={<OrderPage />} />
+           <Route path="logout" element={<LogOut token={token} setToken={setToken} />} />
+         </Route>
+            
             : <></>}
         </Routes>
       </div>

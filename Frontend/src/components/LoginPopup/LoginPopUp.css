@@ -62,20 +62,24 @@
     gap: 3px;
     margin-top: -10px;   
 }
+
 .login-popup-condition input{
     margin-top: 3.5px;
 }
+
 .forget-link-container{
     cursor: pointer;
     margin-top: -10px;
     color: blueviolet;
-    
+    text-decoration: underline;   
 }
+
 .LoginPopUp  p  span {
     color: tomato;
     font-weight: 600;
     cursor: pointer;
 }
+
 .LoginPopUp p{
    font-size: medium;
 }

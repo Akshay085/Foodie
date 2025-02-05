@@ -8,7 +8,9 @@ const StoreContextProvider = (props) => {
   const [token, setToken] = useState("");
   const [foodlist, setFoodList] = useState([]);
   const [categorylist, setcategoryList] = useState([]);
+  const [userData,setUserData]=useState([]);
    const [email,setEmail]=useState("");
+
   const addtoCart = async (itemId) => {
     if (!cartItems[itemId]) {
       setCartItem((prev) => ({ ...prev, [itemId]: 1 }));
@@ -38,18 +40,21 @@ const StoreContextProvider = (props) => {
 
   useEffect(() => {
     async function LoadData() {
+        //await fetchUserData();
         await fetchFoodlist();
-        await fetchCategorylist();
+        await fetchCategorylist();       
         if (localStorage.getItem("token")) {
             setToken(localStorage.getItem("token"));
             await loadCartdata(localStorage.getItem("token"));
-          }
-          
+          }    
+          if (localStorage.getItem("user")) {
+            setUserData(JSON.parse(localStorage.getItem("user")));
+          }  
     }
     LoadData();
     
   }, [token]);
-  
+    
 
   const fetchFoodlist = async () => {
     const response = await axios.get(url+"/api/food/list");
@@ -59,6 +64,11 @@ const StoreContextProvider = (props) => {
     const response = await axios.get(url+"/api/category/list");
     setcategoryList(response.data.data)
   };
+  //  const fetchUserData = async () => {
+  //    const response = await axios.get(url+"/api/user/getUser");
+  //    setUserData(response.data.data)
+  // };
+
   const loadCartdata= async(token)=>{
     const  response = await axios.post(url+"/api/cart/get",{},{headers:{token}})
     setCartItem(response.data.cartData);
@@ -68,11 +78,13 @@ const StoreContextProvider = (props) => {
     foodlist,
     categorylist,
     cartItems,
+    userData,
     url,
     token,
     email,
     setEmail,
     setCartItem,
+    setUserData,
     addtoCart,
     removefromCart,
     getTotalCartAmount,

@@ -6,8 +6,6 @@ import {toast} from 'react-toastify'
 const List = ({url,editpopup,setEditpopup,food,SetFood}) => {
   
   const [list,Setlist]=useState([]);
-  
-
   const fetchList =async()=>{
     const response=await axios.get(`${url}/api/food/list`);
     //console.log(response.data);
@@ -41,7 +39,7 @@ const List = ({url,editpopup,setEditpopup,food,SetFood}) => {
     <div className='listadd'>
       <center><p>All Food List</p></center>
       <div className="list-table">
-        <div className="list-table-format title">
+        <div className="list-food-table-format title">
           <b>Image</b>
           <b>Name</b>
           <b>Category</b>
@@ -52,7 +50,7 @@ const List = ({url,editpopup,setEditpopup,food,SetFood}) => {
 
         {list.map((item,index)=>{
           return(
-            <div key={index} className='list-table-format'>
+            <div key={index} className='list-food-table-format'>
               <img src={item.image} alt="" />
               <p>{item.name}</p>
               <p>{item.category}</p>

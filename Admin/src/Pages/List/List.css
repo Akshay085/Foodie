@@ -4,7 +4,7 @@
 .list-table{
     margin-top: 1%;
 }
-.list-table-format{
+.list-food-table-format{
     display: grid;
     grid-template-columns: 0.5fr 2fr 1fr 1fr 0.5fr 0.5fr;
     align-items: center;
@@ -14,7 +14,7 @@
     font-size: 13px;
 }
 
-.list-table-format.title{
+.list-food-table-format.title{
     background-color: tomato;
     justify-content: space-between;
     align-items: center;
@@ -24,14 +24,14 @@
 .delete-item{
     cursor: pointer;
 }
-.list-table-format img{
+.list-food-table-format img{
     width: 120px;
     height: 120px;
 }
-.list-table-format p{
+.list-food-table-format p{
     font-size:x-large;
 }
-.list-table-format img{
+.list-food-table-format img{
     height: 50px;
     width: 50px;
 }
@@ -45,12 +45,12 @@
             font-size: smaller;
         }
     }
-    .list-table-format{
+    .list-food-table-format{
         grid-template-columns: repeat(6,1fr);
         gap: 15px;
     }
     
-    .list-table-format.title{
+    .list-food-table-format.title{
         display: none;
     }
     

@@ -1,17 +1,17 @@
-.profile-main {
+.edit-profile-main {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #f4f4f4;
 }
-.user-sidebar{
+.edit-user-sidebar{
     width: 30%;
     height: 100%;
     margin:1% ;
     background-color: #007bff;
 }
-.content{
+.edit-content{
     width: 70%;
 }
 
@@ -40,7 +40,7 @@ form {
     border: 2px solid #ccc;
 }
 
-.content table {
+.edit-content table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 10px;
@@ -53,21 +53,13 @@ td {
     color: #333;
 }
 
-.content input, textarea {
+.edit-content input, textarea {
     width: 100%;
     padding: 8px;
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 5px;
     outline: none;
-}
-.edit-button{
-    width: 15%;
-    padding: 5px;
-    background-color:tomato ;
-    color: white;
-    border: 2px solid tomato;
-    border-radius: 10px;
 }
 
 input:focus,
@@ -79,21 +71,4 @@ textarea:focus {
 textarea {
     height: 80px;
     resize: none;
-}
-.save-button{
-    width: 15%;
-    padding: 5px;
-    background-color:green ;
-    color: white;
-    border: 2px solid green;
-    border-radius: 10px;
-}
-.cancel-button{
-    width: 15%;
-    margin-left: 2%;
-    padding: 5px;
-    background-color:red ;
-    color: white;
-    border: 2px solid red;
-    border-radius: 10px;
 }

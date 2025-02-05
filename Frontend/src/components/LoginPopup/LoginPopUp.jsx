@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import "./LoginPopUp.css";
 import { StoreContext } from "../../Context/StoreContext";
 import axios from "axios"
-import { Link, Links } from "react-router-dom";
+//import { Link, Links } from "react-router-dom";
 import { toast } from "react-toastify";
 import'react-toastify/dist/ReactToastify.css';
 
 const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
-  const { url, setToken } = useContext(StoreContext);
+  const { url, setToken,userData,setUserData } = useContext(StoreContext);
   const [currentState, SetCurrentState] = useState("Login");
   const [data, setData] = useState({
     name: "",
@@ -21,6 +21,7 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
     setData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+
   const onLogin = async (event) => {
     event.preventDefault();
 
@@ -32,10 +33,16 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
       if (response.data.success) {
         setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user",JSON.stringify(response.data.userData));
+        
+        
         toast.success("Welcome!");
         
         SetShowlogin(false);
-        window.location.reload(); 
+        console.log("My Response:", response.data);
+        setUserData(response.data);
+        console.log(userData);
+
       } else {
         toast.error(response.data.message);
       }
@@ -140,7 +147,7 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
         </div>
 
        <div className="forget-link-container">
-       {currentState==='Login'?<span onClick={forgetPopup}>Forget Password</span>:null}
+       {currentState==='Login'?<span onClick={forgetPopup}> Forget Password ?</span>:null}
        </div>
 
         <button type="submit">
