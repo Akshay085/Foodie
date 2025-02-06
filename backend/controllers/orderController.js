@@ -7,10 +7,13 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const placeOrder = async (req , res) => {
     const frontend_url = "http://localhost:5173";
     try {
+        const subtotal = req.body.amount;
+        const gst = (subtotal * 12)/100;
+        const total = subtotal + gst + 50;
         const newOrder = new orderModel({
             userId: req.body.userId,
             items: req.body.items,
-            amount: req.body.amount
+            amount: total
         })
         await newOrder.save();
         await userModel.findByIdAndUpdate(req.body.userId , {cartData:{}});
@@ -30,6 +33,18 @@ const placeOrder = async (req , res) => {
             price_data:{
                 currency: "inr",
                 product_data: {
+                    name: "GST"
+                },
+                unit_amount: gst * 100
+            },
+            quantity: 1
+        })
+
+
+        line_items.push({
+            price_data:{
+                currency: "inr",
+                product_data: {
                     name: "Delivery Charges"
                 },
                 unit_amount: 50*100
@@ -40,8 +55,8 @@ const placeOrder = async (req , res) => {
         const session = await stripe.checkout.sessions.create({
             line_items: line_items,
             mode: "payment",
-            success_url: `${frontend_url}/verfiy?success=true&orderId=${newOrder._id}`,
-            cancel_url: `${frontend_url}/verfiy?success=false&orderId=${newOrder._id}`
+            success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
+            cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`
         })
         
         res.status(200).json({ success: true , session_url: session.url });
