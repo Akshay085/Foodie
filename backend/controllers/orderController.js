@@ -16,7 +16,6 @@ const placeOrder = async (req , res) => {
             amount: total
         })
         await newOrder.save();
-       
 
         const line_items = req.body.items.map((item)=>({
             price_data: {
