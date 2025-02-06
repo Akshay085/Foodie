@@ -16,7 +16,7 @@ const placeOrder = async (req , res) => {
             amount: total
         })
         await newOrder.save();
-        await userModel.findByIdAndUpdate(req.body.userId , {cartData:{}});
+       
 
         const line_items = req.body.items.map((item)=>({
             price_data: {
@@ -72,6 +72,7 @@ const verifyOrder = async (req , res) => {
     try {
         if(success=="true"){
             await orderModel.findByIdAndUpdate(orderId , {payment: true});
+            await userModel.findByIdAndUpdate(req.body.userId , {cartData:{}});
             res.status(200).json({ success: true , message: "Paid" });
         }    
         else{
@@ -85,4 +86,15 @@ const verifyOrder = async (req , res) => {
     }
 }
 
-export { placeOrder , verifyOrder }
+const userOrder = async (req , res) => {
+    try {
+        const orders = await orderModel.find({userId: req.body.userId});
+        res.status(200).json({success: true , data: orders});    
+    } 
+    catch (error) {
+        console.log(error);
+        res.status(500).json({success: false , message: "Error"});
+    }
+}
+
+export { placeOrder , verifyOrder , userOrder }
