@@ -21,7 +21,7 @@ const placeOrder = async (req , res) => {
                 product_data: {
                     name: item.name
                 },
-                unit_amount: Math.round(item.price * 0.012)
+                unit_amount: Math.round(item.price)
             },
             quantity: item.quantity
         }))
