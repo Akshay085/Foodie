@@ -21,10 +21,21 @@ const placeOrder = async (req , res) => {
                 product_data: {
                     name: item.name
                 },
-                unit_amount: Math.round(item.price)
+                unit_amount: item.price
             },
             quantity: item.quantity
         }))
+
+        line_items.push({
+            price_data:{
+                currency: "usd",
+                product_data: {
+                    name: "Delivery Charges"
+                },
+                unit_amount: 1
+            },
+            quantity: 1
+        })
 
         const session = await stripe.checkout.sessions.create({
             line_items: line_items,
