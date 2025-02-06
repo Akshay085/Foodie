@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import './ForgetPassword.css'
-
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const ForgetPassword = ({email,setEmail,forget,SetForget,SetOtpPopup,Otpvarification ,SetOtpvarification,SetconfirmPopUP}) => {
   
@@ -22,15 +23,17 @@ const ForgetPassword = ({email,setEmail,forget,SetForget,SetOtpPopup,Otpvarifica
          const response = await axios.post(`${url}/api/user/sendOtp`, {email});
         if (response.data.success) {
           console.log("Email submitted:", email);
-            alert("Okk..");
+            toast.success("Okk..");
             SetOtpvarification(true);
         }
         else{
-           alert("soory..") 
+          // {<p>Error: Please sign up first.</p>}
+          toast.error("Error: Please sign up first.");
+           
         }
        }catch{
-        console.error("Error sending OTP:", error);
-      alert("Error: Please sign up first.");
+        console.log("Error In sending OTP:");
+        toast.error("Error: Please sign up first.");
        }
     }
     const  OnVarify=async()=>{ 
@@ -39,7 +42,7 @@ const ForgetPassword = ({email,setEmail,forget,SetForget,SetOtpPopup,Otpvarifica
       const response = await axios.post(`${url}/api/user/verifyOtp`, {email , otp:OTP});
       if (response.data.success) {
           setOTP("");
-          alert("Okk..");
+         toast.success("Okkk");
           console.log(email);
           SetForget(false);
           SetOtpvarification(false);
@@ -47,7 +50,7 @@ const ForgetPassword = ({email,setEmail,forget,SetForget,SetOtpPopup,Otpvarifica
         
       }
       else{
-         alert("soory.. OTP is Not Valid") 
+         toast.error("soory.. OTP is Not Valid") 
       }
 
      }catch{
@@ -73,6 +76,7 @@ const ForgetPassword = ({email,setEmail,forget,SetForget,SetOtpPopup,Otpvarifica
         value={email}
         onChange={handleChange}
         className="card-input"
+        required 
       />}
       {Otpvarification? <input type='number' placeholder='Enter OTP' name='OTP'
         value={OTP}

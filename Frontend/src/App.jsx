@@ -65,7 +65,10 @@ const App = () => {
         </Routes>
       </div>
       </div>
-      <Footer />
+      <div className="footer">
+       <Footer />
+       </div>
+     
       
       
     </>

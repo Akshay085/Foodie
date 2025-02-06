@@ -2,6 +2,9 @@ import { useState } from 'react'
 import React  from 'react'
 import axios from 'axios';
 import './ConfirmPassword.css'
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from 'react-toastify';
+
 const ConfirmPassword = ({email,SetconfirmPopUP,SetOtpvarification}) => {
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -12,26 +15,26 @@ const ConfirmPassword = ({email,SetconfirmPopUP,SetOtpvarification}) => {
       
         try{
             if (!newPassword || !confirmPassword) {
-                alert("Please fill in both fields."); 
+                toast.warn("Please fill in both fields."); 
               }
               if (newPassword !== confirmPassword) {
-                alert("Passwords do not match!"); 
+                toast.warn("Passwords do not match!"); 
               }
               else{
                const response = await axios.post(`${url}/api/user/updatePassword`, {email ,newPassword});
                if (response.data.success) {
-               alert("Password is Changed Successfully");
+                toast.success("Password is Changed Successfully");
                SetOtpvarification(false);
                SetconfirmPopUP(false);
                }
                else{
-               alert("sorry..") 
+               toast.error("sorry..") 
            }
           }
         }
        catch(error){
         console.error("Error changing password:", error); 
-      alert("Failed to change password. Please try again.");
+      toast.error("Failed to change password. Please try again.");
        }  
     };
   

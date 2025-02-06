@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const UserProfile = () => {
-  const { userData, setUserData, url } = useContext(StoreContext); // ✅ Added setUserData
+  const { userData, setUserData, url } = useContext(StoreContext);
   console.log(userData);
 
   const [input, setInput] = useState({
@@ -49,15 +49,15 @@ const UserProfile = () => {
 
       if (response.data.status) {
         toast.success("Profile updated successfully!");
-        console.log(response.data)
-        setUserData(response.data.data); 
-        localStorage.setItem("user",JSON.stringify(response.data.data));
-        setIsEditing(false); 
+        console.log(response.data);
+        setUserData(response.data.data);
+        localStorage.setItem("user", JSON.stringify(response.data.data));
+        setIsEditing(false);
       } else {
         toast.error("Failed to update profile.");
       }
     } catch (error) {
-      console.error("Error updating profile:", error);
+      console.log("Error updating profile:", error);
       toast.error("Something went wrong.");
     }
   };
@@ -151,25 +151,29 @@ const UserProfile = () => {
                         Cancel
                       </button>
                     </>
-                  ) : <>
-                  
-                  <button type="submit" className="save-button" style={{visibility:"hidden"}}>
+                  ) : (
+                    <>
+                      <button
+                        type="submit"
+                        className="save-button"
+                        style={{ visibility: "hidden" }}
+                      >
                         Save
                       </button>
-                  <button
-            type="button"
-            className="edit-button"
-            onClick={() => setIsEditing(true)}
-            >
-            Edit
-          </button>
-                  </>}
+                      <button
+                        type="button"
+                        className="edit-button"
+                        onClick={() => setIsEditing(true)}
+                      >
+                        Edit
+                      </button>
+                    </>
+                  )}
                 </td>
               </tr>
             </tbody>
           </table>
         </form>
-       
       </div>
     </div>
   );

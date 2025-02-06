@@ -1,5 +1,6 @@
 .cart {
   margin-top: 5%;
+  min-height: 60vh;
 }
 .cart-item-titles {
   display: grid;

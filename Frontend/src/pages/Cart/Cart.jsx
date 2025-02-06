@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import "./Cart.css";
 
 import DeliveryComponent from "../../components/DeliveryComponent/DeliveryComponent";
+import Home from "../Home/Home";
+import Search from "../Search/Search";
 
 
 const Cart = () => {
@@ -21,33 +23,34 @@ const Cart = () => {
           <p>Price</p>
           <p>Quantity</p>
           <p>Total</p>
-          <p>Add-Item</p>
+          <p>Add</p>
           <p>Remove</p>
         </div>
         <br />
         <hr />
         {foodlist.map((item, index) => {
+         
           if (cartItems[item._id] > 0) {
             return (
-              <div className="main">
-                <div className="cart-item-titles cart-items-item" key={index}>
+              <div className="main" key={index}>
+                <div className="cart-item-titles cart-items-item" >
                   <img src={item.image} alt="" />
                   <p>{item.name}</p>
                   <p>{item.price}</p>
                   <p>{cartItems[item._id]}</p>
                   <p>₹{item.price * cartItems[item._id]}</p>
                   <img onClick={()=>addtoCart(item._id)} src="\Images\add_icon_green.png"  />
-                  <img onClick={()=>removefromCart(item._id)} src="\Images\bin.png"  />
-                  
+                  <img onClick={()=>removefromCart(item._id)} src="\Images\bin.png"  />   
                 </div>
                 <hr />
               </div>
             );
           }
+        
+          
         })}
       </div>
-      <DeliveryComponent />
-
+     <DeliveryComponent />
       {/*<div className="cart-bottom">
         <div className="cart-total">
           <h2>Cart Total</h2>
