@@ -49,7 +49,7 @@ const Placeorder = () => {
       userId:userData._id,
       // address:input,
       items:orderItems,
-      amount:total,
+      amount:subtotal,
   }
   console.log(orderData);
   let response = await axios.post(url+"/api/order/place",orderData,{headers:{token}});
