@@ -22,6 +22,12 @@ const Placeorder = () => {
     contact: "",
   });
   useEffect(() => {
+    if(!token){
+      navigate('/cart');
+    }
+    else if(getTotalCartAmount()==0){
+      navigate('/cart');
+    }
     setInput({
       name: userData.name || "",
       email:userData.email || "",
@@ -46,7 +52,7 @@ const Placeorder = () => {
     })
      console.log(orderItems);
      let orderData={
-      userId:userData._id,
+      user:userData,
       // address:input,
       items:orderItems,
       amount:subtotal,
