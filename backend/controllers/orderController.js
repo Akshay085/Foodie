@@ -57,7 +57,7 @@ const placeOrder = async (req , res) => {
             success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
             cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`
         })
-        
+        await userModel.findByIdAndUpdate(req.body.userId , {cartData:{}});
         res.status(200).json({ success: true , session_url: session.url });
     } 
     catch (error) {
@@ -71,7 +71,6 @@ const verifyOrder = async (req , res) => {
     try {
         if(success=="true"){
             await orderModel.findByIdAndUpdate(orderId , {payment: true});
-            await userModel.findByIdAndUpdate(req.body.userId , {cartData:{}});
             res.status(200).json({ success: true , message: "Paid" });
         }    
         else{
@@ -96,4 +95,15 @@ const userOrder = async (req , res) => {
     }
 }
 
-export { placeOrder , verifyOrder , userOrder }
+const listOrders = async (req , res) => {
+    try {
+        const orders = await orderModel.find({});
+        res.status(200).json({success: true , data: orders})   
+    } 
+    catch (error) {
+        console.log(error);
+        res.status(500).json({success: false , message: "Error"});
+    }
+}
+
+export { placeOrder , verifyOrder , userOrder , listOrders }
