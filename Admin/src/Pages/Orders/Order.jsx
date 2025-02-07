@@ -36,11 +36,33 @@ const Order = ({ url }) => {
                   }
                 })}
               </p>
-              <p className="order-item-name">{ order.userData.name + " " }</p>
-              <p className="order-item-address">{ order.userData.address + ", " }</p>
-              <p className="order-item-name">{ order.userData.city + ", " }</p>
-              <p className="order-item-name">{ order.userData.country + " ," }</p>
-             
+              <div className="">
+                <p className="order-item-name">
+                  {"Name  : " + order.userData.name + " "}
+                </p>
+                <p className="order-item-address">
+                  {"Address : " + order.userData.address + ", "}
+                  {order.userData.city + ", " + order.userData.country + "."}
+                </p>
+                <p className="order-item-contact">
+                  {"Contact : " + order.userData.contact + ", "}
+                </p>
+              </div>
+            </div>
+            <div>
+              {" "}
+              <p>Items:{order.items.length}</p>
+            </div>
+            <div>
+              {" "}
+              <p>Amount:{order.amount}</p>
+            </div>
+            <div >
+              <select>
+                <option value="Food Processing">Food Processing</option>
+                <option value="Out for Delivery">Out for Delivery</option>
+                <option value="Delivered">Delivered</option>
+              </select>
             </div>
           </div>
         ))}
