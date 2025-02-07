@@ -1,5 +1,6 @@
 import React from "react";
 import "./footer.css";
+
 const Footer = () => {
   return (
     <div className="footer" id="footer">
@@ -40,6 +41,7 @@ const Footer = () => {
       <p className="footer-copy">
         Copyright 2025 &copy; Foodies.com - All Right Reserved.
       </p>
+     
     </div>
   );
 };

@@ -9,9 +9,39 @@
 }
 .my-orders-order{
     display: grid;
-    grid-template-columns: 0.5fr 2fr 1fr 1fr 2fr 1fr;
+    grid-template-columns: 0.5fr 3fr 1fr 1fr 2fr 1fr;
     align-items: center;
     gap: 30px;
     padding: 10px;
     color: black;
+    border: 3px solid tomato;
+    border-radius: 10px ;
+}
+.my-orders-order img{
+    width: 50px;
+}
+.my-orders-order p span{
+    color: tomato;
+}
+.my-orders-order p b{
+    font-weight: 500;
+    color: #454545;
+}
+.my-orders-order button{
+    border: none;
+    padding: 12px 0px;
+    border-radius: 4px;
+    background-color:tomato;
+    cursor: pointer;
+    color: white;
+}
+@media (max-width:1000px) {
+    .my-orders-order{
+        grid-template-columns: 1fr 2fr 1fr;
+        font-size: 12px;
+    }
+    .my-orders-order button{
+        padding: auto;
+        font-size: 12px;
+    }
 }

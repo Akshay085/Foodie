@@ -28,7 +28,9 @@ const Cart = () => {
         </div>
         <br />
         <hr />
+        
         {foodlist.map((item, index) => {
+           
          
           if (cartItems[item._id] > 0) {
             return (
@@ -46,8 +48,9 @@ const Cart = () => {
               </div>
             );
           }
-        
-          
+          else{
+            navigate("/")
+          }     
         })}
       </div>
      <DeliveryComponent />

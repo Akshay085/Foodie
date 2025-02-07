@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { useContext } from "react";
 import { StoreContext } from "../../Context/StoreContext";
+import MyLottieAnimation from "../MyLottieAnimation/MyLottieAnimation";
 
 const Navbar = ({ SetShowlogin }) => {
   const [menu, Setmenu] = useState("Home");
@@ -14,7 +15,8 @@ const Navbar = ({ SetShowlogin }) => {
   return (
     <div className="navbar">
       <Link to="/">
-        <img src="\Images\logof.png" className="logo" alt="brandlogo" />
+      <MyLottieAnimation />
+        {/* <img src="\Images\logof.png" className="logo" alt="brandlogo" /> */}
       </Link>
       <ul className="navbar-menu">
         <Link
