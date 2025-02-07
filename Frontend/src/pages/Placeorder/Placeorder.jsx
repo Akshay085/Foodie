@@ -52,7 +52,7 @@ const Placeorder = () => {
     })
      console.log(orderItems);
      let orderData={
-      user:userData,
+      userId:userData._id,
       // address:input,
       items:orderItems,
       amount:subtotal,
