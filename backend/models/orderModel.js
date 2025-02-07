@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
-    userId: { type: String , required: true },
+    userId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "users" },
     items: { type: Array , required: true },
     amount: { type: Number , required: true },
     status: { type: String , default: "Food Processing" },

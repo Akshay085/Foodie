@@ -97,7 +97,37 @@ const userOrder = async (req , res) => {
 
 const listOrders = async (req , res) => {
     try {
-        const orders = await orderModel.find({});
+        const orders = await orderModel.aggregate([
+            {
+                $lookup: {
+                    from: "users", 
+                    localField: "userId", 
+                    foreignField: "_id", 
+                    as: "userData"
+                }
+            },
+            {
+                $unwind: "$userData"
+            },
+            {
+                $project: {
+                    userId: 1,
+                    items: 1,
+                    amount: 1,
+                    status: 1,
+                    date: 1,
+                    payment: 1,
+                    "userData.name": 1,   
+                    "userData.email": 1,
+                    "userData.contact": 1,
+                    "userData.address": 1,
+                    "userData.city": 1,
+                    "userData.country": 1
+                }
+            }
+        ]);
+        console.log(orders);
+        
         res.status(200).json({success: true , data: orders})   
     } 
     catch (error) {
