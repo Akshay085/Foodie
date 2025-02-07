@@ -20,6 +20,7 @@ import { StoreContext } from "./Context/StoreContext";
 import ForgetPassword from "./components/ForgetPassword/ForgetPassword";
 import ConfirmPassword from "./components/ConfirmPassword/ConfirmPassword";
 import EditProfile from "./components/EditProfile/EditProfile";
+import Verify from "./pages/Verify/Verify";
 
 
 
@@ -52,6 +53,7 @@ const App = () => {
           <Route path="/cart/self-service" element={<SelfService />} />
           <Route path="/cart/home-delivery" element={<Homedelivery />} />
           <Route path="/Placeorder" element={<Placeorder />} />
+          <Route path="/verify" element={<Verify />}></Route>
           {token ?
            <Route path="/userprofile" element={<ProfileMain />}>
            <Route index element={<UserProfile />} /> 

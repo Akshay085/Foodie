@@ -24,9 +24,9 @@
     display: none;
 }
 .explore-menu-list-item img{
-    max-height: 80px;
-    max-width: 80px;
-    min-width: 80px;
+    width: 130px;
+    height: 130px;
+    object-fit: cover; 
     cursor: pointer;
     border-radius: 50%;
     transition: 0.2s;
