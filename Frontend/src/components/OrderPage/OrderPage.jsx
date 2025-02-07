@@ -26,7 +26,7 @@ const OrderPage = () => {
   return (
 
     <div  className='OrderPage'>
-      <h2>Mt Orders</h2>   
+      <h2>My Orders</h2>   
       <div className="order-container">
         {data.map((order,index)=>{
           return(

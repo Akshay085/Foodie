@@ -48,9 +48,9 @@ const Cart = () => {
               </div>
             );
           }
-          else{
-            navigate("/")
-          }     
+          // else{
+          //   navigate("/")
+          // }     
         })}
       </div>
      <DeliveryComponent />
