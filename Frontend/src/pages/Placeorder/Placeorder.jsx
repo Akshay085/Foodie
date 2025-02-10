@@ -13,6 +13,7 @@ const Placeorder = () => {
   const total = subtotal + gst;
   console.log(userData);
   const navigate = useNavigate();
+  
   const [input, setInput] = useState({
     name: "",
     email: "",

@@ -16,7 +16,6 @@ const Cart = () => {
   useEffect(() => {
     console.log(cartItems);
     const isCartEmpty = Object.values(cartItems).every((qty) => qty === 0);
-
     if (isCartEmpty) {
       toast.warn("Please select some items");
       navigate("/");
