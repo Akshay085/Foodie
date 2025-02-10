@@ -56,6 +56,7 @@ const Placeorder = () => {
       // address:input,
       items:orderItems,
       amount:subtotal,
+      type:"Home Delivery",
   }
   console.log(orderData);
   let response = await axios.post(url+"/api/order/place",orderData,{headers:{token}});
