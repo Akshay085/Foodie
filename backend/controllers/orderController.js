@@ -9,10 +9,17 @@ const placeOrder = async (req , res) => {
     try {
         const subtotal = req.body.amount;
         const gst = (subtotal * 12)/100;
-        const total = subtotal + gst + 50;
+        var deliveryCharge = 0;
+        const delType = req.body.type;
+        if(delType == "Home Delivery")
+        {
+            deliveryCharge = 50;
+        }
+        const total = subtotal + gst + deliveryCharge;
         const newOrder = new orderModel({
             userId: req.body.userId,
             items: req.body.items,
+            delType: delType,
             amount: total
         })
         await newOrder.save();
@@ -39,17 +46,18 @@ const placeOrder = async (req , res) => {
             quantity: 1
         })
 
-
-        line_items.push({
-            price_data:{
-                currency: "inr",
-                product_data: {
-                    name: "Delivery Charges"
+        if(delType == "Home Delivery"){
+            line_items.push({
+                price_data:{
+                    currency: "inr",
+                    product_data: {
+                        name: "Delivery Charges"
+                    },
+                    unit_amount: deliveryCharge * 100
                 },
-                unit_amount: 50*100
-            },
-            quantity: 1
-        })
+                quantity: 1
+            })
+        }
 
         const session = await stripe.checkout.sessions.create({
             line_items: line_items,
@@ -113,6 +121,7 @@ const listOrders = async (req , res) => {
                 $project: {
                     userId: 1,
                     items: 1,
+                    delType: 1,
                     amount: 1,
                     status: 1,
                     date: 1,
@@ -126,7 +135,6 @@ const listOrders = async (req , res) => {
                 }
             }
         ]);
-        console.log(orders);
         
         res.status(200).json({success: true , data: orders})   
     } 
