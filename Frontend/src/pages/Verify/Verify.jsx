@@ -9,13 +9,15 @@ const Verify = () => {
     const [searchParams,setSearchParams]=useSearchParams();
     const success=searchParams.get("success");
     const orderId=searchParams.get("orderId");
-    const user= localStorage.getItem("user");
-    
+      const user = JSON.parse(localStorage.getItem("user"));
+      const userid=user._id;
+      console.log(userid);
+      
     
     // console.log(success,orderid);
     
     const  verifyPayment=async()=>{
-           const response=await axios.post(url+"/api/order/verify",{success,orderId ,user: user._id});
+           const response=await axios.post(url+"/api/order/verify",{success,orderId ,userid});
            if(response.data.success){
                 navigate("/userprofile/orders")
            }
