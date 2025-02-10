@@ -10,8 +10,9 @@ const Verify = () => {
     const success=searchParams.get("success");
     const orderId=searchParams.get("orderId");
     // console.log(success,orderid);
+    
     const  verifyPayment=async()=>{
-           const response=await axios.post(url+"/api/order/verify",{success,orderId ,userData});
+           const response=await axios.post(url+"/api/order/verify",{success,orderId ,userId: userData._id});
            if(response.data.success){
                 navigate("/userprofile/orders")
            }
