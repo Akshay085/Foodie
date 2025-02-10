@@ -1,3 +1,4 @@
+import { log } from "console";
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from 'stripe';
@@ -22,7 +23,7 @@ const placeOrder = async (req , res) => {
             delType: delType,
             amount: total
         })
-        await newOrder.save();
+        
 
         const line_items = req.body.items.map((item)=>({
             price_data: {
@@ -65,7 +66,7 @@ const placeOrder = async (req , res) => {
             success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
             cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`
         })
-        await userModel.findByIdAndUpdate(req.body.userId , {cartData:{}});
+        await newOrder.save();
         res.status(200).json({ success: true , session_url: session.url });
     } 
     catch (error) {
@@ -75,9 +76,10 @@ const placeOrder = async (req , res) => {
 }
 
 const verifyOrder = async (req , res) => {
-    const {orderId , success} = req.body;
+    const {orderId , success , userid} = req.body;
     try {
         if(success=="true"){
+            await userModel.findByIdAndUpdate(userid, {cartData:{}});
             await orderModel.findByIdAndUpdate(orderId , {payment: true});
             res.status(200).json({ success: true , message: "Paid" });
         }    
@@ -94,7 +96,7 @@ const verifyOrder = async (req , res) => {
 
 const userOrder = async (req , res) => {
     try {
-        const orders = await orderModel.find({userId: req.body.userId});
+        const orders = await orderModel.find({userId: req.body.userId , payment: true});
         res.status(200).json({success: true , data: orders});    
     } 
     catch (error) {
@@ -106,6 +108,9 @@ const userOrder = async (req , res) => {
 const listOrders = async (req , res) => {
     try {
         const orders = await orderModel.aggregate([
+            {
+                $match: { payment: true }
+            },
             {
                 $lookup: {
                     from: "users", 
