@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import './OrderPage.css'
 import { StoreContext } from '../../Context/StoreContext';
 import axios from 'axios';
+import Bag from '../MyLottieAnimation/Bag';
 
 const OrderPage = () => {
 
@@ -31,7 +32,8 @@ const OrderPage = () => {
         {data.map((order,index)=>{
           return(
             <div  key={index}className='my-orders-order'>
-                  <img src="\Images\parcel_icon.png" alt="parcel icon" />
+              <Bag />
+                  {/* <img src="\Images\parcel_icon.png" alt="parcel icon" /> */}
                   <p>{order.items.map((item,index)=>{
                      if(index === order.items.length-1){
                          return item.name + " x " + item.quantity
@@ -43,7 +45,7 @@ const OrderPage = () => {
                   <p> ₹{order.amount}</p>
                   <p>Items:{order.items.length}</p>
                   <p><span>&#x25cf;</span><b>{order.status}</b></p>
-                  <button>Track Order</button>
+                 {order.status=="Food Processing"?<button>Cancel</button>:<button>Track Order</button>} 
             </div>
           )
         })}

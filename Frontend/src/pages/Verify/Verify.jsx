@@ -4,14 +4,14 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { StoreContext } from '../../Context/StoreContext'
 import axios from 'axios'
 const Verify = () => {
-    const {url}=useContext(StoreContext);
+    const {url,userData}=useContext(StoreContext);
     const navigate=useNavigate();
     const [searchParams,setSearchParams]=useSearchParams();
     const success=searchParams.get("success");
     const orderId=searchParams.get("orderId");
     // console.log(success,orderid);
     const  verifyPayment=async()=>{
-           const response=await axios.post(url+"/api/order/verify",{success,orderId});
+           const response=await axios.post(url+"/api/order/verify",{success,orderId ,userData});
            if(response.data.success){
                 navigate("/userprofile/orders")
            }

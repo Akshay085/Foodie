@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
+import Bag from "../../Components/Animation/Bag";
 const Order = ({ url }) => {
   const [orders, setOrders] = useState([]);
 
@@ -16,6 +17,14 @@ const Order = ({ url }) => {
       toast.error("Error");
     }
   };
+
+  const statusHandler =async (event ,orderId)=>{
+             console.log(event,orderId);
+             const  response=await axios.post(url+"/api/order/status",{orderId,status:event.target.value});
+             if(response.data.success){
+              await fetchAllOrders();
+             }
+  }
   useEffect(() => {
     fetchAllOrders();
   }, []);
@@ -25,7 +34,8 @@ const Order = ({ url }) => {
       <div className="order-list">
         {orders.map((order, index) => (
           <div key={index} className="order-item">
-            <img src="\Images\parcel_icon.png" alt="parcel icon" />
+            {/* <img src="\Images\parcel_icon.png" alt="parcel icon" /> */}
+            <Bag />
             <div>
               <p className="order-item-food">
                 {order.items.map((item, index) => {
@@ -58,7 +68,7 @@ const Order = ({ url }) => {
               <p>Amount:{order.amount}</p>
             </div>
             <div >
-              <select>
+              <select onChange={(event)=>statusHandler(event,order._id)} value={order.status}>
                 <option value="Food Processing">Food Processing</option>
                 <option value="Out for Delivery">Out for Delivery</option>
                 <option value="Delivered">Delivered</option>

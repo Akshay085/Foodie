@@ -8,7 +8,7 @@ const Homedelivery = () => {
   const { cartItems, foodlist,addtoCart, removefromCart , getTotalCartAmount } = useContext(StoreContext);
   const subtotal = getTotalCartAmount();
   const gst = (50+(subtotal * 12) / 100);
-  const total = subtotal + gst;
+  const total = Math.floor(subtotal + gst);
   const navigate=useNavigate(false);
   return (
     <div className="cartItems">
@@ -51,7 +51,7 @@ const Homedelivery = () => {
           <hr />
           <div className="cart-total-details">
             <p>  GST + Delivery Fee </p>
-            <p>₹{gst }</p>
+            {cartItems!=0?<p>₹{gst }</p>:""}
           </div>
           <hr />
           <div className="cart-total-details">

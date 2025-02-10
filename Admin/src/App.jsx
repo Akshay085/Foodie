@@ -36,7 +36,7 @@ const App = () => {
       {categoryeditpopup ?<CategoryPopUp  url={url} categoryeditpopup={categoryeditpopup} categorysetEditpopup={categorysetEditpopup} category={category} Setcategory={Setcategory} />:<></>}
       <ToastContainer />
       <Navbar />
-      <hr />
+      
   
       <div className="app-content">
         <Sidebar />

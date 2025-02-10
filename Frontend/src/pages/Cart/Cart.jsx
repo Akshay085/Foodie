@@ -1,18 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { StoreContext } from "../../Context/StoreContext";
 import { useNavigate } from "react-router-dom";
 import "./Cart.css";
-
 import DeliveryComponent from "../../components/DeliveryComponent/DeliveryComponent";
 import Home from "../Home/Home";
 import Search from "../Search/Search";
-
+import { toast } from "react-toastify";
+import'react-toastify/dist/ReactToastify.css';
 
 const Cart = () => {
   const { cartItems, foodlist,addtoCart, removefromCart , getTotalCartAmount } = useContext(StoreContext);
-  
+  const [bool, setBool] = useState(false);
   const navigate=useNavigate(false);
+  useEffect(() => {
+    console.log(cartItems);
+    const isCartEmpty = Object.values(cartItems).every((qty) => qty === 0);
+
+    if (isCartEmpty) {
+      toast.warn("Please select some items");
+      navigate("/");
+    }
+    // if (Object.keys(cartItems).length === 0) {
+    //   navigate("/");
+    //   toast.warn("please Select some item");
+    // }
+    
+  }, [cartItems, navigate]);
   
   return (
     <div className="cart">
@@ -28,10 +42,9 @@ const Cart = () => {
         </div>
         <br />
         <hr />
-        
+       
         {foodlist.map((item, index) => {
            
-         
           if (cartItems[item._id] > 0) {
             return (
               <div className="main" key={index}>
@@ -48,9 +61,7 @@ const Cart = () => {
               </div>
             );
           }
-          // else{
-          //   navigate("/")
-          // }     
+         
         })}
       </div>
      <DeliveryComponent />

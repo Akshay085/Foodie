@@ -1,40 +1,58 @@
-.add{
+.add {
     width: 70%;
-    margin-left:5%;
+    margin-left: 5%;
     margin-top: 50px;
     color: dimgray;
     font-size: 16px;
 }
-.add form{
+
+.add form {
+    display: flex;
+    flex-direction: column;
     gap: 20px;
 }
-.flex-col{
+
+.flex-col {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.add-image-upload img{
+
+.add-image-upload img {
     width: 120px;
     height: 120px;
     z-index: 2;
+    object-fit: cover;
+    border-radius: 10px;
 }
-.add-product-name,.add-product-description{
-    width: max(50%);
+
+.add-product-name, .add-product-description {
+    width: 50%;
 }
-.add-product-name input,.add-product-description textarea{
-    padding: 10px; 
-    border-radius: 20px;   
+
+.add-product-name input, .add-product-description textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
 }
-.add-category-price{
+
+.add-category-price {
     display: flex;
     gap: 30px;
+    align-items: center;
 }
-.add-category-price select ,.add-category-price input{
+
+.add-category-price select, .add-category-price input {
     max-width: 120px;
     padding: 7px;
     border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
 }
-.add-button{
+
+.add-button {
     max-width: 120px;
     border: none;
     padding: 10px;
@@ -42,48 +60,74 @@
     color: azure;
     cursor: pointer;
     border-radius: 20px;
+    transition: background-color 0.3s ease;
 }
-.add-category button{
+
+.add-button:hover {
+    background-color: #333;
+}
+
+.add-category button {
     max-width: 120px;
     padding: 7px;
-    border: 0.1px solil black;
+    border: 1px solid black;
     border-radius: 20px;
     background-color: white;
-
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-.addcategory-model{
+
+.add-category button:hover {
+    background-color: #f0f0f0;
+}
+
+.addcategory-model {
     position: relative;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     border: 2px solid black;
     border-radius: 10px;
-    width: 40%;     
+    width: 40%;
+    padding: 20px;
+    background-color: white;
 }
-.form{
+
+.form {
     display: flex;
     flex-direction: column;
 }
-.form form{
+
+.form form {
     display: flex;
     flex-direction: column;
-    padding: 5% 5% 5% 5%;
+    padding: 5%;
     gap: 10px;
 }
-form img{
+
+form img {
     width: 60%;
-    height: 60%;
+    height: auto;
+    object-fit: contain;
 }
-form input{
+
+form input {
     border-radius: 50px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    outline: none;
 }
-.form button{
+
+.form button {
     color: white;
     max-width: 120px;
     padding: 7px;
-    border: 0.1px solil black;
+    border: 1px solid black;
     border-radius: 20px;
     background-color: black;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-
-
+.form button:hover {
+    background-color: #333;
+}

@@ -4,6 +4,7 @@ import "./Navbar.css";
 import { useContext } from "react";
 import { StoreContext } from "../../Context/StoreContext";
 import MyLottieAnimation from "../MyLottieAnimation/MyLottieAnimation";
+import Profileicon from "../MyLottieAnimation/Profileicon";
 
 const Navbar = ({ SetShowlogin }) => {
   const [menu, Setmenu] = useState("Home");
@@ -55,7 +56,10 @@ const Navbar = ({ SetShowlogin }) => {
             <button onClick={() => SetShowlogin(true)}>Sign In</button>
            : 
             <div className="Navbar-profile">
-             <Link to="/userprofile"> <img src="\Images\profile_icon.png" alt="profile icon" /></Link>
+             <Link to="/userprofile">
+             {/* <Profileicon /> */}
+              <img src="\Images\profile_icon.png" alt="profile icon" />
+              </Link>
             </div>
           }
         </div>

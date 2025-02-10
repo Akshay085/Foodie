@@ -1,45 +1,111 @@
-.order-item{
+.order {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+h3 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.order-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-item {
     display: grid;
-    grid-template-columns: 0.5fr  2fr 1fr 1fr 1fr;
-    align-items: start;
-    gap: 30px;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
     border: 2px solid black;
     border-radius: 10px;
-    margin: 30px;
-    font-size: 14px;
-    color: black;
+    background-color: #f9f9f9;
+    transition: 0.3s ease-in-out;
 }
-.order-item-food , .order-item-name{
+
+.order-item:hover {
+    background-color: #f1f1f1;
+    transform: scale(1.02);
+}
+
+.order-item-food, .order-item-name {
     font-weight: 700;
+    color: #333;
 }
-.order-item-name{
-    margin-top: 20px;
-    margin-bottom: 5px;
+
+.order-item-name {
+    margin-top: 15px;
 }
-.order-item-address{
-    margin-top: 10px;
+
+.order-item-address {
+    margin-top: 8px;
+    font-size: 14px;
 }
-.order-item select{
-    margin-top: 1%;
-    padding: 2%;
+
+.order-item-contact {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.order-item select {
+    margin-top: 5px;
+    padding: 6px;
     background-color: white;
     border: 2px solid black;
     border-radius: 10px;
-    width: max(10vw,120px);
-    outline: none;
+    width: max(10vw, 120px);
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
-@media (max-width:1000px) {
-    .order-item{
-        font-size: 12px;
+
+.order-item select:hover {
+    background-color: #eee;
+}
+
+.order-item select:focus {
+    outline: none;
+    border-color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 1000px) {
+    .order-item {
         grid-template-columns: 0.5fr 2fr 1fr;
-        padding: 15px 8px;
+        padding: 12px 8px;
+        font-size: 12px;
     }
-    .order-item select{
+
+    .order-item select {
         padding: 5px;
         font-size: 12px;
     }
-    .order-item img{
-        width: 40px;
-    }
     
+    .order-item img {
+        width: 35px;
+    }
+}
+
+@media (max-width: 600px) {
+    .order-item {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .order-item img {
+        width: 30px;
+        margin: auto;
+    }
+
+    .order-item select {
+        width: 100%;
+    }
 }

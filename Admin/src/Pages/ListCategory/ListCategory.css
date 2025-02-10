@@ -14,7 +14,7 @@
     font-size: 13px;
 }
 
-.list-table-format.title{
+.list-category-table-format.title{
     display: grid;
     grid-template-columns: repeat(4,1fr);
     align-items: center;
