@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    name: { type: String , required: true , maxlength: 30},
-    email: { type: String , required: true , unique: true , maxlength: 40 },
+    name: { type: String , required: true },
+    email: { type: String , required: true , unique: true },
     password: { type: String , required: true },
-    contact: { type: Number , required: true , unique: true , minlength: 10 , maxlength: 10 },
+    contact: { type: Number , required: true , unique: true },
     otp: {type: Number , default: "" },
     expriredOn: {type: Date , default: "" },
-    address: { type: String , default: "" , maxlength: 500},
-    city:{ type:String , default: "" , maxlength: 30},
-    country:{ type:String , default: "" , maxlength: 30},
+    address: { type: String , default: "" },
+    city:{ type:String , default: "" },
+    country:{ type:String , default: "" },
     cartData: { type: Object , default: {} }
 },{minimize: false , timestamps: true});
 

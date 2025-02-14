@@ -1,4 +1,3 @@
-import { log } from "console";
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from 'stripe';
@@ -16,7 +15,7 @@ const placeOrder = async (req , res) => {
         {
             deliveryCharge = 50;
         }
-        const total = subtotal + gst + deliveryCharge;
+        const total = Number((subtotal + gst + deliveryCharge).toFixed(2));
         const newOrder = new orderModel({
             userId: req.body.userId,
             items: req.body.items,
@@ -24,7 +23,6 @@ const placeOrder = async (req , res) => {
             amount: total
         })
         
-
         const line_items = req.body.items.map((item)=>({
             price_data: {
                 currency: "inr",
@@ -96,7 +94,7 @@ const verifyOrder = async (req , res) => {
 
 const userOrder = async (req , res) => {
     try {
-        const orders = await orderModel.find({userId: req.body.userId , payment: true});
+        const orders = await orderModel.find({userId: req.body.userId , payment: true}).sort({ createdAt: -1 });;
         res.status(200).json({success: true , data: orders});    
     } 
     catch (error) {
@@ -110,6 +108,9 @@ const listOrders = async (req , res) => {
         const orders = await orderModel.aggregate([
             {
                 $match: { payment: true }
+            },
+            {
+                $sort: { createdAt: -1 } 
             },
             {
                 $lookup: {
