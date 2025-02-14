@@ -1,61 +1,88 @@
-.explore-menu{
+.explore-menu {
     display: flex;
+    position: relative;
     flex-direction: column;
     gap: 20px;
     box-sizing: content-box;
 }
-.explore-menu h1{
+
+.explore-menu h1 {
     color: dimgray;
 }
-.explore-menu-text{
+
+.explore-menu-text {
     max-width: 60%;
     color: dimgray;
 }
-.explore-menu-list{
-    padding-left: 7%;
+
+.explore-menu-list {
     display: flex;
+    position: relative;
     align-items: center;
     gap: 30px;
     text-align: center;
     margin: 20px 0px;
-    overflow-x: scroll;
+    overflow-x: auto; 
+ 
 }
-.explore-menu-list::-webkit-scrollbar{
+
+.explore-menu-list-all {
+    position: sticky; 
+    left: 0%;
+    top: 0px;
+    padding: 3px;
+    z-index: 10; 
+    border-radius: 10px;
+    background-color:rgba(255,255,255,0.8);
+    backdrop-filter: blur(5px);
+}
+
+.explore-menu-list::-webkit-scrollbar {
     display: none;
 }
-.explore-menu-list-item img{
+
+.explore-menu-list-item img {
     width: 130px;
     height: 130px;
-    object-fit: cover; 
+    object-fit: cover;
     cursor: pointer;
     border-radius: 50%;
     transition: 0.2s;
 }
-.explore-menu-list-item p{
+
+.explore-menu-list-item p {
     margin-top: 10px;
     color: dimgray;
-    font-size: max(1.4vw , 16px);
+    font-size: max(1.4vw, 16px);
     cursor: pointer;
 }
-hr{
+
+hr {
     margin: 10px 0px;
     height: 0.5vh;
     background-color: dimgray;
     border: 1px solid dimgray;
     border-radius: 5px;
 }
-.explore-menu-list-item .active{
+
+.explore-menu-list-all .active {
+    border: 4px solid coral;
+    border-radius: 50%;
+}
+
+.explore-menu-list-item .active {
     border: 4px solid coral;
 }
-@media (max-width:1050px) {
-    .explore-menu-text{
+
+@media (max-width: 1050px) {
+    .explore-menu-text {
         max-width: 100%;
         font-size: 14px;
     }
-    
 }
-@media (max-width:400px) {
-    .explore-menu-list-item{
+
+@media (max-width: 400px) {
+    .explore-menu-list-item {
         padding-left: 0%;
     }
 }

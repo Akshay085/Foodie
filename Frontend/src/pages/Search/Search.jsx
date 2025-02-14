@@ -32,21 +32,26 @@ const Search = () => {
   };
   return (
     <div className="search-box-main">
-      <div className="search-box">
-        <input
-          type="text"
-          value={inputvalue}
-          onChange={handleChange}
-          placeholder="Search..."
-          className="search-input"
-        />
-        <button onClick={handleSearch} className="search-button">
-          Search
-        </button>
+      <div className="search-header">
+        <h1>All Foods</h1>{" "}
+        <div className="search-box">
+          <input
+            type="text"
+            value={inputvalue}
+            onChange={handleChange}
+            placeholder="Search..."
+            className="search-input"
+          />
+          <button onClick={handleSearch} className="search-button">
+            Search
+          </button>
+        </div>
       </div>
       <div className="view-menu">
-      {!inputvalue ?<></>:<>
-             
+        {!inputvalue ? (
+          <></>
+        ) : (
+          <>
             {foodlist
               .filter((foodname) =>
                 foodname.name.toLowerCase().includes(inputvalue.toLowerCase())
@@ -63,27 +68,24 @@ const Search = () => {
                   />
                 );
               })}
-         </>}
-         </div>
-         <hr />
-      <h1>All Foods</h1>
+          </>
+        )}
+      </div>
       <hr />
 
       <div className="view-menu">
-            {foodlist.map((item, i) => { 
-              return (
-                <FoodItem
-                  key={i}
-                  id={item._id}
-                  name={item.name}
-                  description={item.description}
-                  price={item.price}
-                  image={item.image}
-                />
-              );
-            })}
-         
-            
+        {foodlist.map((item, i) => {
+          return (
+            <FoodItem
+              key={i}
+              id={item._id}
+              name={item.name}
+              description={item.description}
+              price={item.price}
+              image={item.image}
+            />
+          );
+        })}
       </div>
     </div>
   );

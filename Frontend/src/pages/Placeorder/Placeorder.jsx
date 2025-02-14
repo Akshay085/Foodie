@@ -12,6 +12,7 @@ const Placeorder = () => {
   const gst = (50+(subtotal * 12) / 100);
   const total = subtotal + gst;
   console.log(userData);
+
   const navigate = useNavigate();
   
   const [input, setInput] = useState({
@@ -110,7 +111,7 @@ const Placeorder = () => {
           <label>Phone</label>
           <input type="text" placeholder="Phone"  name="contact" value={input.contact} readOnly  required/>
         </div>
-        <button  className="edit-button"  onClick={()=>{navigate('/userprofile')}} >Edit</button>
+        <button  className="edit-button" type="button" onClick={()=>{navigate('/userprofile')}} >Edit</button>
       </div>
 
       <div className="place-order-right">
