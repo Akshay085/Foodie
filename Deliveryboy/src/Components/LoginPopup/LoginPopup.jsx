@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { StoreContext } from "../../context/StoreContextdel";
 import {  useNavigate} from 'react-router-dom'
 const LoginPopup = () => {
-  const { url } = useContext(StoreContext);
+  const { url,token, setToken, } = useContext(StoreContext);
      const navigate=useNavigate();
   const [data, setData] = useState({
     email: "",
@@ -28,7 +28,7 @@ const LoginPopup = () => {
       if (response.data.success) {
         setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
-        localStorage.setItem("user", JSON.stringify(response.data.userData));
+        localStorage.setItem("user", JSON.stringify(data));
 
         toast.success("Welcome!");
         SetShowlogin(false);
@@ -91,7 +91,7 @@ const LoginPopup = () => {
         </div>
 
         <div className="forget-link-container">
-           <span onClick={forgetPopup}> Forget Password ?</span>
+           <span > Forget Password ?</span>
         </div>
 
         <button type="submit">
