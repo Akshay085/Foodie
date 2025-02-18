@@ -17,6 +17,17 @@ const createToken = (id) => {
     return jwt.sign( {id} , process.env.JWT_SECRET );
 }
 
+const listDelBoy = async (req , res) => {
+    try {
+        const delBoy = await delBoyModel.find({});
+        res.status(200).json({success: true , data: delBoy});
+    } 
+    catch (error) {
+        console.log(error);
+        res.status(500).json({success: false , message: "Error"});
+    }
+}
+
 const loginDelBoy = async (req , res) => {
     const {email , password} = req.body;
     try {
@@ -208,4 +219,4 @@ const updatePassword = async (req , res) => {
     }
 }
 
-export { registerDelBoy , loginDelBoy , sendOtp , verifyOtp , updatePassword }
+export { registerDelBoy , loginDelBoy , listDelBoy , sendOtp , verifyOtp , updatePassword }
