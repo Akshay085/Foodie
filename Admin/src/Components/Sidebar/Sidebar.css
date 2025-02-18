@@ -1,9 +1,13 @@
 .sidebar{ 
     margin: 2vh;
     left: 0;
+    padding: 1%;
     width: 10%;
     min-height: 100vh;
     font-size:max(1vw ,10px );  
+    background-color: tomato;
+    border-radius: 10px;
+
 }
 .sidebar-options{
     padding-top: 50px;
@@ -15,8 +19,8 @@
     display: flex;
     align-items: center;
     gap: 2%;
-    border: 1px solid dimgray;
-    border-left: 0;
+    border: 2px solid black;
+    color: black;
     padding: 1px;
     border-radius: 5px;
     cursor: pointer;

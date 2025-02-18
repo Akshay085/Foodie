@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import "./AddDeliveryBoy.css"
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const AddDeliveryBoy = ({url}) => {
     const [input,setInput]=useState({
@@ -28,10 +29,10 @@ const AddDeliveryBoy = ({url}) => {
         formData.append("address",input.address);
         formData.append("city",input.city);
         formData.append("country",input.country);
-        const response = await axios.post(`${url}/api/delBoy/register`, formData);
+    const response = await axios.post(`${url}/api/delBoy/register`, input);
         if (response.data.success) {
             toast.success(response.data.message);
-            SetData({
+            setInput({
                 name:"",
                 contact:"",
                 email:"",
