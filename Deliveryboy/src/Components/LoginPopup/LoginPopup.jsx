@@ -29,10 +29,7 @@ const LoginPopup = () => {
         setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user", JSON.stringify(data));
-
         toast.success("Welcome!");
-        SetShowlogin(false);
-        setUserData(response.data);
         console.log("My Response:", response.data);
       } else {
         toast.error(response.data.message);
