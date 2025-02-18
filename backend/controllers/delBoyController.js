@@ -1,4 +1,4 @@
-import delBoyModel from '../models/delBoyModel';
+import delBoyModel from '../models/delBoyModel.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
