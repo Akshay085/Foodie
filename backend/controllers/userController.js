@@ -3,9 +3,9 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
 import { sendMail } from "../helper/sendMail.js";
-import { loginMail } from "../public/loginMail.js";
-import { registerMail } from "../public/registerMail.js";
-import { otpMail } from "../public/otpMail.js";
+import { loginMail } from "../public/usersEmail/loginMail.js";
+import { registerMail } from "../public/usersEmail/registerMail.js";
+import { otpMail } from "../public/usersEmail/otpMail.js";
 import crypto from 'crypto';
 
 const generateOTP = (length = 6) => {
@@ -39,7 +39,7 @@ const loginUser = async (req , res) => {
             return template.replace(/{{(.*?)}}/g, (match, key) => data[key.trim()] || '');
         };
         let template = generateEmail(loginMail, data);
-        sendMail(email , "Welcome to our FOODIES Website" ,  `${template}`);
+        sendMail(email , "Login Successful - Welcome Back!" ,  `${template}`);
         const userData = {
             _id: user._id,
             name: user.name,
@@ -107,7 +107,7 @@ const registerUser = async (req , res) => {
             return template.replace(/{{(.*?)}}/g, (match, key) => data[key.trim()] || '');
         };
         let template = generateEmail(registerMail, data);
-        sendMail(email , "Welcome to our FOODIES Website" , ` ${template}`);
+        sendMail(email , "Registration Successful - Welcome to FOODIES!" , ` ${template}`);
         res.status(201).json({success: true , token});
 
     } 
