@@ -12,6 +12,6 @@ const delBoySchema = new mongoose.Schema({
     country:{ type:String , required: true },
 },{minimize: false , timestamps: true});
 
-const delBoyModel = mongoose.models.delBoys || mongoose.model("delBoys" , delBoySchema); 
+const delBoyModel = mongoose.models.delboys || mongoose.model("delboys" , delBoySchema); 
 
 export default delBoyModel ;

@@ -4,6 +4,10 @@ import bcrypt from 'bcrypt';
 import validator from 'validator';
 import crypto from 'crypto';
 
+const createToken = (id) => {
+    return jwt.sign( {id} , process.env.JWT_SECRET );
+}
+
 const registerDelBoy = async (req , res) => {
     const {name , email , contact , password , address , city ,country} = req.body;
 
@@ -28,7 +32,7 @@ const registerDelBoy = async (req , res) => {
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(password , salt);  
         
-        const newDelBoy = new delBoyModel ({
+        const newDelBoy = new delBoyModel({
             name: name,
             email: email,
             contact: contact,
@@ -41,10 +45,6 @@ const registerDelBoy = async (req , res) => {
         const delBoy = await newDelBoy.save();
 
         const token = createToken(delBoy._id);
-
-        let data = {
-            name
-        }
 
         res.status(201).json({success: true , token});
     } 
