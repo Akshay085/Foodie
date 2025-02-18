@@ -11,7 +11,7 @@ import'react-toastify/dist/ReactToastify.css';
 
 const Cart = () => {
   const { cartItems, foodlist,addtoCart, removefromCart , getTotalCartAmount } = useContext(StoreContext);
-  const [bool, setBool] = useState(false);
+  // const [bool, setBool] = useState(false);
   const navigate=useNavigate(false);
   useEffect(() => {
     window.scrollTo(0,0);
@@ -42,9 +42,8 @@ const Cart = () => {
         </div>
         <br />
         <hr />
-       
+      
         {foodlist.map((item, index) => {
-           
           if (cartItems[item._id] > 0) {
             return (
               <div className="main" key={index}>

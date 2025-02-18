@@ -1,15 +1,28 @@
 import React from 'react'
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useContext } from "react";
 import axios from 'axios';
 import { StoreContext } from "../../Context/StoreContext";
 import { useNavigate } from "react-router-dom";
 import './SelfService.css'
+import { toast } from "react-toastify";
+import'react-toastify/dist/ReactToastify.css';
 
 const SelfService = () => {
   const { url,token,cartItems,userData, foodlist,addtoCart, removefromCart , getTotalCartAmount } = useContext(StoreContext);
   const navigate=useNavigate(false);
   const subtotal = getTotalCartAmount();
+   
+    useEffect(() => {
+      window.scrollTo(0,0);
+      console.log(cartItems);
+      const isCartEmpty = Object.values(cartItems).every((qty) => qty === 0);
+      if (isCartEmpty) {
+        toast.warn("Please select some items");
+        navigate("/");
+      }
+    
+    }, [cartItems, navigate]);
   const selfPayment=async()=>{
     
       let orderItems =[];
@@ -51,6 +64,7 @@ const SelfService = () => {
         </div>
         <br />
         <hr />
+       
         {foodlist.map((item, index) => {
           if (cartItems[item._id] > 0) {
             return (

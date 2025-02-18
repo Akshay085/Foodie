@@ -77,7 +77,7 @@ const Placeorder = () => {
         <p className="title">Delivery Information</p>
         <div className="multi-fields">
           <div>
-            <label>Name</label>
+            <label>Name:</label>
             <input type="text" placeholder="First Name" name="name" value={input.name} readOnly required />
           </div>
           {/* <div>
@@ -86,7 +86,7 @@ const Placeorder = () => {
           </div> */}
         </div>
         <div>
-          <label> Address</label>
+          <label> Address:</label>
           <input type="text" placeholder=" Address" name="address" value={input.address} readOnly required />
         </div>
         {/* <div>
@@ -95,7 +95,7 @@ const Placeorder = () => {
         </div> */}
         <div className="multi-fields">
           <div>
-            <label>City</label>
+            <label>City:</label>
             <input type="text" placeholder="City" name="city" value={input.city} readOnly required />
           </div>
           {/* <div>
@@ -104,11 +104,11 @@ const Placeorder = () => {
           </div> */}
         </div>
         <div>
-          <label>Country</label>
+          <label>Country:</label>
           <input type="text" placeholder="Country"  name="country" value={input.country} readOnly required />
         </div>
         <div>
-          <label>Phone</label>
+          <label>Phone:</label>
           <input type="text" placeholder="Phone"  name="contact" value={input.contact} readOnly  required/>
         </div>
         <button  className="edit-button" type="button" onClick={()=>{navigate('/userprofile')}} >Edit</button>

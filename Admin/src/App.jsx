@@ -12,6 +12,7 @@ import EditPopup from "./Components/Editpopup/EditPopup";
 import  CategoryPopUp, {} from "./Components/CategoryPopup/CategoryPopUp"
 import AddCategory from "./Pages/AddCategory/AddCategory";
 import ListCategory from "./Pages/ListCategory/ListCategory";
+import AddDeliveryBoy from "./Pages/AddDeliveryBoy/AddDeliveryBoy";
 
 
 const App = () => {
@@ -47,6 +48,7 @@ const App = () => {
           <Route path="/order" element={<Order url={url}/>} />
           <Route path="/addcategory" element={<AddCategory url={url}/>} />
           <Route path="/listcategory" element={<ListCategory url={url} categoryeditpopup={categoryeditpopup} categorysetEditpopup={categorysetEditpopup} category={category} Setcategory={Setcategory} />} />
+          <Route  path="/adddeliveryboy" element={<AddDeliveryBoy url={url}/>}/>
         </Routes>
       </div>
     </div>

@@ -5,6 +5,7 @@ import {NavLink} from 'react-router-dom'
 const Sidebar = () => {
   return (
     <div className='sidebar'>
+      <div></div>
       <div className="sidebar-options">
 
         <NavLink  to='/add' className="sidebar-option">
@@ -31,8 +32,10 @@ const Sidebar = () => {
           <img src="\Images\order.png" alt="order icon" />
           <p>Orders</p>
         </NavLink>
-
-       
+        <NavLink to='/adddeliveryboy' className="sidebar-option">
+          <img src="\Images\add_icon.png" alt="adddeliveryboy" />
+          <p>Add Deliveryboy</p>
+        </NavLink> 
       </div>  
     </div>
   )

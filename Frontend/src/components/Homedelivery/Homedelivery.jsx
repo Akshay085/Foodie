@@ -1,15 +1,28 @@
 import React from 'react'
-import { useState } from "react";
+import { useState ,useEffect } from "react";
 import { useContext } from "react";
 import { StoreContext } from "../../Context/StoreContext";
 import { useNavigate } from "react-router-dom";
 import './Homedelivery.css'
+import { toast } from "react-toastify";
+import'react-toastify/dist/ReactToastify.css';
+
 const Homedelivery = () => {
   const { cartItems, foodlist,addtoCart, removefromCart , getTotalCartAmount } = useContext(StoreContext);
   const subtotal = getTotalCartAmount();
   const gst = (50+(subtotal * 12) / 100);
   const total = Math.floor(subtotal + gst);
   const navigate=useNavigate(false);
+     useEffect(() => {
+        window.scrollTo(0,0);
+        console.log(cartItems);
+        const isCartEmpty = Object.values(cartItems).every((qty) => qty === 0);
+        if (isCartEmpty) {
+          toast.warn("Please select some items");
+          navigate("/");
+        }
+      
+      }, [cartItems, navigate]);
   return (
     <div className="cartItems">
         <div className="cart-item-titles">
