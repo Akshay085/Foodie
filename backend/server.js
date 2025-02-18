@@ -7,6 +7,7 @@ import categoryRouter from './routes/categoryRoute.js';
 import cartRouter from './routes/cartRoute.js';
 import 'dotenv/config';
 import orderRouter from './routes/orderRoute.js';
+import delBoyRouter from './routes/delBoyRoute.js';
 
 
 //app config
@@ -26,6 +27,7 @@ app.use("/api/user" , userRouter);
 app.use("/api/category" , categoryRouter);
 app.use("/api/cart" , cartRouter);
 app.use("/api/order" , orderRouter);
+app.use("/api/delBoy" , delBoyRouter);
 
 app.get('/',(req,res)=>{
     res.send("API Working");
