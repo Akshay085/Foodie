@@ -55,8 +55,11 @@ const List = ({url,editpopup,setEditpopup,food,SetFood}) => {
               <p>{item.name}</p>
               <p>{item.category}</p>
               <p>₹{item.price}</p>
-              <img onClick={()=>removeFood(item._id)} className='delete-item' src="\Images\bin.png" alt="" />
+              <div className='edit-delete-images'>
+              <img onClick={()=>removeFood(item._id)} className='delete-item' src="\Images\bin.png" alt="" /></div>
+              <div className='edit-delete-images'>
               <img onClick={()=>handleEditPopup(item)} className='update-item' src="\Images\edit.png" alt="" /> 
+              </div>
             </div>
           )
         })}

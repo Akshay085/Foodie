@@ -40,7 +40,7 @@ const AddCategory = ({url}) => {
           className="add-image-upload  flex-col"
           style={{ alignItems: "start" }}
         >
-          <p>Upload</p>
+        
           <label htmlFor="image">
             <img
               src={image ? URL.createObjectURL(image) : Imgs.upload}

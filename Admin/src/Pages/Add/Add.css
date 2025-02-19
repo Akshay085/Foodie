@@ -1,36 +1,63 @@
 .add {
-    width: 70%; 
-    margin-left: 5%;
-    margin-top: 50px;
+    width: 70%;
+    margin: 50px auto;
     color: dimgray;
     font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* Responsive Form */
 .add form {
+    width: 60%;
+    max-width: 600px; /* Prevents form from being too wide */
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px black;
+    padding: 20px;
+    background: white;
 }
 
+/* Mobile-Friendly Adjustments */
+@media (max-width: 768px) {
+    .add {
+        width: 90%;
+    }
+
+    .add form {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .add-product-name, 
+    .add-product-description {
+        width: 100%; /* Full width for smaller screens */
+    }
+}
+
+/* Flexbox for Inputs */
 .flex-col {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
+/* Image Upload */
 .add-image-upload img {
-    width: 120px;
-    height: 120px;
-    z-index: 2;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
     border-radius: 10px;
 }
 
-.add-product-name, .add-product-description {
-    width: 50%;
-}
-
-.add-product-name input, .add-product-description textarea {
+/* Input & Textarea */
+.add-product-name input, 
+.add-product-description textarea {
     width: 100%;
     padding: 10px;
     border-radius: 20px;
@@ -38,35 +65,40 @@
     outline: none;
 }
 
+/* Category & Price Section */
 .add-category-price {
     display: flex;
     gap: 30px;
     align-items: center;
 }
 
-.add-category-price select, .add-category-price input {
-    max-width: 120px;
+/* Category & Price Inputs */
+.add-category-price select, 
+.add-category-price input {
+    max-width: 100%;
     padding: 7px;
     border-radius: 20px;
     border: 1px solid #ccc;
     outline: none;
 }
 
-.add-button {
+/* Buttons */
+.add-button, .form button {
     max-width: 120px;
-    border: none;
     padding: 10px;
     background-color: black;
-    color: azure;
+    color: white;
     cursor: pointer;
     border-radius: 20px;
     transition: background-color 0.3s ease;
+    text-align: center;
 }
 
-.add-button:hover {
+.add-button:hover, .form button:hover {
     background-color: #333;
 }
 
+/* Category Button */
 .add-category button {
     max-width: 120px;
     padding: 7px;
@@ -81,6 +113,7 @@
     background-color: #f0f0f0;
 }
 
+/* Modal */
 .addcategory-model {
     position: relative;
     display: flex;
@@ -92,6 +125,15 @@
     background-color: white;
 }
 
+/* Responsive Modal */
+@media (max-width: 768px) {
+    .addcategory-model {
+        width: 90%;
+        padding: 15px;
+    }
+}
+
+/* Form Inside */
 .form {
     display: flex;
     flex-direction: column;
@@ -105,11 +147,13 @@
 }
 
 form img {
-    width: 60%;
+    width: 100%;
+    max-width: 300px;
     height: auto;
     object-fit: contain;
 }
 
+/* Inputs */
 form input {
     border-radius: 50px;
     padding: 10px;
@@ -117,17 +161,25 @@ form input {
     outline: none;
 }
 
-.form button {
-    color: white;
-    max-width: 120px;
-    padding: 7px;
-    border: 1px solid black;
-    border-radius: 20px;
-    background-color: black;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+/* Adjustments for Mobile */
+@media (max-width: 480px) {
+    .add {
+        width: 95%;
+    }
 
-.form button:hover {
-    background-color: #333;
+    .add form {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .add-product-name input, 
+    .add-product-description textarea {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .add-button, .form button {
+        width: 100%;
+        max-width: 100%;
+    }
 }

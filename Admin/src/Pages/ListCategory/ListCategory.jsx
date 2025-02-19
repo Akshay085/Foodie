@@ -39,10 +39,8 @@ const handleEditPopup=async(fooddetails)=>{
 }
   return (
     <div className="category-main">
-      <center>
-        <p>All Category List</p>
-      </center>
       <div className="list-table-all">
+        <p>All Categories</p>
         <div className="list-category-table-format title">
           <b>Image</b>
           <b>Name</b>

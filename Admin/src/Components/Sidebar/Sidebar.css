@@ -4,10 +4,10 @@
     height: 100vh;
     
     font-size: max(1vw, 10px);
-    border-radius: 10px;
+    border-radius: 5px;
     z-index: 1000; 
     transition: width 0.3s ease-in-out;
-    background-color: tomato;
+    background-color: #ff6b51;
 }
 
 .sidebar.collapsed {
