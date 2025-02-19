@@ -1,4 +1,5 @@
 import delBoyModel from '../models/delBoyModel.js';
+import orderModel from '../models/orderModel.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
@@ -218,5 +219,100 @@ const updatePassword = async (req , res) => {
         res.status(500).json({ success: false, message: "Internal server error" });
     }
 }
+
+const listOrders = async (req , res) => {
+    try {
+        const orders = await orderModel.aggregate([
+            {
+                $match: { payment: true , delBoyId: req.body.delBoyId }
+            },
+            {
+                $sort: { createdAt: -1 } 
+            },
+            {
+                $lookup: {
+                    from: "users", 
+                    localField: "userId", 
+                    foreignField: "_id", 
+                    as: "userData"
+                }
+            },
+            { $unwind: "$userData" },
+            {
+                $lookup: {
+                    from: "users",
+                    localField: "delBoyId",
+                    foreignField: "_id",
+                    as: "delBoyData"
+                }
+            },
+            { $unwind: { path: "$delBoyData", preserveNullAndEmptyArrays: true } },
+            {
+                $project: {
+                    userId: 1,
+                    delBoyId: 1,
+                    items: 1,
+                    delType: 1,
+                    amount: 1,
+                    status: 1,
+                    date: 1,
+                    payment: 1,
+                    "userData.name": 1,   
+                    "userData.email": 1,
+                    "userData.contact": 1,
+                    "userData.address": 1,
+                    "userData.city": 1,
+                    "userData.country": 1,
+                    "delBoyData.name": 1,
+                    "delBoyData.contact": 1
+                }
+            }
+        ]);
+        
+        res.status(200).json({success: true , data: orders});
+    } 
+    catch (error) {
+        
+    }
+}
+
+const updateStatusByDelBoy = async (req , res) => {
+    try{
+        const { orderId, delBoyId, status } = req.body;
+
+        const order = await orderModel.findById(orderId);
+        if (!order) {
+            return res.status(404).json({ success: false, message: "Order not found" });
+        }
+
+        if (order.delBoyId.toString() !== delBoyId) {
+            return res.status(403).json({ success: false, message: "Not authorized to update this order" });
+        }
+
+        await orderModel.findByIdAndUpdate(orderId, { status });
+
+        if (status === "Delivered") {
+            await delBoyModel.findByIdAndUpdate(delBoyId, { isAvailable: true });
+        }
+
+        res.status(200).json({ success: true, message: "Order status updated" });
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).json({ success: false, message: "Error updating order status" });
+    }
+}
+
+const getAvailableDelBoys = async (req, res) => {
+    try {
+        const delBoys = await delBoyModel.find({ isAvailable: true }, { name: 1, contact: 1 });
+
+        res.status(200).json({ success: true, data: delBoys });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: "Error fetching available delivery boys" });
+    }
+};
+
 
 export { registerDelBoy , loginDelBoy , listDelBoy , sendOtp , verifyOtp , updatePassword }

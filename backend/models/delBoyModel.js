@@ -7,6 +7,7 @@ const delBoySchema = new mongoose.Schema({
     contact: { type: Number , required: true , unique: true },
     otp: {type: Number , default: "" },
     expriredOn: {type: Date , default: "" },
+    isAvailable: { type: Boolean, default: true },
     address: { type: String , required: true },
     city:{ type:String , required: true },
     country:{ type:String , required: true },

@@ -1,5 +1,6 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
+import delBoyModel from "../models/delBoyModel.js";
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -120,12 +121,20 @@ const listOrders = async (req , res) => {
                     as: "userData"
                 }
             },
+            { $unwind: "$userData" },
             {
-                $unwind: "$userData"
+                $lookup: {
+                    from: "users",
+                    localField: "delBoyId",
+                    foreignField: "_id",
+                    as: "delBoyData"
+                }
             },
+            { $unwind: { path: "$delBoyData", preserveNullAndEmptyArrays: true } },
             {
                 $project: {
                     userId: 1,
+                    delBoyId: 1,
                     items: 1,
                     delType: 1,
                     amount: 1,
@@ -137,12 +146,14 @@ const listOrders = async (req , res) => {
                     "userData.contact": 1,
                     "userData.address": 1,
                     "userData.city": 1,
-                    "userData.country": 1
+                    "userData.country": 1,
+                    "delBoyData.name": 1,
+                    "delBoyData.contact": 1
                 }
             }
         ]);
         
-        res.status(200).json({success: true , data: orders})   
+        res.status(200).json({success: true , data: orders});   
     } 
     catch (error) {
         console.log(error);
@@ -158,6 +169,27 @@ const updateStatus = async (req , res) => {
     catch (error) {
         console.log(error);
         res.status(500).json({success: false , message: "Error"});
+    }
+}
+
+const assignDelBoy = async (req , res) => {
+    try {
+        const { orderId, delBoyId } = req.body;
+
+        const delBoy = await delBoyModel.findOne({ _id: delBoyId, isAvailable: true });
+
+        if (!delBoy) {
+            return res.status(400).json({ success: false, message: "No available delivery boy found" });
+        }
+
+        await orderModel.findByIdAndUpdate(orderId, { delBoyId, status: "Assigned to Delivery Boy" });
+        await delBoyModel.findByIdAndUpdate(delBoyId, { isAvailable: false });
+
+        res.status(200).json({ success: true, message: "Delivery Boy Assigned" });
+    } 
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: "Error assigning delivery boy" });
     }
 }
 
