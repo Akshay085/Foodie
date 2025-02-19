@@ -182,7 +182,7 @@ const assignDelBoy = async (req , res) => {
             return res.status(400).json({ success: false, message: "No available delivery boy found" });
         }
 
-        await orderModel.findByIdAndUpdate(orderId, { delBoyId, status: "Assigned to Delivery Boy" });
+        await orderModel.findByIdAndUpdate(orderId, { delBoyId: delBoyId });
         await delBoyModel.findByIdAndUpdate(delBoyId, { isAvailable: false });
 
         res.status(200).json({ success: true, message: "Delivery Boy Assigned" });
