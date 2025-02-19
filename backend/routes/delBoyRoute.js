@@ -11,6 +11,6 @@ delBoyRouter.post("/verifyOtp" , verifyOtp);
 delBoyRouter.post("/updatePassword" , updatePassword);
 delBoyRouter.post("/updateStatusByDelBoy" , updateStatusByDelBoy);
 delBoyRouter.get("/getAvailableDelBoys" , getAvailableDelBoys);
-delBoyRouter.get("/listOrder" , listOrders);
+delBoyRouter.post("/listOrder" , listOrders);
 
 export default delBoyRouter;
