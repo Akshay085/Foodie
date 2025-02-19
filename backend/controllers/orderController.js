@@ -174,7 +174,7 @@ const updateStatus = async (req , res) => {
 
 const assignDelBoy = async (req , res) => {
     try {
-        const { orderId, delBoyId } = req.body;
+        const { orderId , delBoyId } = req.body;
 
         const delBoy = await delBoyModel.findOne({ _id: delBoyId, isAvailable: true });
 
@@ -193,4 +193,4 @@ const assignDelBoy = async (req , res) => {
     }
 }
 
-export { placeOrder , verifyOrder , userOrder , listOrders , updateStatus }
+export { placeOrder , verifyOrder , userOrder , listOrders , updateStatus , assignDelBoy }

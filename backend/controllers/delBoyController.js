@@ -315,4 +315,4 @@ const getAvailableDelBoys = async (req, res) => {
 };
 
 
-export { registerDelBoy , loginDelBoy , listDelBoy , sendOtp , verifyOtp , updatePassword }
+export { registerDelBoy , loginDelBoy , listDelBoy , sendOtp , verifyOtp , updatePassword , listOrders , updateStatusByDelBoy , getAvailableDelBoys }

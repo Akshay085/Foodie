@@ -1,5 +1,5 @@
 import express from 'express';
-import { listDelBoy, loginDelBoy, registerDelBoy, sendOtp, updatePassword, verifyOtp } from '../controllers/delBoyController.js';
+import { getAvailableDelBoys, listDelBoy, listOrders, loginDelBoy, registerDelBoy, sendOtp, updatePassword, updateStatusByDelBoy, verifyOtp } from '../controllers/delBoyController.js';
 
 const delBoyRouter = express.Router();
 
@@ -9,5 +9,8 @@ delBoyRouter.get("/list" , listDelBoy);
 delBoyRouter.post("/sendOtp" , sendOtp);
 delBoyRouter.post("/verifyOtp" , verifyOtp);
 delBoyRouter.post("/updatePassword" , updatePassword);
+delBoyRouter.post("/updateStatusByDelBoy" , updateStatusByDelBoy);
+delBoyRouter.get("/getAvailableDelBoys" , getAvailableDelBoys);
+delBoyRouter.get("/listOrder" , listOrders);
 
 export default delBoyRouter;
