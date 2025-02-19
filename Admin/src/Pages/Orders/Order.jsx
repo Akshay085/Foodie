@@ -7,26 +7,40 @@ import { useEffect } from "react";
 import Bag from "../../Components/Animation/Bag";
 const Order = ({ url }) => {
   const [orders, setOrders] = useState([]);
-
+  const [delboy,setDelboy]=useState([]);
   const fetchAllOrders = async () => {
     const response = await axios.get(url + "/api/order/list");
     if (response.data.success) {
       setOrders(response.data.data);
-      console.log(response.data.data);
+      console.log(delboy);
     } else {
       toast.error("Error");
     }
   };
+  const fetchAllDeliveryBoy = async () => {
+    const response = await axios.get(url + "/api/delBoy/list");
+    if (response.data.success) {
+      setDelboy(response.data.data);
+      console.log(response.data.data);
+    } else {
+      toast.error("Error");
+    } 
+  };
 
-  const statusHandler =async (event ,orderId)=>{
-             console.log(event,orderId);
-             const  response=await axios.post(url+"/api/order/status",{orderId,status:event.target.value});
-             if(response.data.success){
-              await fetchAllOrders();
-             }
-  }
+  const statusHandler = async (event, orderId) => {
+    console.log(event, orderId);
+    const response = await axios.post(url + "/api/order/status", {
+      orderId,
+      status: event.target.value,
+    });
+    if (response.data.success) {
+      await fetchAllOrders();
+      await fetchAllDeliveryBoy();
+    }
+  };
   useEffect(() => {
     fetchAllOrders();
+    fetchAllDeliveryBoy();
   }, []);
   return (
     <div className="order add">
@@ -62,18 +76,33 @@ const Order = ({ url }) => {
             <div>
               {" "}
               <p>Items:{order.items.length}</p>
+              <p>Items:{order.delType}</p>
             </div>
+
             <div>
               {" "}
               <p>Amount:{order.amount}</p>
             </div>
-            <div >
-              <select onChange={(event)=>statusHandler(event,order._id)} value={order.status}>
-                <option value="Food Processing">Food Processing</option>
-                <option value="Out for Delivery">Out for Delivery</option>
-                <option value="Delivered">Delivered</option>
-              </select>
+            <div>
+              {order.delType === "Home Delivery" ? (
+                <select>
+                  {delboy.map((boy)=>
+                    <option value="boy.name">{boy.name}</option>
+                 )}
+                  
+                </select>
+              ) : (
+                <select
+                  onChange={(event) => statusHandler(event, order._id)}
+                  value={order.status}
+                >
+                  <option value="Food Processing">Food Processing</option>
+                  <option value="Out for Delivery">Out for Delivery</option>
+                  <option value="Delivered">Delivered</option>
+                </select>
+              )}
             </div>
+            <p>{order.delType}</p>
           </div>
         ))}
       </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./LoginPopup.css";
 import axios from "axios";
+
 import { toast } from "react-toastify";
 import { StoreContext } from "../../context/StoreContextdel";
 import {  useNavigate} from 'react-router-dom'
@@ -31,6 +32,7 @@ const LoginPopup = () => {
         localStorage.setItem("user", JSON.stringify(data));
         toast.success("Welcome!");
         console.log("My Response:", response.data);
+        navigate("/orders");
       } else {
         toast.error(response.data.message);
       }
@@ -90,7 +92,6 @@ const LoginPopup = () => {
         <div className="forget-link-container">
            <span > Forget Password ?</span>
         </div>
-
         <button type="submit">
            Login
         </button>
