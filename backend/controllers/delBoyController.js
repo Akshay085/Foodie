@@ -1,5 +1,6 @@
 import delBoyModel from '../models/delBoyModel.js';
 import orderModel from '../models/orderModel.js';
+import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
@@ -222,9 +223,10 @@ const updatePassword = async (req , res) => {
 
 const listOrders = async (req , res) => {
     try {
+        const delBoyId = new mongoose.Types.ObjectId (req.body.delBoyId);
         const orders = await orderModel.aggregate([
             {
-                $match: { payment: true , delBoyId: req.body.delBoyId }
+                $match: { delBoyId: delBoyId }
             },
             {
                 $sort: { createdAt: -1 } 
@@ -238,15 +240,6 @@ const listOrders = async (req , res) => {
                 }
             },
             { $unwind: "$userData" },
-            {
-                $lookup: {
-                    from: "users",
-                    localField: "delBoyId",
-                    foreignField: "_id",
-                    as: "delBoyData"
-                }
-            },
-            { $unwind: { path: "$delBoyData", preserveNullAndEmptyArrays: true } },
             {
                 $project: {
                     userId: 1,
@@ -263,8 +256,6 @@ const listOrders = async (req , res) => {
                     "userData.address": 1,
                     "userData.city": 1,
                     "userData.country": 1,
-                    "delBoyData.name": 1,
-                    "delBoyData.contact": 1
                 }
             }
         ]);
@@ -272,7 +263,8 @@ const listOrders = async (req , res) => {
         res.status(200).json({success: true , data: orders});
     } 
     catch (error) {
-        
+        console.log(error);
+        res.status(500).json({success: false , message: "Error"});
     }
 }
 
