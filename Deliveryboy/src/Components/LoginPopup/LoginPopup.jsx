@@ -24,14 +24,15 @@ const LoginPopup = () => {
    
     try {
       const response = await axios.post(`${url}/api/delBoy/login`, data);
-      console.log("Login Response:", response.data);
+      console.log("Login Response:", response.data.delBoyData);
 
       if (response.data.success) {
         setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user", JSON.stringify(data));
         toast.success("Welcome!");
-        console.log("My Response:", response.data);
+        console.log("My Response:", response.data.delBoyData);
+        localStorage.setItem("delboydata",JSON.stringify(response.data.delBoyData))
         navigate("/orders");
       } else {
         toast.error(response.data.message);

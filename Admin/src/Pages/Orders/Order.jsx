@@ -75,8 +75,9 @@ const Order = ({ url }) => {
 
   return (
     <div className="order add">
-      <h3>Order Page </h3>
+   
       <div className="order-list">
+      <h3>Order Page </h3>
         {orders.map((order, index) => (
           <div key={index} className="order-item">
             <Bag />
@@ -135,7 +136,7 @@ const Order = ({ url }) => {
                 </select>
               )}
             </div>
-            <p>{order.delType}</p>
+            {/* <p>{order.delType}</p> */}
           </div>
         ))}
       </div>

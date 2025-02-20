@@ -1,9 +1,115 @@
-import React from 'react'
-import './Orders.css'
-const Orders = () => {
-  return (
-    <div>Orders</div>
-  )
-}
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import "./Orders.css";
+import { StoreContext } from "../../context/StoreContextdel";
+import DelBoy from "../Animation/DelBoy";
+import Foodprocessing from "../Animation/Foodprocessing";
+import Delivery from "../Animation/Delivered";
+import Delboygoing from "../Animation/delboygoing";
+import Delivered from "../Animation/Delivered";
 
-export default Orders
+const Orders = () => {
+  const { url } = useContext(StoreContext);
+  const [orderData, SetorderData] = useState([]);
+  const data = JSON.parse(localStorage.getItem("delboydata"));
+  const delboyid = data._id;
+
+  const fetchMyorders = async () => {
+    try {
+      const response = await axios.post(`${url}/api/delBoy/listOrder`, {
+        delBoyId: delboyid,
+      });
+      
+      if (response.data.success) {
+        SetorderData(response.data.data);
+      } else {
+        console.error("Failed to fetch orders:", response.data.message);
+      }
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+    }
+  };
+
+  const statusHandler = async (event, orderId) => {
+    try {
+      const newStatus = event.target.value;
+  
+      const response = await axios.post(url + "/api/order/status", {
+        orderId,
+        status: newStatus,
+      });
+  
+      if (response.data.success) {
+        alert("Status changed!");
+
+        SetorderData((prevOrders) =>
+          prevOrders.map((order) =>
+            order._id === orderId ? { ...order, status: newStatus } : order
+          )
+        );
+      }
+    } catch (error) {
+      console.error("Error updating status:", error);
+    }
+  };
+  
+  useEffect(() => {
+    fetchMyorders();
+  }, []);
+
+  return (
+    <div className="orderdata-body">
+      {orderData.length > 0 ? (
+        orderData.map((order, index) => (
+          <div key={index} className="order-item">
+            <div className="order-status">
+              <Delivered />
+            </div>
+
+            <div className="food-data">
+              <p className="order-item-food">
+                {order.items.map((item, index) => (
+                  <div className="order-name" key={index}>
+                    {item.name} X {item.quantity}
+                    {index !== order.items.length - 1 && ", "}
+                  </div>
+                ))}
+              </p>
+            </div>
+
+            <div className="user-data">
+              <p className="order-item-name">Name: {order.userData.name}</p>
+              <p className="order-item-address">
+                Address: {order.userData.address}, {order.userData.city}, {order.userData.country}.
+              </p>
+              <p className="order-item-contact">Contact: {order.userData.contact}</p>
+            </div>
+
+            <div className="order-details">
+              <div>
+              <p>Items: {order.items.length}</p>
+              </div>
+              {/* <p>Delivery Type: {order.delType}</p> */}
+              <div><p>Amount: {order.amount}</p>
+              </div>
+              <select
+                  onChange={(event) => statusHandler(event, order._id)}
+                  value={order.status}
+                >
+                  <option value="Food Processing">Food Processing</option>
+                  <option value="Out for Delivery">Out for Delivery</option>
+                  <option value="Delivered">Delivered</option>
+                </select>
+            </div>
+          </div>
+        ))
+      ) : (
+        <p>No orders found</p>
+      )}
+      
+    </div>
+    
+  );
+};
+
+export default Orders;

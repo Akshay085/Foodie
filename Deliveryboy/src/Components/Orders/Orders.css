@@ -1,0 +1,135 @@
+/* Orders Page Styling */
+.orderdata-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.order-item {
+    width: 100%;
+    max-width: 600px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 15px 0;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 0.5s ease-in-out;
+    position: relative;
+}
+
+/* Hover effect */
+.order-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Order Status Styling */
+.order-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Food Data Styling */
+.food-data {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: color 0.3s ease-in-out;
+}
+
+.food-data:hover {
+    color: #ff5722;
+}
+
+/* User Data Styling */
+.user-data {
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+}
+
+/* Order Details Styling */
+.order-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    color: #666;
+    padding-top: 10px;
+    transition: color 0.3s ease;
+}
+
+/* Hover effect for order details */
+.order-details:hover {
+    color: #007bff;
+}
+
+/* Smooth button-like hover effect on order details */
+.order-details div {
+    padding: 5px;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    border-radius: 5px;
+}
+
+.order-details div:hover {
+    transform: scale(1.05);
+}
+
+
+@media (max-width: 768px) {
+    .order-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .order-details {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .food-data {
+        font-size: 14px;
+    }
+
+    .user-data {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .orderdata-body {
+        padding: 10px;
+    }
+
+    .order-item {
+        padding: 10px;
+    }
+
+    .order-details {
+        font-size: 16px;
+    }
+}
