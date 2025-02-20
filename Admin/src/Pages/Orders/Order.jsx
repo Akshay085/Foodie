@@ -9,6 +9,7 @@ import Bag from "../../Components/Animation/Bag";
 const Order = ({ url }) => {
   const [orders, setOrders] = useState([]);
   const [delboy, setDelboy] = useState([]);
+  const [statusBox, SetstatusBox] = useState(true);
 
   const fetchAllOrders = async () => {
     const response = await axios.get(url + "/api/order/list");
@@ -43,17 +44,17 @@ const Order = ({ url }) => {
     try {
       console.log("Delivery Boy ID:", dboyid);
       console.log("Order ID:", orderid);
-      
+
       const response = await axios.post(
         url + "/api/order/assignDelBoy",
         { orderId: orderid, delBoyId: dboyid },
         { headers: { "Content-Type": "application/json" } }
       );
-  
+
       if (response.data.success) {
+        statusBox(false);
         toast.success("Delivery Boy Assigned Successfully");
-  
-        // Update orders state to disable select
+
         setOrders((prevOrders) =>
           prevOrders.map((order) =>
             order._id === orderid ? { ...order, delBoyAssigned: true } : order
@@ -67,7 +68,7 @@ const Order = ({ url }) => {
       toast.error("Error: " + error.response?.data?.message || error.message);
     }
   };
-  
+
   useEffect(() => {
     fetchAllOrders();
     fetchAllDeliveryBoy();
@@ -75,9 +76,8 @@ const Order = ({ url }) => {
 
   return (
     <div className="order add">
-   
       <div className="order-list">
-      <h3>Order Page </h3>
+        <h3>Order Page </h3>
         {orders.map((order, index) => (
           <div key={index} className="order-item">
             <Bag />
@@ -113,18 +113,25 @@ const Order = ({ url }) => {
             </div>
             <div>
               {order.delType === "Home Delivery" ? (
-                <select 
-                onChange={(e) => boyStatus(e.target.value, order._id)}
-                disabled={order.delBoyAssigned}  
-              >
-                <option value="">Select Delivery Boy</option>
-                {delboy.map((boy) => (
-                  <option key={boy._id} value={boy._id}>
-                    {boy.name}
-                  </option>
-                ))}
-              </select>
-              
+                !order.delBoyAssigned ? ( 
+                  <select
+                    onChange={(e) => boyStatus(e.target.value, order._id)}
+                  >
+                    <option value="">Select Delivery Boy</option>
+                    {delboy.map((boy) => (
+                      <option key={boy._id} value={boy._id}>
+                        {boy.name}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                
+                  <p>
+                    Assigned to:{" "}
+                    {delboy.find((boy) => boy._id === order.delBoyId)?.name ||
+                      "Unknown"}
+                  </p>
+                )
               ) : (
                 <select
                   onChange={(event) => statusHandler(event, order._id)}

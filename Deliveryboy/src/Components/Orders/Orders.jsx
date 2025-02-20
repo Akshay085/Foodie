@@ -30,12 +30,13 @@ const Orders = () => {
     }
   };
 
-  const statusHandler = async (event, orderId) => {
+  const statusHandler = async (event, delBoyId,orderId) => {
     try {
       const newStatus = event.target.value;
   
-      const response = await axios.post(url + "/api/order/status", {
+      const response = await axios.post(url + "/api/delBoy/updateStatusByDelBoy", {
         orderId,
+        delBoyId,
         status: newStatus,
       });
   
@@ -93,7 +94,7 @@ const Orders = () => {
               <div><p>Amount: {order.amount}</p>
               </div>
               <select
-                  onChange={(event) => statusHandler(event, order._id)}
+                  onChange={(event) => statusHandler(event,delboyid, order._id)}
                   value={order.status}
                 >
                   <option value="Food Processing">Food Processing</option>
