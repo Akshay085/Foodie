@@ -223,7 +223,7 @@ const updatePassword = async (req , res) => {
 
 const listOrders = async (req , res) => {
     try {
-        const delBoyId = new mongoose.Types.ObjectId (req.body.delBoyId);
+        const delBoyId = new mongoose.Types.ObjectId(req.body.delBoyId);
         const orders = await orderModel.aggregate([
             {
                 $match: { delBoyId: delBoyId }
@@ -297,7 +297,7 @@ const updateStatusByDelBoy = async (req , res) => {
 
 const getAvailableDelBoys = async (req, res) => {
     try {
-        const delBoys = await delBoyModel.find({ isAvailable: true }, { name: 1, contact: 1 });
+        const delBoys = await delBoyModel.find({ isAvailable: true });
 
         res.status(200).json({ success: true, data: delBoys });
     } catch (error) {
