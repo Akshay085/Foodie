@@ -136,8 +136,8 @@ const UserProfile = () => {
                   />
                 </td>
               </tr>
-              <tr>
-                <td colSpan={2}>
+              <tr className="buttons-save-edit-cancel">
+                <td  colSpan={2}>
                   {isEditing ? (
                     <>
                       <button type="submit" className="save-button">

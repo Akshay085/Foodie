@@ -45,7 +45,7 @@ const OrderPage = () => {
                   <p> ₹{order.amount}</p>
                   <p>Items:{order.items.length}</p>
                   <p><span>&#x25cf;</span><b>{order.status}</b></p>
-                 {order.status=="Food Processing"?<button>Cancel</button>:<button>Track Order</button>} 
+                 {order.status=="Food Processing"?<button>Cancel</button>:null} 
             </div>
           )
         })}

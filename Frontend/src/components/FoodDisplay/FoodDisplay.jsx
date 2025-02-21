@@ -5,7 +5,7 @@ import FoodItem from '../Food-Item/FoodItem';
 const FoodDisplay = ({category}) => {
     const {foodlist} =useContext(StoreContext);
   return (
-    <div className='food-display' id='fooddisplay'>
+    <div className='food-display' id="fooddisplay">
         <h2>Top Dishes Are Here.</h2>
         <div className="food-display-list">
             {foodlist.map((item,i)=>{

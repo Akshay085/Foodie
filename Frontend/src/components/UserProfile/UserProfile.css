@@ -1,99 +1,153 @@
-.profile-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-}
-.user-sidebar{
-    width: 30%;
-    height: 100%;
-    margin:1% ;
-    background-color: #007bff;
-}
-.content{
-    width: 70%;
-}
-
-form {
+/* Base styles for the user profile container */
+.UserProfile {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px;
     background: #fff;
-    padding: 20px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Form container */
+  .content form {
     width: 100%;
-    max-width: 500px;
-    text-align: center;
-}
-
-.image-upload {
+    text-align: left;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 15px;
-}
-
-.image-upload img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ccc;
-}
-
-.content table {
+  }
+  
+  /* Table styling */
+  .content table {
     width: 100%;
     border-collapse: separate;
-    border-spacing: 10px;
-}
-
-td {
-    padding: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-}
-
-.content input, textarea {
+    border-spacing: 0 10px;
+  }
+  
+  /* Table row styling */
+  .content table tr {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Two columns: 1 part for label, 2 parts for input */
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+  }
+  
+  /* Input and textarea styling */
+  .content table input,
+  .content textarea {
+    padding: 12px;
     width: 100%;
-    padding: 8px;
-    font-size: 14px;
+    border-radius: 8px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-}
-.edit-button{
-    width: 15%;
-    padding: 5px;
-    background-color:tomato ;
+    font-size: 14px;
+  }
+  
+  /* Buttons row styling */
+  tr.buttons-save-edit-cancel {
+    border-top: 2px solid #ddd;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    width: 100%;
+  }
+  
+  /* Buttons container styling */
+  tr.buttons-save-edit-cancel td {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  /* Button styling */
+  tr.buttons-save-edit-cancel button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Save button */
+  tr.buttons-save-edit-cancel .save-button {
+    background-color: #4caf50;
     color: white;
-    border: 2px solid tomato;
-    border-radius: 10px;
-}
-
-input:focus,
-textarea:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-textarea {
-    height: 80px;
-    resize: none;
-}
-.save-button{
-    width: 15%;
-    padding: 5px;
-    background-color:green ;
+  }
+  
+  tr.buttons-save-edit-cancel .save-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Cancel button */
+  tr.buttons-save-edit-cancel .cancel-button {
+    background-color: #f44336;
     color: white;
-    border: 2px solid green;
-    border-radius: 10px;
-}
-.cancel-button{
-    width: 15%;
-    margin-left: 2%;
-    padding: 5px;
-    background-color:red ;
+  }
+  
+  tr.buttons-save-edit-cancel .cancel-button:hover {
+    background-color: #e53935;
+  }
+  
+  /* Edit button */
+  tr.buttons-save-edit-cancel .edit-button {
+    background-color: #2196f3;
     color: white;
-    border: 2px solid red;
-    border-radius: 10px;
-}
+  }
+  
+  tr.buttons-save-edit-cancel .edit-button:hover {
+    background-color: #1e88e5;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .UserProfile {
+      margin: 20px auto;
+      padding: 15px;
+      max-width: 100%; /* Full width on smaller screens */
+      border-radius: 0; /* Remove border radius for full-width effect */
+    }
+  
+    .content table tr {
+      grid-template-columns: 1fr; /* Stack label and input vertically on smaller screens */
+      gap: 5px;
+    }
+  
+    .content table input,
+    .content textarea {
+      padding: 10px;
+      font-size: 13px;
+    }
+  
+    tr.buttons-save-edit-cancel td {
+      flex-direction: column; /* Stack buttons vertically on smaller screens */
+      gap: 8px;
+    }
+  
+    tr.buttons-save-edit-cancel button {
+      width: 100%; /* Full-width buttons on smaller screens */
+      padding: 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .UserProfile {
+      margin: 10px auto;
+      padding: 10px;
+    }
+  
+    .content table tr {
+      padding: 5px 0;
+    }
+  
+    .content table input,
+    .content textarea {
+      padding: 8px;
+      font-size: 12px;
+    }
+  
+    tr.buttons-save-edit-cancel button {
+      font-size: 13px;
+    }
+  }

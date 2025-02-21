@@ -108,7 +108,7 @@ const Order = ({ url }) => {
             </div>
             <div>
               <p>Items: {order.items.length}</p>
-              <p>Delivery Type: {order.delType}</p>
+              <p>Delivery Type:<br/> {order.delType}</p>
             </div>
             <div>
               <p>Amount: {order.amount}</p>
