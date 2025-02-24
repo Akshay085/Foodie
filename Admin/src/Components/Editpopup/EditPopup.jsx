@@ -7,6 +7,7 @@ import { toast } from 'react-hot-toast'
 
 const EditPopup = ({ url, editpopup, setEditpopup, food, SetFood }) => {
   console.log(food);
+  const [categorylist, setcategoryList] = useState([]);
 
   const [image, SetImage] = useState(false);
   console.log("image", image);
@@ -18,7 +19,10 @@ const EditPopup = ({ url, editpopup, setEditpopup, food, SetFood }) => {
     description: "",
   });
   console.log("input", input);
-
+  const fetchCategorylist = async () => {
+    const response = await axios.get(url+"/api/category/list");
+    setcategoryList(response.data.data)
+  };
   useEffect(() => {
     setInput({
       ...input,
@@ -28,6 +32,7 @@ const EditPopup = ({ url, editpopup, setEditpopup, food, SetFood }) => {
       description: food.description,
       image: food.image,
     });
+    fetchCategorylist();
   }, [food]);
   const onChangeHandler = (event) => {
     const name = event.target.name;
@@ -113,14 +118,22 @@ const EditPopup = ({ url, editpopup, setEditpopup, food, SetFood }) => {
                 required
               />
 
-              <input
+              {/* <input
                 type="text"
                 placeholder={"category"}
                 name="category"
                 value={input.category}
                 onChange={onChangeHandler}
                 required
-              />
+              /> */}
+               <select 
+              onChange={onChangeHandler}
+              value={input.category}
+              name="category"
+            >
+              {categorylist.map((item,i)=><option value={item.name} key={i}>{item.name}</option>)}
+              required
+            </select>
 
               <input
                 type="text"

@@ -46,6 +46,7 @@ const LoginPopUp = ({ url,onLoginSuccess }) => {
       };
       
     return (
+      <div className='LoginPopUp-overlay'> 
         <div className='LoginPopUp-admin'>
            
             <div className='header-title'>Login</div>
@@ -62,6 +63,7 @@ const LoginPopUp = ({ url,onLoginSuccess }) => {
                     <button type='submit'>Login</button>
                 </form>
             </div>
+        </div>
         </div>
     );
 };

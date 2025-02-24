@@ -17,6 +17,20 @@
     row-gap: 40px;
     justify-content: center; 
 }
+.no-food-message {
+    text-align: center;
+    font-size: 18px;
+    color: #ff6347; 
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff3f3; 
+    border: 1px solid #ff6347; 
+    border-radius: 8px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 
 @media (max-width: 800px) {

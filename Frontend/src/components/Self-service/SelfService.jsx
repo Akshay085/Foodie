@@ -11,7 +11,7 @@ import'react-toastify/dist/ReactToastify.css';
 const SelfService = () => {
   const { url,token,cartItems,userData, foodlist,addtoCart, removefromCart , getTotalCartAmount } = useContext(StoreContext);
   const navigate=useNavigate(false);
-  const subtotal = getTotalCartAmount();
+  const subtotal = Math.floor(getTotalCartAmount());
    
     useEffect(() => {
       window.scrollTo(0,0);
@@ -93,12 +93,12 @@ const SelfService = () => {
           <hr />
           <div className="cart-total-details">
             <p>  GST </p>
-            <p>₹{(getTotalCartAmount()*12)/100 }</p>
+            <p>₹{Math.floor((getTotalCartAmount()*12)/100) }</p>
           </div>
           <hr />
           <div className="cart-total-details">
             <b>Total</b>
-            <b>₹{getTotalCartAmount()+(getTotalCartAmount()*12)/100  }</b>
+            <b>₹{Math.floor(getTotalCartAmount()+(getTotalCartAmount()*12)/100 ) }</b>
           </div>
           <button type="button" onClick={selfPayment}>Proceed To Payment</button>
         </div>

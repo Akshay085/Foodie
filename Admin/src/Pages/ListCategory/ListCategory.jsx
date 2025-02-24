@@ -64,7 +64,7 @@ const handleEditPopup=async(fooddetails)=>{
                 onClick={() => handleEditPopup(item)}
                 className="update-item"
                 src="\Images\edit.png"
-                alt=""
+                alt="edit icon"
               />
             </div>
           );

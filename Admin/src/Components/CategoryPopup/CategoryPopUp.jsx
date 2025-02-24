@@ -2,9 +2,7 @@ import React from "react";
 import "./CategoryPopup.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
-// import { toast } from "react-toastify";
 import { toast } from 'react-hot-toast'
-
 const CategoryPopUp = ({
   url,
   categoryeditpopup,

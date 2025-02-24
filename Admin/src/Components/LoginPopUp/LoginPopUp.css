@@ -1,19 +1,29 @@
-
+.LoginPopUp-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; 
+}
 .LoginPopUp-admin {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
     max-width: 400px;
     background: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color:rgba(0, 0, 0, 0.1) ;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     text-align: center;
-    margin: 10vh auto;
+    z-index: 1000; /* Ensure it's above the overlay */
 }
-
 .header-title {
     font-size: 24px;
     font-weight: bold;
@@ -82,7 +92,12 @@ button:hover {
     background-color: #0056b3;
 }
 
-
+@media (max-width: 480px) {
+    .LoginPopUp-admin {
+        width: 90%;
+        padding: 15px;
+    }
+}
 @media (max-width: 480px) {
     .LoginPopUp-admin {
         width: 90%;

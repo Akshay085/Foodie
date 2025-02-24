@@ -10,7 +10,7 @@ import'react-toastify/dist/ReactToastify.css';
 const Homedelivery = () => {
   const { cartItems, foodlist,addtoCart, removefromCart , getTotalCartAmount } = useContext(StoreContext);
   const subtotal = getTotalCartAmount();
-  const gst = (50+(subtotal * 12) / 100);
+  const gst =Math.floor (50+(subtotal * 12) / 100);
   const total = Math.floor(subtotal + gst);
   const navigate=useNavigate(false);
      useEffect(() => {

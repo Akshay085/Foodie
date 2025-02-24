@@ -18,8 +18,9 @@ const FoodItem = ({id,name,price,description,image}) => {
               <img onClick={()=>addtoCart(id)} src="\Images\add_icon_green.png" alt="add icon" />
                </div>
            :null }
-            
+         
         </div>
+        
         <div className="food-item-info">
             <div className="food-item-name-rating">
                 <p >{name}</p>
