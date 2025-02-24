@@ -90,7 +90,7 @@
     
     .list-food-table-format {
         grid-template-columns: 1fr 1.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
-        font-size: 10px;
+        font-size: 5px;
         /* display: flex;
         flex-direction: column;
         align-items: center;
@@ -98,8 +98,13 @@
         padding: 15px;
         border-bottom: 1px solid #ddd; */
     }
+    .list-food-table-format b{
+        font-size: 12px;
+        text-align: center;
+    }
     .list-food-table-format p{
-        font-size: small;
+        font-size: 12px;
+        text-align: center;
     }
 
     .list-food-table-format.title {

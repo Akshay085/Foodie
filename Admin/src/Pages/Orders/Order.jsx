@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Order.css";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast } from 'react-hot-toast'
+// import { toast } from "react-toastify";
 import Bag from "../../Components/Animation/Bag";
 
 const Order = ({ url }) => {

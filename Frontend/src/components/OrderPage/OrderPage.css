@@ -1,9 +1,9 @@
-/* Base styles for the order page */
+
 .OrderPage {
     margin: 50px 0;
   }
   
-  /* Container for orders */
+
   .order-container {
     display: flex;
     flex-direction: column;
@@ -11,10 +11,10 @@
     margin-top: 30px;
   }
   
-  /* Individual order styling */
+ 
   .my-orders-order {
     display: grid;
-    grid-template-columns: 0.5fr 3fr 1fr 1fr 2fr 1fr; /* 6-column layout */
+    grid-template-columns: 0.5fr 3fr 1fr 1fr 2fr 1fr; 
     align-items: center;
     gap: 30px;
     padding: 10px;
@@ -23,12 +23,11 @@
     border-radius: 10px;
   }
   
-  /* Image styling */
+
   .my-orders-order img {
     width: 50px;
   }
-  
-  /* Text styling */
+
   .my-orders-order p span {
     color: tomato;
   }
@@ -38,7 +37,7 @@
     color: #454545;
   }
   
-  /* Button styling */
+
   .my-orders-order button {
     border: none;
     padding: 12px 0;
@@ -48,10 +47,10 @@
     color: white;
   }
   
-  /* Responsive Design */
+  
   @media (max-width: 1200px) {
     .my-orders-order {
-      grid-template-columns: 0.5fr 2fr 1fr 1fr 1.5fr 1fr; /* Adjust column widths */
+      grid-template-columns: 0.5fr 2fr 1fr 1fr 1.5fr 1fr; 
       gap: 20px;
       font-size: 14px;
     }
@@ -59,7 +58,7 @@
   
   @media (max-width: 1000px) {
     .my-orders-order {
-      grid-template-columns: 1fr 2fr 1fr; /* 3-column layout */
+      grid-template-columns: 1fr 2fr 1fr; 
       font-size: 12px;
     }
   
@@ -71,13 +70,13 @@
   
   @media (max-width: 768px) {
     .my-orders-order {
-      grid-template-columns: 1fr 2fr; /* 2-column layout */
+      grid-template-columns: 1fr 2fr; 
       gap: 15px;
       font-size: 12px;
     }
   
     .my-orders-order img {
-      width: 40px; /* Smaller image */
+      width: 40px; 
     }
   
     .my-orders-order button {
@@ -88,14 +87,14 @@
   
   @media (max-width: 480px) {
     .my-orders-order {
-      grid-template-columns: 1fr; /* Single-column layout */
+      grid-template-columns: 1fr; 
       gap: 10px;
       font-size: 11px;
       padding: 8px;
     }
   
     .my-orders-order img {
-      width: 35px; /* Even smaller image */
+      width: 35px; 
     }
   
     .my-orders-order button {

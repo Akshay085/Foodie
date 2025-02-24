@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./Add.css";
 import { Imgs } from "../../assets/Imgs";
 import axios from "axios";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import { toast } from 'react-hot-toast'
 
-const Add = ({ url }) => {
+
+const Add = ({ showLogin,setShowLogin,url }) => {
   const [image, SetImage] = useState(false);
   const [categorylist, setcategoryList] = useState([]);
   const [data, SetData] = useState({
@@ -56,6 +58,7 @@ const Add = ({ url }) => {
   
   return (
     <div className="add">
+      {/* {showLogin==true ?<LoginPopUp  showLogin={showLogin}  setShowLogin={setShowLogin} />:null} */}
       <form className="flex-col" onSubmit={onSubmitHandler}>
         <div className="add-image-upload  flex-col" style={{'alignItems':'start'}}>
           {/* <p>Upload</p> */}

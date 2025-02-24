@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import "./Editpopup.css";
-import { toast } from "react-toastify";
+import { toast } from 'react-hot-toast'
+// import { toast } from "react-toastify";
 
 const EditPopup = ({ url, editpopup, setEditpopup, food, SetFood }) => {
   console.log(food);

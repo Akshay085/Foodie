@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import "./AddDeliveryBoy.css"
-import { toast ,ToastContainer} from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from 'react-hot-toast'
+// import { toast ,ToastContainer} from 'react-toastify';
+// import "react-toastify/dist/ReactToastify.css";
 
 const AddDeliveryBoy = ({url}) => {
     const [input,setInput]=useState({

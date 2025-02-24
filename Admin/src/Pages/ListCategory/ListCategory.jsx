@@ -2,7 +2,8 @@ import React from "react";
 import "./ListCategory.css";
 import { useState,useEffect} from 'react'
 import axios from "axios";
-import {toast} from 'react-toastify'
+import { toast } from 'react-hot-toast'
+// import {toast} from 'react-toastify'
 
 const ListCategory = ({url,category,Setcategory,categoryeditpopup,categorysetEditpopup}) => {
 

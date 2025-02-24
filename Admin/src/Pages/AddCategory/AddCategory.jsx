@@ -3,7 +3,8 @@ import "./AddCategory.css";
 import { useState } from "react";
 import { Imgs } from "../../assets/Imgs";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast } from 'react-hot-toast'
+// import { toast } from "react-toastify";
 
 const AddCategory = ({url}) => {
   

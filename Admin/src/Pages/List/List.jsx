@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './List.css'
 import axios from "axios";
-import {toast} from 'react-toastify'
-
+// import {toast} from 'react-toastify'
+import { toast } from 'react-hot-toast'
 const List = ({url,editpopup,setEditpopup,food,SetFood}) => {
   
   const [list,Setlist]=useState([]);
