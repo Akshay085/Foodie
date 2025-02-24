@@ -4,7 +4,7 @@ export const Burgerlist=[
         name:"Black Bean Burger",
         image:'/Images/burger1_blackbean.jpg',
         price:"60",
-        description:"Spiced black bean patty, fresh veggies, hearty bun: smoky, protein-rich, satisfying bite. 🍔",
+        description:"Spiced black bean tikki, fresh veggies, hearty bun: smoky, protein-rich, satisfying bite. 🍔",
         category:"Burger"
     },
     {
@@ -12,7 +12,7 @@ export const Burgerlist=[
         name:"Lantil Burger",
         image:'/Images/burger2_lentil.jpg',
         price:"75",
-        description:"Spiced lentil patty, fresh veggies, hearty bun: nutritious, earthy, satisfying bite. 🍔",
+        description:"Spiced lentil tikki, fresh veggies, hearty bun: nutritious, earthy, satisfying bite. 🍔",
         category:"Burger"
     },
     {
@@ -20,7 +20,7 @@ export const Burgerlist=[
         name:"Mixed Vagetable Burger",
         image:'/Images/burger3_mixveg.jpg',
         price:"50",
-        description:"Seasoned vegetable patty, fresh veggies: colorful, flavorful, satisfying bite. 🍔",
+        description:"Seasoned vegetable tikki, fresh veggies: colorful, flavorful, satisfying bite. 🍔",
         category:"Burger"
     },
     {
@@ -28,7 +28,7 @@ export const Burgerlist=[
         name:"Mashroom Burger",
         image:'/Images/burger4_mashroom.jpg',
         price:"80",
-        description:"Savory mushroom patty, fresh veggies, hearty bun: umami, juicy, satisfying bite. 🍔",
+        description:"Savory mushroom tikki, fresh veggies, hearty bun: umami, juicy, satisfying bite. 🍔",
         category:"Burger"
     },
     {
@@ -36,7 +36,7 @@ export const Burgerlist=[
         name:"Sweet Potato Burger",
         image:'/Images/burger5_sweetpotato.jpg',
         price:"70",
-        description:"Roasted sweet potato patty, fresh veggies: sweet, savory, satisfying bite. 🍔",
+        description:"Roasted sweet potato tikki, fresh veggies: sweet, savory, satisfying bite. 🍔",
         category:"Burger"
     },
     {
@@ -52,7 +52,7 @@ export const Burgerlist=[
         name:"Indian AlooTikki Burger",
         image:'/Images/burger7_indian.png',
         price:"50",
-        description:"Spiced potato patty, fresh veggies: flavorful, crispy, satisfying bite. 🍔",
+        description:"Spiced potato tikki, fresh veggies: flavorful, crispy, satisfying bite. 🍔",
         category:"Burger"
     },
     {
@@ -60,7 +60,7 @@ export const Burgerlist=[
         name:"Maxican Veg Burger",
         image:'/Images/burger8_maxican.png',
         price:"89",
-        description:"Spiced veggie patty, fresh salsa, hearty bun: zesty, crunchy, satisfying bite. 🍔",
+        description:"Spiced veggie tikki, fresh salsa, hearty bun: zesty, crunchy, satisfying bite. 🍔",
         category:"Burger"
     },
     {
@@ -68,7 +68,7 @@ export const Burgerlist=[
         name:"Vegan Beetroot Burger",
         image:'/Images/burger9_vegan.png',
         price:"70",
-        description:"Vibrant beetroot patty, fresh veggies : colorful, earthy, satisfying bite. 🍔",
+        description:"Vibrant beetroot tikki, fresh veggies : colorful, earthy, satisfying bite. 🍔",
         category:"Burger"
     },
     {
