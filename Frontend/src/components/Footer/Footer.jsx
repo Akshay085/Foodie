@@ -2,6 +2,12 @@ import React from "react";
 import "./footer.css";
 
 const Footer = () => {
+  const redirectToGmail=()=>{
+    window.location.href = "mailto:foodies.0905@gmail.com";
+  }
+  const redirectToContect=()=>{
+    window.location.href = "tel:+918200341437";
+  }
   return (
     <div className="footer-container" id="footer">
         
@@ -33,8 +39,8 @@ const Footer = () => {
           <div className="footer-content-right">
             <h2>GET IN TOUCH</h2>
             <ul>
-              <li>+91 82003 41437</li>
-              <li>contact@foodies.com</li>
+              <li onClick={redirectToContect}>+91 82003 41437</li>
+              <li onClick={redirectToGmail}>foodies.0905@gmail</li>
             </ul>
           </div>
         </div>

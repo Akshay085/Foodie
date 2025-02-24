@@ -67,6 +67,7 @@ const EditPopup = ({ url, editpopup, setEditpopup, food, SetFood }) => {
           description: "",
         });
         SetImage(false);
+        closeEditpopup();
         toast.success(response.data.message);
       } else {
         toast.error(response.data.message);

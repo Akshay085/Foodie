@@ -118,7 +118,19 @@ button:hover{
     color: tomato;
 }
 
-
+.navbar-menu a {
+    color: #555;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .navbar-menu a.active {
+    color: #ff5733; /* Highlighted color */
+    font-weight: bold;
+    border-bottom: 2px solid #ff5733;
+  }
+  
 @media (max-width:1050px) {
     .navbar  .navbar .logo{
         width: 140px;

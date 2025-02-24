@@ -59,10 +59,15 @@ const StoreContextProvider = (props) => {
   
 
   useEffect(() => {
+    const interval = setInterval(() => {
+      fetchFoodlist();
+      fetchCategorylist();  
+    }, 3000); 
+  
     async function LoadData() {
         
-        await fetchFoodlist();
-        await fetchCategorylist();       
+        // await fetchFoodlist();
+        // await fetchCategorylist();       
         if (localStorage.getItem("token")) {
             setToken(localStorage.getItem("token"));
             await loadCartdata(localStorage.getItem("token"));
@@ -74,7 +79,7 @@ const StoreContextProvider = (props) => {
     if (!foodlist.length) {
       LoadData();
     }
-    
+    return () => clearInterval(interval); 
   }, [token]);
     
 
