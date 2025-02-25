@@ -7,6 +7,7 @@ import validator from 'validator';
 import { sendMail } from "../helper/sendMail.js";
 import { registerMail } from '../public/delBoyEmail/registerMail.js';
 import { loginMail } from '../public/delBoyEmail/loginMail.js';
+import { otpMail } from '../public/delBoyEmail/otpMail.js';
 import crypto from 'crypto';
 
 const generateOTP = (length = 6) => {
