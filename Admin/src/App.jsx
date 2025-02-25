@@ -61,7 +61,8 @@ const App = () => {
             color: "#fff",
           },
         }}
-      /><ToastContainer />
+      />
+      <ToastContainer />
       {showLogin ? <LoginPopUp url={url} onLoginSuccess={handleLoginSuccess} /> : (
         <>
           {editpopup && <EditPopup url={url} editpopup={editpopup} setEditpopup={setEditpopup} food={food} SetFood={SetFood} />}

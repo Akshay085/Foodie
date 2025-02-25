@@ -4,7 +4,7 @@ import React from 'react'
 
 const MyLottieAnimation = () => {
   return (
-    <Lottie animationData={animationData} loop={true}  style={{ width: 120, height: 60 }} />
+    <Lottie animationData={animationData} loop={true}  style={{ width: 100, height: 60 }} />
   )
 }
 

@@ -2,10 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import "./LoginPopup.css";
 import axios from "axios";
 
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { StoreContext } from "../../context/StoreContextdel";
 import {  useNavigate} from 'react-router-dom'
-const LoginPopup = () => {
+const LoginPopup = ({loginPopUp, SetloginPopUp ,forgetPopUp,SetforgetPopUp}) => {
   const { url,token, setToken, } = useContext(StoreContext);
      const navigate=useNavigate();
   const [data, setData] = useState({
@@ -34,6 +34,8 @@ const LoginPopup = () => {
         console.log("My Response:", response.data.delBoyData);
         localStorage.setItem("delboydata",JSON.stringify(response.data.delBoyData))
         navigate("/orders");
+        SetloginPopUp(false);
+        
       } else {
         toast.error(response.data.message);
       }
@@ -49,10 +51,15 @@ const LoginPopup = () => {
     console.log("Current Data:", data);
   }, [data]);
 
-  const forgetPopup = () => {
-    SetShowlogin(false);
-    SetForget(true);
-  };
+  const forgetPassword = () => {
+    SetforgetPopUp(true);
+    SetloginPopUp(false);
+};
+
+  // const forgetPopup = () => {
+  //   SetShowlogin(false);
+  //   SetForget(true);
+  // };
 
   return (
     <div className="LoginPopUp">
@@ -90,8 +97,8 @@ const LoginPopup = () => {
           <p>By continuing, I agree to the Terms of Use & Privacy Policy.</p>
         </div>
 
-        <div className="forget-link-container">
-           <span > Forget Password ?</span>
+        <div className="forget-link-container" onClick={forgetPassword}>
+           <span  > Forget Password ?</span>
         </div>
         <button type="submit">
            Login

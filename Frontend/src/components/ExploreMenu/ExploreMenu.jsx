@@ -9,7 +9,7 @@ const ExploreMenu = ({category,setCategory}) => {
       }
       console.log(categorylist);
   return (
-    <div className='explore-menu' id='exploremenu'>
+    <section className='explore-menu' id='exploremenu'>
         <h1>Explore Menu</h1>
         <p className='explore-menu-text'>Choose From This Menu.</p>
         <div className="explore-menu-list">
@@ -29,7 +29,7 @@ const ExploreMenu = ({category,setCategory}) => {
             }
         </div>
         <hr></hr>
-    </div>
+    </section>
   )
 }
 

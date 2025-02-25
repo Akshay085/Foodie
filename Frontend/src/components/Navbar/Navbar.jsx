@@ -10,12 +10,13 @@ const Navbar = ({ SetShowlogin }) => {
   const { getTotalCartAmount, token } = useContext(StoreContext);
   const navigate = useNavigate();
 
-  // Function to handle manual click and update active state
+  
   const handleMenuClick = (menuItem) => {
     Setmenu(menuItem);
   };
 
   useEffect(() => {
+    window.scrollTo(0,0);
     const sections = [
       { id: "home", value: "Home" },
       { id: "fooddisplay", value: "Menu" },
@@ -24,10 +25,9 @@ const Navbar = ({ SetShowlogin }) => {
 
     const observerOptions = {
       root: null,
-      rootMargin: "-50% 0px -50% 0px", // Trigger when section is in the middle of the viewport
-      threshold: 0.1,
+      rootMargin: "0px 0px -20% 0px",
+      threshold: 0.2, 
     };
-
     const observerCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -48,6 +48,43 @@ const Navbar = ({ SetShowlogin }) => {
 
     return () => {
       observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+    const sections = document.querySelectorAll("section");
+
+    console.log("----",sections);
+
+    const handleScroll = () => {
+      let currentSection = "";
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        if (window.scrollY >= sectionTop - 50) {
+          currentSection = section.getAttribute("id");
+        }
+      });
+    
+      
+      
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
+        currentSection = "footer";
+      }
+    
+      if (currentSection === "exploremenu") {
+        handleMenuClick("Menu");
+      } else if (currentSection === "header") {
+        handleMenuClick("Home");
+      } else if (currentSection === "footer") {
+        handleMenuClick("Contact us");
+      }
+    };
+    
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -80,6 +117,7 @@ const Navbar = ({ SetShowlogin }) => {
         </a>
       </ul>
       <div className="navbar-right">
+        
         <Link to="./search">
           <img src="\Images\search_icon.png" alt="searchicon" />
         </Link>

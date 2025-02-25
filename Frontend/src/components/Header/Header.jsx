@@ -7,13 +7,13 @@ export const Header = () => {
     navigate("/search")             
   }
   return (
-    <div className='header'>    
+    <section className='header' id='header'>    
         <div className="headercontents">
             <h2>Order Your Favourite Food Hear</h2>
             <p>Choose From A Diverse Menu Featuring A Delectable Array of Dishes Crafted With The Finest Ingradients and Culinary Expertise.Our Mission Is to Satisfy Your  Cravings And Elevate Your Dining Experience , One Delicious Meal At a Time</p>
             <div className="btnmenu" onClick={View}><button>View Menu</button></div>
         </div>
-    </div>
+    </section>
   )
 }
 

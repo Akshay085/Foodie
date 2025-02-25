@@ -162,7 +162,7 @@ button:hover{
         gap:20px;
     }
     .navbar  .navbar-right img{
-        width: 20px;
+        width: 15px;
     }
     .navbar .navbar-right button{
         padding: 7px 20px;
@@ -172,8 +172,17 @@ button:hover{
 }
 @media (max-width:750px) {
     .navbar .navbar-menu{
-       display: none;
+       /* display: none; */
+
     }
+    .navbar  .navbar-menu{
+        gap: 2px;
+        font-size: 8px;
+    }
+    .navbar-menu a{
+        padding:5px ;
+    }
+
  
 }
 @media (max-width:400px) {
