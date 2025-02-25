@@ -16,6 +16,7 @@ import AddCategory from "./Pages/AddCategory/AddCategory";
 import ListCategory from "./Pages/ListCategory/ListCategory";
 import AddDeliveryBoy from "./Pages/AddDeliveryBoy/AddDeliveryBoy";
 import LoginPopUp from "./Components/LoginPopUp/LoginPopUp";
+import Reports from "./Pages/Reports/Reports";
 
 const App = () => {
   const url = "http://localhost:4000";
@@ -79,6 +80,7 @@ const App = () => {
               <Route path="/addcategory" element={<AddCategory url={url} />} />
               <Route path="/listcategory" element={<ListCategory url={url} categoryeditpopup={categoryeditpopup} categorysetEditpopup={categorysetEditpopup} category={category} Setcategory={Setcategory} />} />
               <Route path="/adddeliveryboy" element={<AddDeliveryBoy url={url} />} />
+              <Route path="/reports" element={<Reports url={url} />} />
             </Routes>
           </div>
         </>

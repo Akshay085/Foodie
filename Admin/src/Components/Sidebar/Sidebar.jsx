@@ -42,6 +42,11 @@ const Sidebar = () => {
               <img src="/Images/add_icon.png" alt="add deliveryboy" />
               <p>Add Deliveryboy</p>
             </NavLink>
+            <NavLink to="/reports" className="sidebar-option">
+              <img src="/Images/reports.png" alt="reports" />
+              <p>Reports</p>
+            </NavLink>
+            
           </div>
         )}
       </div>

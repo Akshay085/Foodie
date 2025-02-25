@@ -27,35 +27,35 @@ const StoreContextProvider = (props) => {
       await axios.post(url+"/api/cart/remove",{itemId},{headers:{token}});
     }
   };
-  // const getTotalCartAmount = () => {
-  //   let totalAmount = 0;
-  //   for (const item in cartItems) {
-  //     if (cartItems[item] > 0) {
-  //       let itemInfo = foodlist.find((product) => product._id == item);
-  //       totalAmount += itemInfo.price * cartItems[item];
-  //     }
-  //   }
-  //   return totalAmount;
-  // };
   const getTotalCartAmount = () => {
-    if (foodlist.length === 0) {
-      console.warn("Food list is empty, cannot calculate total price.");
-      return 0;
-    }
-  
     let totalAmount = 0;
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
-        let itemInfo = foodlist.find((product) => String(product._id) === item);
-        if (!itemInfo) {
-          console.warn(`Product with ID ${item} not found in foodlist`);
-          continue;
-        }
+        let itemInfo = foodlist.find((product) => product._id == item);
         totalAmount += itemInfo.price * cartItems[item];
       }
     }
     return totalAmount;
   };
+  // const getTotalCartAmount = () => {
+  //   if (foodlist.length === 0) {
+  //     console.log("Food list is empty, cannot calculate total price.");
+  //     return 0;
+  //   }
+  
+  //   let totalAmount = 0;
+  //   for (const item in cartItems) {
+  //     if (cartItems[item] > 0) {
+  //       let itemInfo = foodlist.find((product) => String(product._id) === item);
+  //       if (!itemInfo) {
+  //         console.warn(`Product with ID ${item} not found in foodlist`);
+  //         continue;
+  //       }
+  //       totalAmount += itemInfo.price * cartItems[item];
+  //     }
+  //   }
+  //   return totalAmount;
+  // };
   
 
   useEffect(() => {
