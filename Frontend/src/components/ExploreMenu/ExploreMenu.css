@@ -27,9 +27,9 @@
 }
 
 .explore-menu-list-all {
-    position: sticky; 
+    /* position: sticky; 
     left: 0%;
-    top: 0px;
+    top: 0px; */
     padding: 3px;
     z-index: 10; 
     border-radius: 10px;

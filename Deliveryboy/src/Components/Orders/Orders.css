@@ -10,7 +10,7 @@
     animation: fadeIn 0.8s ease-in-out;
 }
 
-/* Fade-in animation */
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -38,20 +38,20 @@
     position: relative;
 }
 
-/* Hover effect */
+
 .order-item:hover {
     transform: scale(1.02);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Order Status Styling */
+
 .order-status {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Food Data Styling */
+
 .food-data {
     font-size: 16px;
     font-weight: bold;
@@ -66,7 +66,10 @@
     color: #ff5722;
 }
 
-/* User Data Styling */
+.order-details select{
+    padding: 3px;
+    border-radius: 15px;
+}
 .user-data {
     font-size: 14px;
     font-weight: 500;

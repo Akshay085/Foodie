@@ -5,6 +5,8 @@
     background-size:contain; 
     position: relative;  
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border: 0px solid beige;
+    border-radius: 10px;
 }
 .header .headercontents{
     position: absolute;

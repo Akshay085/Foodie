@@ -2,22 +2,29 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  padding: 10px;
 }
 
-.search-header{
+.search-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.search-header h1{
+.search-header h1 {
   padding: 10px;
-  width: 200px;
+  width: auto;
+  font-size: 22px;
+  text-align: center;
 }
+
 .search-box {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px;
+  margin: 10px;
+  flex-wrap: wrap;
 }
 
 .search-input {
@@ -25,7 +32,8 @@
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 20px;
-  width: 200px;
+  width: 100%;
+  max-width: 250px;
 }
 
 .search-button {
@@ -37,6 +45,7 @@
   color: white;
   border-radius: 20px;
   cursor: pointer;
+  transition: background 0.3s;
 }
 
 .search-button:hover {
@@ -46,42 +55,42 @@
 .view-menu {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
-  gap: 20px; 
-  min-height: 100%;
-}
-.search-box-main h1{
-  color: tomato;
-  align-items: center;
-}
-.search-box-main hr{
-  padding: 2px;
-  background-color: black;
+  gap: 20px;
+  width: 100%;
 }
 
-@media ((max-width:400px)) {
-  .search-box-main{
-     min-height: 100vh;
+/* Responsive Styling */
+@media (max-width: 700px) {
+  .search-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
-    .view-menu{
-        grid-template-columns: 1fr;
-    }
-}
-@media ((min-width:401px)) {
-  .search-box-main{
-    min-height: 100vh;
- }
-    .view-menu{
-        grid-template-columns: repeat(2,1fr)
-    }
-}
-@media ((min-width:900px)) {
-  .search-box-main{
-    min-height: 100vh;
- }
-    .view-menu{
-        grid-template-columns: repeat(3,1fr)
-    }
+
+  .search-box {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .search-input {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .search-button {
+    width: 100%;
+    max-width: 150px;
+    margin-left: 0;
+  }
+
+  .view-menu {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-
-
+@media (max-width: 400px) {
+  .view-menu {
+    grid-template-columns: 1fr;
+  }
+}

@@ -7,6 +7,7 @@ import Foodprocessing from "../Animation/Foodprocessing";
 import Delivery from "../Animation/Delivered";
 import Delboygoing from "../Animation/delboygoing";
 import Delivered from "../Animation/Delivered";
+import toast from "react-hot-toast";
 
 const Orders = () => {
   const { url } = useContext(StoreContext);
@@ -41,7 +42,7 @@ const Orders = () => {
       });
   
       if (response.data.success) {
-        alert("Status changed!");
+        toast.success("Status changed!");
 
         SetorderData((prevOrders) =>
           prevOrders.map((order) =>
@@ -64,7 +65,10 @@ const Orders = () => {
         orderData.map((order, index) => (
           <div key={index} className="order-item">
             <div className="order-status">
-              <Delivered />
+              {order.status=="Food Processing"?<Foodprocessing />:null}
+              {order.status=="Out for Delivery"?<Delboygoing />:null}
+              {order.status=="Delivered"?<Delivered />:null}
+             
             </div>
 
             <div className="food-data">

@@ -113,7 +113,7 @@ const Navbar = ({ SetShowlogin }) => {
           onClick={() => handleMenuClick("Contact us")}
           className={menu === "Contact us" ? "active" : ""}
         >
-          Contact us
+          Contact
         </a>
       </ul>
       <div className="navbar-right">

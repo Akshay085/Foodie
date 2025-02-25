@@ -42,9 +42,9 @@ const Search = () => {
             placeholder="Search..."
             className="search-input"
           />
-          <button onClick={handleSearch} className="search-button">
+          {/* <button onClick={handleSearch} className="search-button">
             Search
-          </button>
+          </button> */}
         </div>
       </div>
       <div className="view-menu">

@@ -33,9 +33,8 @@ const LoginPopup = ({loginPopUp, SetloginPopUp ,forgetPopUp,SetforgetPopUp}) => 
         toast.success("Welcome!");
         console.log("My Response:", response.data.delBoyData);
         localStorage.setItem("delboydata",JSON.stringify(response.data.delBoyData))
-        navigate("/orders");
         SetloginPopUp(false);
-        
+        navigate("/orders"); 
       } else {
         toast.error(response.data.message);
       }
@@ -48,6 +47,7 @@ const LoginPopup = ({loginPopUp, SetloginPopUp ,forgetPopUp,SetforgetPopUp}) => 
 
 
   useEffect(() => {
+    SetloginPopUp(false);
     console.log("Current Data:", data);
   }, [data]);
 
