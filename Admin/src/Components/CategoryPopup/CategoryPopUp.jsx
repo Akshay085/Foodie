@@ -50,7 +50,7 @@ const CategoryPopUp = ({
           image: "",
         });
         SetImage(false);
-        
+        window.location.reload();
         toast.success(response.data.message);
         
       } 

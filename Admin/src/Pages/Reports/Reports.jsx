@@ -3,6 +3,8 @@ import './Reports.css';
 import axios from "axios";
 import { toast } from 'react-hot-toast';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 const Reports = ({ url }) => {
   const [selectedReport, setSelectedReport] = useState("");
@@ -14,7 +16,6 @@ const Reports = ({ url }) => {
       const response = await axios.get(url + "/api/order/list");
       if (response.data && response.data.success) {
         setOrders(response.data.data);
-        console.log(orders);
       } else {
         toast.error("Error fetching orders");
       }
@@ -40,7 +41,7 @@ const Reports = ({ url }) => {
       setReportData([]);
       return;
     }
-    
+
     let data = [];
     switch (reportType) {
       case "top_category":
@@ -96,7 +97,7 @@ const Reports = ({ url }) => {
           .sort((a, b) => new Date(a[0]) - new Date(b[0]))
           .map(([name, value]) => ({ name, value }));
         break;
-      
+
       default:
         data = [];
     }
@@ -109,6 +110,36 @@ const Reports = ({ url }) => {
     generateReport(reportType);
   };
 
+  
+  const downloadPDF = () => {
+    const doc = new jsPDF();
+    doc.text("All Orders Report", 14, 10);
+
+    const tableColumn = ["User Name", "Email", "Food Name", "Order Date", "Price"];
+    const tableRows = [];
+
+    orders.forEach(order => {
+      order.items.forEach(item => {
+        const rowData = [
+          order.userData.name,
+          order.userData.email,
+          item.name,
+          new Date(order.date).toLocaleDateString(),
+          `₹${item.price}`
+        ];
+        tableRows.push(rowData);
+      });
+    });
+
+    doc.autoTable({
+      head: [tableColumn],
+      body: tableRows,
+      startY: 20
+    });
+
+    doc.save("Orders_Report.pdf");
+  };
+
   return (
     <div className="report-container">
       <h2>Generate Reports</h2>
@@ -118,6 +149,7 @@ const Reports = ({ url }) => {
           <option key={report.id} value={report.id}>{report.name}</option>
         ))}
       </select>
+
       {reportData.length > 0 && (
         <div className="chart-container">
           <h3>Report Result:</h3>
@@ -132,6 +164,8 @@ const Reports = ({ url }) => {
           </ResponsiveContainer>
         </div>
       )}
+
+      <button onClick={downloadPDF} className="download-btn">Download All Orders Report</button>
     </div>
   );
 };
