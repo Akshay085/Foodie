@@ -30,7 +30,7 @@ const placeOrder = async (req , res) => {
                 product_data: {
                     name: item.name
                 },
-                unit_amount: item.price*100
+                unit_amount: Math.round(item.price*100)
             },
             quantity: item.quantity
         }))
@@ -41,7 +41,7 @@ const placeOrder = async (req , res) => {
                 product_data: {
                     name: "GST"
                 },
-                unit_amount: gst * 100
+                unit_amount: Math.round(gst * 100)
             },
             quantity: 1
         })
@@ -53,7 +53,7 @@ const placeOrder = async (req , res) => {
                     product_data: {
                         name: "Delivery Charges"
                     },
-                    unit_amount: deliveryCharge * 100
+                    unit_amount: Math.round(deliveryCharge * 100)
                 },
                 quantity: 1
             })
@@ -64,7 +64,15 @@ const placeOrder = async (req , res) => {
             mode: "payment",
             success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
             cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`
-        })
+        });
+        await newOrder.save();
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount: Math.round(total * 100), 
+            currency: "inr",
+            metadata: { orderId: newOrder._id.toString() }, 
+        });
+
+        newOrder.paymentIntentId = paymentIntent.id;
         await newOrder.save();
         res.status(200).json({ success: true , session_url: session.url });
     } 
@@ -172,6 +180,44 @@ const updateStatus = async (req , res) => {
     }
 }
 
+const cancelOrder = async (req , res) => {
+    try{
+        const { orderId } = req.body;
+
+        const order = await orderModel.findById(orderId);
+        if (!order) {
+            return res.status(404).json({ message: "Order not found" });
+        }
+
+        if (order.status === "Canceled" || order.status === "Out for Delivery") {
+            return res.status(400).json({ message: "Order cannot be canceled" });
+        }
+
+        if(order.payment){
+            const paymentIntentId = order.paymentIntentId;
+            if (!paymentIntentId) {
+                return res.status(400).json({ message: "Payment ID not found" });
+            }
+            
+            const refund = await stripe.refunds.create({
+                payment_intent: paymentIntentId,
+            });
+
+            if (refund.status !== "succeeded") {
+                return res.status(500).json({ message: "Refund failed" });
+            }
+        }
+
+        order.status = "Canceled";
+        await order.save();
+        res.json({ message: "Order canceled successfully", order });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({success: false , message: "Error"});
+    }
+}
+
 const assignDelBoy = async (req , res) => {
     try {
         const { orderId , delBoyId } = req.body;
@@ -193,4 +239,4 @@ const assignDelBoy = async (req , res) => {
     }
 }
 
-export { placeOrder , verifyOrder , userOrder , listOrders , updateStatus , assignDelBoy }
+export { placeOrder , verifyOrder , userOrder , listOrders , cancelOrder , updateStatus , assignDelBoy }

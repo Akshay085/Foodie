@@ -26,7 +26,7 @@ const menu_list =[
         menu_name:"Beverages",
         menu_image:'/Images/menu_7bev.png'
     },{
-        menu_name:"Desert",
+        menu_name:"Desserts",
         menu_image:'/Images/menu_8dr.png'
     },
 
