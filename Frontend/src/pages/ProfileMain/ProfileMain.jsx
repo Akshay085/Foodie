@@ -29,7 +29,7 @@ const ProfileMain = () => {
   };
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+    <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
       <AppBar
         position="fixed"
         className="navbar-display"
@@ -69,9 +69,15 @@ const ProfileMain = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
-
-      <Box className="layout" sx={{ display: "flex", flexGrow: 1 }}>
-        {/* Desktop Drawer */}
+        <Box
+          // component="main"
+          className="content"
+          sx={{
+            // p: 3,
+            // paddingTop: { xs: "72px", sm: "80px" }, 
+          }}
+        >
+          {/* Desktop Drawer */}
         <Drawer
           variant="temporary"
           className="sidebar"
@@ -109,18 +115,7 @@ const ProfileMain = () => {
         >
           <SideBar handleDrawerClose={handleDrawerToggle} />
         </Drawer>
-
-        <Box
-          component="main"
-          className="content"
-          sx={{
-            flexGrow: 1,
-            p: 3,
-            paddingTop: { xs: "72px", sm: "80px" }, 
-          }}
-        >
           <Outlet />
-        </Box>
        
       </Box>
     </Box>

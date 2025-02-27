@@ -1,9 +1,4 @@
 
-.layout {
-    display: flex;
-    height: calc(100vh - 64px);
-    overflow: hidden;
-  }
   .sidebar .MuiDrawer-paper {
     background: #1976d2;
     
@@ -18,14 +13,10 @@
   }
 
   .content {
-    flex-grow: 1;
-    padding: 16px;
-    overflow-y: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center
-    /* background: #f5f5f5;  */
-  }
+    /* padding: 16px; */
+    padding-top: 72px;
+    /* display: flex; */
+    }
   
   @media (max-width: 600px) {
     .layout {

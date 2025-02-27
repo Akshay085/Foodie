@@ -65,7 +65,11 @@
   border: 2px solid black;
 }
 
-/* Responsive Styling */
+@media (max-width: 1000px) {
+  .view-menu {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 @media (max-width: 700px) {
   .search-header {
     flex-direction: column;

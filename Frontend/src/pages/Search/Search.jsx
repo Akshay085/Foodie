@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import "./Search.css";
 import { StoreContext } from "../../Context/StoreContext";
@@ -34,6 +34,9 @@ const Search = () => {
   const filteredFoods = foodlist.filter((foodname) =>
     foodname.name.toLowerCase().includes(inputvalue.toLowerCase())
   );
+  useEffect(() => {
+    window.scrollTo(0,0);
+  }, []);
 
   return (
     <div className="search-box-main">

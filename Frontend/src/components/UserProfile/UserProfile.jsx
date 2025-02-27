@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const UserProfile = () => {
   const { userData, setUserData, url } = useContext(StoreContext);
+  const [loading, setLoading] = useState(true);
   console.log(userData);
 
   const [input, setInput] = useState({
@@ -22,7 +23,8 @@ const UserProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    if (userData) {
+    
+    if (userData ) {
       setInput({
         _id: userData?._id || "",
         name: userData?.name || localStorage.getItem("name") || "",
@@ -32,6 +34,7 @@ const UserProfile = () => {
         city: userData?.city || localStorage.getItem("city") || "",
         country: userData?.country || localStorage.getItem("country") || "",
       });
+     
     }
   }, [userData]);
 
@@ -64,7 +67,7 @@ const UserProfile = () => {
 
   return (
     <div className="profile-main">
-      <div className="content">
+      <div className="form-container">
         <form onSubmit={handleSave}>
           <table>
             <tbody>
@@ -155,13 +158,13 @@ const UserProfile = () => {
                     </>
                   ) : (
                     <>
-                      <button
+                      {/* <button
                         type="submit"
                         className="save-button"
-                        style={{ visibility: "hidden" }}
+                        style={{ display: "none" }}
                       >
                         Save
-                      </button>
+                      </button> */}
                       <button
                         type="button"
                         className="edit-button"
