@@ -51,7 +51,8 @@
 }
 
 .explore-menu-list-item p {
-    margin-top: 10px;
+    margin-top: 2px;
+    overflow-y: hidden;
     color: dimgray;
     font-size: max(1.4vw, 16px);
     cursor: pointer;
@@ -84,5 +85,13 @@ hr {
 @media (max-width: 400px) {
     .explore-menu-list-item {
         padding-left: 0%;
+    }
+    .explore-menu-list-all img{
+        width: 90px;
+        height: 90px;
+    }
+    .explore-menu-list-item img {
+        width: 80px;
+        height: 80px;
     }
 }

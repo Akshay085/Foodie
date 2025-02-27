@@ -1,7 +1,6 @@
 .footer-container {
     position: relative;
-    width: 100%;
-
+    width: 100vw;
     background-color: tomato;
     overflow: hidden;
 }
@@ -23,6 +22,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
+  
 }
 
 p {

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes ,useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
@@ -31,6 +31,9 @@ const App = () => {
   const {token,setToken}=useContext(StoreContext);
    const [email,setEmail]=useState("")
    const [confirmPopUP,SetconfirmPopUP]=useState();
+  const location = useLocation();
+  console.log(location);
+  
   
   return (
     <> 
@@ -42,8 +45,10 @@ const App = () => {
         {/* {OtpPopup ? <OtpVarification  OtpPopup={OtpPopup} SetOtpPopup={SetOtpPopup} SetForget={SetForget}  />: null} */}
        {confirmPopUP ?<ConfirmPassword email={email} SetconfirmPopUP={SetconfirmPopUP}  SetOtpvarification={SetOtpvarification}/>:null}
 
-
+{
+  location?.pathname !== "/userprofile" &&  location?.pathname !== "/userprofile/profile" &&  location?.pathname !== "/userprofile/orders" && location?.pathname !== "/userprofile/logout" &&  location?.pathname !== "/search" &&
         <Navbar SetShowlogin={SetShowlogin} />
+}
         
         <div className="app-body">
         <Routes>

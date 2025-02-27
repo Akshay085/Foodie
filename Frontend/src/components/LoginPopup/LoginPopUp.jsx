@@ -5,6 +5,7 @@ import axios from "axios"
 //import { Link, Links } from "react-router-dom";
 import { toast } from "react-toastify";
 import'react-toastify/dist/ReactToastify.css';
+import Loader from "../MyLottieAnimation/Loader";
 
 const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
   const { url, setToken,userData,setUserData } = useContext(StoreContext);
@@ -97,6 +98,7 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
       >
         <div className="login-popup-title">
           <h2>{currentState}</h2>
+          
           <img
             onClick={() => SetShowlogin(false)}
             src="/Images/cross_icon.png"
@@ -161,10 +163,11 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
         ) : (
           <p>
             Already have an account?{" "}
-            <span onClick={() => SetCurrentState("Login")}>Login Here</span>
+            <span onClick={() => SetCurrentState("Login") }>Login Here</span>
           </p>
         )}
       </form>
+    
     </div>
   );
 };

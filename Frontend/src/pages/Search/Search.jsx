@@ -30,6 +30,11 @@ const Search = () => {
       setLoading(false);
     }
   };
+
+  const filteredFoods = foodlist.filter((foodname) =>
+    foodname.name.toLowerCase().includes(inputvalue.toLowerCase())
+  );
+
   return (
     <div className="search-box-main">
       <div className="search-header">
@@ -47,35 +52,10 @@ const Search = () => {
           </button> */}
         </div>
       </div>
-      <div className="view-menu">
-        {!inputvalue ? (
-          <></>
-        ) : (
-          <>
-            {foodlist
-              .filter((foodname) =>
-                foodname.name.toLowerCase().includes(inputvalue.toLowerCase())
-              )
-              .map((item, i) => {
-                return (
-                  <FoodItem
-                    key={i}
-                    id={item._id}
-                    name={item.name}
-                    description={item.description}
-                    price={item.price}
-                    image={item.image}
-                  />
-                );
-              })}
-          </>
-        )}
-      </div>
-      <hr />
 
       <div className="view-menu">
-        {foodlist.map((item, i) => {
-          return (
+        {!inputvalue ? null : filteredFoods.length > 0 ? (
+          filteredFoods.map((item, i) => (
             <FoodItem
               key={i}
               id={item._id}
@@ -84,8 +64,25 @@ const Search = () => {
               price={item.price}
               image={item.image}
             />
-          );
-        })}
+          ))
+        ) : (
+          <Errormessage message="No items found matching your search." />
+        )}
+      </div>
+
+      <hr className="hr-serach" />
+
+      <div className="view-menu">
+        {foodlist.map((item, i) => (
+          <FoodItem
+            key={i}
+            id={item._id}
+            name={item.name}
+            description={item.description}
+            price={item.price}
+            image={item.image}
+          />
+        ))}
       </div>
     </div>
   );

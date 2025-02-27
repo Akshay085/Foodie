@@ -54,9 +54,15 @@
 
 .view-menu {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
   gap: 20px;
   width: 100%;
+}
+.hr-serach {
+  width: 100%;
+  height: 1px;
+  margin: 10px 0px;
+  border: 2px solid black;
 }
 
 /* Responsive Styling */

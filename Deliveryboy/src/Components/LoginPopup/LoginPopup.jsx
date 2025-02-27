@@ -39,7 +39,7 @@ const LoginPopup = ({loginPopUp, SetloginPopUp ,forgetPopUp,SetforgetPopUp}) => 
         toast.error(response.data.message);
       }
     } catch (error) {
-      console.error("Login error:", error);
+      console.log("Login error:", error);
       toast.error("Something went wrong. Please try again.");
     }
   };
@@ -47,7 +47,7 @@ const LoginPopup = ({loginPopUp, SetloginPopUp ,forgetPopUp,SetforgetPopUp}) => 
 
 
   useEffect(() => {
-    SetloginPopUp(false);
+     //SetloginPopUp(false);
     console.log("Current Data:", data);
   }, [data]);
 

@@ -19,6 +19,9 @@ const OrderPage = () => {
       console.log("error")
     }
   }
+  const deleteOrder=()=>{
+    
+  }
   useEffect(()=>{
       if(token){
         fetchOrders();
@@ -45,7 +48,7 @@ const OrderPage = () => {
                   <p> ₹{order.amount}</p>
                   <p>Items:{order.items.length}</p>
                   <p><span>&#x25cf;</span><b>{order.status}</b></p>
-                 {order.status=="Food Processing"?<button>Cancel</button>:null} 
+                 {order.status=="Food Processing"?<button onClick={deleteOrder}>Cancel</button>:null} 
             </div>
           )
         })}

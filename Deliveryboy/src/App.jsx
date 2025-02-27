@@ -55,7 +55,8 @@ const App = () => {
       ) : null}
 
       <Routes>
-        <Route path="/orders" element={<Orders />} />
+      <Route path="/login" element={<LoginPopup  loginPopUp={loginPopUp} SetloginPopUp={SetloginPopUp} forgetPopUp={forgetPopUp} SetforgetPopUp={SetforgetPopUp} />} />
+        <Route path="/orders" element={<Orders  SetloginPopUp={SetloginPopUp}/>} />
       </Routes>
     </div>
   );

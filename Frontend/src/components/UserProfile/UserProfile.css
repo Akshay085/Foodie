@@ -1,39 +1,43 @@
-/* Base styles for the user profile container */
-.UserProfile {
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 25px;
-    background: #fff;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
-  }
+
   
-  /* Form container */
+ .profile-main {
+  /* min-height: 100vh;  */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+ 
+  .content {
+    width: 90%; 
+  }
+ 
   .content form {
+    margin-top: 300px;
     width: 100%;
     text-align: left;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+}
   
-  /* Table styling */
+  
   .content table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0 10px;
   }
   
-  /* Table row styling */
+ 
   .content table tr {
     display: grid;
-    grid-template-columns: 1fr 2fr; /* Two columns: 1 part for label, 2 parts for input */
+    grid-template-columns: 1fr 2fr; 
     align-items: center;
     gap: 10px;
     padding: 10px 0;
   }
   
-  /* Input and textarea styling */
+  
   .content table input,
   .content textarea {
     padding: 12px;
@@ -43,74 +47,95 @@
     font-size: 14px;
   }
   
-  /* Buttons row styling */
-  tr.buttons-save-edit-cancel {
-    border-top: 2px solid #ddd;
-    display: flex;
+
+.buttons-save-edit-cancel {
+   text-align: center;
     justify-content: center;
+    align-items: center;
     padding-top: 10px;
-    width: 100%;
+    
   }
   
-  /* Buttons container styling */
-  tr.buttons-save-edit-cancel td {
+ 
+  .buttons-save-edit-cancel button {
+    
     display: flex;
     justify-content: center;
     gap: 10px;
     padding: 10px;
+    width: 100%;
   }
   
-  /* Button styling */
-  tr.buttons-save-edit-cancel button {
+
+  .buttons-save-edit-cancel button {
     padding: 10px 20px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     font-size: 14px;
+    margin:10px ;
     transition: background-color 0.3s ease;
   }
   
-  /* Save button */
-  tr.buttons-save-edit-cancel .save-button {
+
+  .buttons-save-edit-cancel .save-button {
     background-color: #4caf50;
     color: white;
   }
   
-  tr.buttons-save-edit-cancel .save-button:hover {
+  .buttons-save-edit-cancel .save-button:hover {
     background-color: #45a049;
   }
   
-  /* Cancel button */
-  tr.buttons-save-edit-cancel .cancel-button {
+  
+  .buttons-save-edit-cancel .cancel-button {
     background-color: #f44336;
     color: white;
+    
   }
   
-  tr.buttons-save-edit-cancel .cancel-button:hover {
+  .buttons-save-edit-cancel .cancel-button:hover {
     background-color: #e53935;
   }
   
-  /* Edit button */
-  tr.buttons-save-edit-cancel .edit-button {
-    background-color: #2196f3;
+  
+  .buttons-save-edit-cancel .edit-button {
+    align-items: center;
+justify-content: center; 
+   background-color: #2196f3;
     color: white;
   }
   
-  tr.buttons-save-edit-cancel .edit-button:hover {
+  .buttons-save-edit-cancel .edit-button:hover {
     background-color: #1e88e5;
   }
   
-  /* Responsive Design */
+  
   @media (max-width: 768px) {
     .UserProfile {
-      margin: 20px auto;
-      padding: 15px;
-      max-width: 100%; /* Full width on smaller screens */
-      border-radius: 0; /* Remove border radius for full-width effect */
+      max-width: 100%;
+      border-radius: 0; 
     }
+    .profile-main {
+      min-height: 100vh;
+      display: flex; /* Keep flexbox */
+      flex-direction: column; /* Allow vertical stacking */
+      justify-content: center;
+      align-items: center;
+      padding: 20px 10px;
+  }
+  .content form {
+    margin-top: 300px;
+  }
   
+  .content {
+    margin-top: 40px;
+    width: 100vw;
+    max-width: 100%;
+   
+}
     .content table tr {
-      grid-template-columns: 1fr; /* Stack label and input vertically on smaller screens */
+      grid-template-columns: 1fr;
       gap: 5px;
     }
   
@@ -121,22 +146,27 @@
     }
   
     tr.buttons-save-edit-cancel td {
-      flex-direction: column; /* Stack buttons vertically on smaller screens */
+      flex-direction: column;
       gap: 8px;
     }
   
     tr.buttons-save-edit-cancel button {
-      width: 100%; /* Full-width buttons on smaller screens */
+      width: 100%;
       padding: 12px;
     }
   }
   
   @media (max-width: 480px) {
     .UserProfile {
+      margin-top: 80px;
+      max-width: 100%;
       margin: 10px auto;
       padding: 10px;
     }
-  
+   
+    .content form{
+      margin-top: 330px;
+    }
     .content table tr {
       padding: 5px 0;
     }
@@ -151,3 +181,4 @@
       font-size: 13px;
     }
   }
+ 

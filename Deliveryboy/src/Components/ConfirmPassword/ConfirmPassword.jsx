@@ -33,7 +33,7 @@ const handleConfirm = async() => {
       }
     }
    catch(error){
-    console.error("Error changing password:", error); 
+    console.log("Error changing password:", error); 
   toast.error("Failed to change password. Please try again.");
    }  
 };

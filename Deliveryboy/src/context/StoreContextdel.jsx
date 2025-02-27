@@ -13,7 +13,7 @@ const StoreContextProvider = ( props ) => {
       try {
         await axios.post(url + "/api/cart/add", { headers: { token } });
       } catch (error) {
-        console.error("Error adding item to cart:", error);
+        console.log("Error adding item to cart:", error);
       }
     }
   };

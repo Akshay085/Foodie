@@ -68,7 +68,7 @@ const EditPopup = ({ url, editpopup, setEditpopup, food, SetFood }) => {
         });
         SetImage(false);
         closeEditpopup();
-        window.location.reload();
+        fetchCategorylist();
         toast.success(response.data.message);
       } else {
         toast.error(response.data.message);

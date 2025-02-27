@@ -1,8 +1,8 @@
 import React from 'react'
 import './Errormessage.css'
-const Errormessage = () => {
+const Errormessage = ({message}) => {
     return (
-        <div className='error'><h4>Sorry , This Food Is Currently Unavailable </h4> </div>
+        <div className='error'><h2>{message}</h2> </div>
   )
 }
 

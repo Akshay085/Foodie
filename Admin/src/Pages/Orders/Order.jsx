@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Order.css";
 import axios from "axios";
 import { toast } from 'react-hot-toast'
+import * as XLSX from "xlsx";
 // import { toast } from "react-toastify";
 import Bag from "../../Components/Animation/Bag";
 
@@ -72,6 +73,31 @@ const Order = ({ url }) => {
       toast.error("Error: " + (error.response?.data?.message || error.message));
     }
   };
+  const exportToExcel = () => {
+    if (orders.length === 0) {
+      toast.error("No orders to export");
+      return;
+    }
+    const data = orders.map((order, index) => ({
+      "Order No.": index + 1,
+      "Customer Name": order.userData.name,
+      "Address": `${order.userData.address}, ${order.userData.city}, ${order.userData.country}`,
+      "Contact": order.userData.contact,
+      "Items": order.items.map((item) => `${item.name} X ${item.quantity}`).join(", "),
+      "Delivery Type": order.delType,
+      "Amount": order.amount,
+      "Status": order.status,
+      "Assigned Delivery Boy": order.delBoyId
+        ? delboy.find((boy) => boy._id === order.delBoyId)?.name || "Not Assigned"
+        : "Not Assigned",
+    }));
+
+    const ws = XLSX.utils.json_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Orders");
+    XLSX.writeFile(wb, "Orders.xlsx");
+    toast.success("Orders exported to Excel");
+  };
 
   useEffect(() => {
     fetchAllOrders();
@@ -81,7 +107,10 @@ const Order = ({ url }) => {
   return (
     <div className="order add">
       <div className="order-list">
+        <div>
         <h3>Order Page</h3>
+        <button onClick={() => exportToExcel(orders)}>Download Orders as Excel</button>
+        </div>
         {orders.map((order, index) => (
           <div key={index} className="order-item">
             <Bag />

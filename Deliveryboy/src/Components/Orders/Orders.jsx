@@ -9,7 +9,7 @@ import Delboygoing from "../Animation/delboygoing";
 import Delivered from "../Animation/Delivered";
 import toast from "react-hot-toast";
 
-const Orders = () => {
+const Orders = ({SetloginPopUp}) => {
   const { url } = useContext(StoreContext);
   const [orderData, SetorderData] = useState([]);
   const data = JSON.parse(localStorage.getItem("delboydata"));
@@ -24,10 +24,10 @@ const Orders = () => {
       if (response.data.success) {
         SetorderData(response.data.data);
       } else {
-        console.error("Failed to fetch orders:", response.data.message);
+        console.log("Failed to fetch orders:", response.data.message);
       }
     } catch (error) {
-      console.error("Error fetching orders:", error);
+      console.log("Error fetching orders:", error);
     }
   };
 
@@ -49,13 +49,15 @@ const Orders = () => {
             order._id === orderId ? { ...order, status: newStatus } : order
           )
         );
+        fetchMyorders();
       }
     } catch (error) {
-      console.error("Error updating status:", error);
+      console.log("Error updating status:", error);
     }
   };
   
   useEffect(() => {
+    SetloginPopUp(false);
     fetchMyorders();
   }, []);
 

@@ -57,7 +57,7 @@ const ForgetPassword = ({ email,SetEmail,loginPopUp, SetloginPopUp, SetforgetPop
         toast.error("Sorry, OTP is not valid.");
       }
     } catch (error) {
-      console.error("Error verifying OTP:", error.response ? error.response.data : error);
+      console.log("Error verifying OTP:", error.response ? error.response.data : error);
       toast.error("Error verifying OTP. Please try again.");
     }
   };
