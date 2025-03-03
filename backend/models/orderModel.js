@@ -3,7 +3,7 @@ import { type } from "os";
 
 const orderSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "users" },
-    delBoyId: { type: mongoose.Schema.Types.ObjectId, ref: "delboys" },
+    delBoyId: { type: mongoose.Schema.Types.ObjectId, ref: "delboys" , default: null },
     items: { type: Array , required: true },
     delType: { type: String , required: true },
     amount: { type: Number , required: true },
