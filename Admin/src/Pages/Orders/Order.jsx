@@ -189,7 +189,8 @@ const Order = ({ url }) => {
                     <br />
                     <span className="ordrestatus-color">
                       <ul>
-                        <li>{order.status}</li>
+                        {order.status=="Cancelled" ?<li style={{color:"red"}} >{order.status}</li>:<li style={{color:"green"}} >{order.status}</li> }
+                        {/* <li >{order.status=="Cencelled"?}</li> */}
                       </ul>
                     </span>
                   </p>

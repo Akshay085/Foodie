@@ -76,9 +76,6 @@ h3 {
     outline: none;
     border-color: #555;
 }
-.ordrestatus-color{
-    color: green;
-}
 
 /* Responsive Design */
 @media (max-width: 1000px) {

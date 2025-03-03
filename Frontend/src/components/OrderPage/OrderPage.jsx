@@ -3,6 +3,10 @@ import './OrderPage.css'
 import { StoreContext } from '../../Context/StoreContext';
 import axios from 'axios';
 import Bag from '../MyLottieAnimation/Bag';
+import FoodProccessing from '../MyLottieAnimation/FoodProccessing';
+import Delivered from '../MyLottieAnimation/Delivered';
+import OutForDelivery from '../MyLottieAnimation/OutForDelivery';
+import Canceled from '../MyLottieAnimation/Canceled';
 
 
 const OrderPage = () => {
@@ -45,7 +49,13 @@ const OrderPage = () => {
         {data.map((order,index)=>{
           return(
             <div  key={index}className='my-orders-order'>
-              <Bag />
+              {/* <Bag /> */}
+              {order.status=="Food Processing"?<FoodProccessing />:null}
+              {order.status=="Receive Order"?<Delivered />:null}
+              {order.status=="Out for Delivery"?<OutForDelivery />:null}
+              {order.status=="Received"?<Delivered />:null}
+              {order.status=="Delivered"?<Delivered />:null}
+              {order.status=="Cancelled"?<Canceled />:null}
                   {/* <img src="\Images\parcel_icon.png" alt="parcel icon" /> */}
                   <p>{order.items.map((item,index)=>{
                   
