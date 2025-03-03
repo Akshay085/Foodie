@@ -19,8 +19,17 @@ const OrderPage = () => {
       console.log("error")
     }
   }
-  const deleteOrder=()=>{
-    
+  const deleteOrder=async(orderid)=>{
+    console.log("****************",orderid);
+    const response =await axios.post(url +"/api/order/cancelOrder",{orderId: orderid});
+    if(response.data.success){
+      console.log(orderid);
+      fetchOrders();
+    }
+    else{
+      console.log("errror");
+      fetchOrders();
+    }
   }
   useEffect(()=>{
       if(token){
@@ -38,6 +47,7 @@ const OrderPage = () => {
               <Bag />
                   {/* <img src="\Images\parcel_icon.png" alt="parcel icon" /> */}
                   <p>{order.items.map((item,index)=>{
+                  
                      if(index === order.items.length-1){
                          return item.name + " x " + item.quantity
                      }
@@ -48,7 +58,8 @@ const OrderPage = () => {
                   <p> ₹{order.amount}</p>
                   <p>Items:{order.items.length}</p>
                   <p><span>&#x25cf;</span><b>{order.status}</b></p>
-                 {order.status=="Food Processing"?<button onClick={deleteOrder}>Cancel</button>:null} 
+                  {/* {console.log("----------------->",order._id)} */}
+                 {order.status=="Food Processing"?<button onClick={()=>{deleteOrder(order._id)}}>Cancel</button>:null} 
             </div>
           )
         })}
