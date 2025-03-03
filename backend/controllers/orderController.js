@@ -65,14 +65,7 @@ const placeOrder = async (req , res) => {
             success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
             cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`
         });
-        await newOrder.save();
-        const paymentIntent = await stripe.paymentIntents.create({
-            amount: Math.round(total * 100), 
-            currency: "inr",
-            metadata: { orderId: newOrder._id.toString() }, 
-        });
-
-        newOrder.paymentIntentId = paymentIntent.id;
+        
         await newOrder.save();
         res.status(200).json({ success: true , session_url: session.url });
     } 
@@ -191,21 +184,6 @@ const cancelOrder = async (req , res) => {
 
         if (order.status === "Canceled" || order.status === "Out for Delivery") {
             return res.status(400).json({ message: "Order cannot be canceled" });
-        }
-
-        if(order.payment){
-            const paymentIntentId = order.paymentIntentId;
-            if (!paymentIntentId) {
-                return res.status(400).json({ message: "Payment ID not found" });
-            }
-            
-            const refund = await stripe.refunds.create({
-                payment_intent: paymentIntentId,
-            });
-
-            if (refund.status !== "succeeded") {
-                return res.status(500).json({ message: "Refund failed" });
-            }
         }
 
         order.status = "Canceled";
