@@ -182,13 +182,13 @@ const cancelOrder = async (req , res) => {
             return res.status(404).json({ message: "Order not found" });
         }
 
-        if (order.status === "Canceled" || order.status === "Out for Delivery" || order.status === "Receive Order") {
-            return res.status(400).json({ message: "Order cannot be canceled" });
+        if (order.status === "Cancelled" || order.status === "Out for Delivery" || order.status === "Receive Order") {
+            return res.status(400).json({ message: "Order cannot be cancelled" });
         }
 
-        order.status = "Canceled";
+        order.status = "Cancelled";
         await order.save();
-        res.json({ success: true , message: "Order canceled successfully", order });
+        res.json({ success: true , message: "Order cancelled successfully", order });
     }
     catch (error) {
         console.log(error);
