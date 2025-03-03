@@ -9,7 +9,8 @@ import Footer from "./components/Footer/Footer";
 import LoginPopUp from "./components/LoginPopup/LoginPopUp";
 import SelfService from "./components/Self-service/SelfService";
 import Homedelivery from "./components/Homedelivery/Homedelivery";
-
+import  { Toaster} from 'react-hot-toast'
+import { toast } from 'react-hot-toast'
 import './App.css'
 import Search from "./pages/Search/Search";
 import ProfileMain from "./pages/ProfileMain/ProfileMain";
@@ -37,6 +38,17 @@ const App = () => {
   
   return (
     <> 
+     <Toaster 
+            position="top-right"
+            reverseOrder={true}
+            toastOptions={{
+              duration: 2000,
+              style: {
+                background: "#333",
+                color: "#fff",
+              },
+            }}
+          />
     <ToastContainer />
       <div className="app" style={{position:"relative"}}>
     {showlogin ? <LoginPopUp  SetShowlogin={SetShowlogin} forget={forget} SetForget={SetForget}/> : null}

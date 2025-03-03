@@ -65,7 +65,9 @@ h3 {
     cursor: pointer;
     transition: 0.3s ease;
 }
-
+.excel-button{
+    background-color: tomato;
+}
 .order-item select:hover {
     background-color: #eee;
 }
@@ -73,6 +75,9 @@ h3 {
 .order-item select:focus {
     outline: none;
     border-color: #555;
+}
+.ordrestatus-color{
+    color: green;
 }
 
 /* Responsive Design */

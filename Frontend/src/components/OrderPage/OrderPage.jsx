@@ -4,6 +4,7 @@ import { StoreContext } from '../../Context/StoreContext';
 import axios from 'axios';
 import Bag from '../MyLottieAnimation/Bag';
 
+
 const OrderPage = () => {
 
   const {url,token}=useContext(StoreContext);
@@ -21,9 +22,9 @@ const OrderPage = () => {
   }
   const deleteOrder=async(orderid)=>{
     console.log("****************",orderid);
-    const response =await axios.post(url +"/api/order/cancelOrder",{orderId: orderid});
+    const response =await axios.post(url +"/api/order/cancelOrder",{orderId: orderid},{headers:{token}});
     if(response.data.success){
-      console.log(orderid);
+    
       fetchOrders();
     }
     else{
