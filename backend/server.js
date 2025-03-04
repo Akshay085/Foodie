@@ -1,14 +1,14 @@
 import express from 'express';
 import cors from 'cors';
-import { connectDB } from './config/db.js';
-import foodRouter from './routes/foodRoute.js';
-import userRouter from './routes/userRoute.js';
-import categoryRouter from './routes/categoryRoute.js';
-import cartRouter from './routes/cartRoute.js';
+import { connectDB } from './src/config/db.js';
+import foodRouter from './src/routes/foodRoute.js';
+import userRouter from './src/routes/userRoute.js';
+import categoryRouter from './src/routes/categoryRoute.js';
+import cartRouter from './src/routes/cartRoute.js';
 import 'dotenv/config';
-import orderRouter from './routes/orderRoute.js';
-import delBoyRouter from './routes/delBoyRoute.js';
-import adminRouter from './routes/adminRoute.js';
+import orderRouter from './src/routes/orderRoute.js';
+import delBoyRouter from './src/routes/delBoyRoute.js';
+import adminRouter from './src/routes/adminRoute.js';
 
 
 //app config
