@@ -188,6 +188,19 @@ const cancelOrder = async (req , res) => {
 
         order.status = "Cancelled";
         await order.save();
+
+        const delBoyId = order.delBoyId;
+
+        if(delBoyId != null){
+            const delBoy = await delBoyModel.findById(delBoyId);
+            if (!delBoy){
+                return res.status(404).json({ message: "Order not found" });
+            }
+
+            delBoy.isAvailable = true;
+            await delBoy.save();
+        }
+
         res.json({ success: true , message: "Order cancelled successfully", order });
     }
     catch (error) {

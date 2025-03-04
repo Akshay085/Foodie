@@ -230,7 +230,7 @@ const listOrders = async (req , res) => {
                 $match: { delBoyId: delBoyId }
             },
             {
-                $sort: { createdAt: -1 } 
+                $sort: { updatedAt: -1 } 
             },
             {
                 $lookup: {
