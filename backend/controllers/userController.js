@@ -53,7 +53,6 @@ const loginUser = async (req , res) => {
         
     } 
     catch (error) {
-        console.log(error);
         res.status(500).json({success: false , message: "Error"});
     }
 
@@ -112,7 +111,6 @@ const registerUser = async (req , res) => {
 
     } 
     catch (error) {
-        console.log(error);
         res.status(500).json({success: false , message: "Error"});
     }
      
@@ -146,7 +144,6 @@ const sendOtp = async(req , res) => {
         
     } 
     catch (error) {
-        console.log(error);
         res.status(500).json({success: false , message: "Error"});
     }
 }
@@ -292,7 +289,6 @@ const updateUser = async(req , res) => {
         res.status(200).json(update);
     }
     catch (error) {
-        console.log(error);
         res.status(500).json({success: false , message: "Error"});
     }
 }

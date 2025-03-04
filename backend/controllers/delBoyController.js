@@ -26,7 +26,6 @@ const listDelBoy = async (req , res) => {
         res.status(200).json({success: true , data: delBoy});
     } 
     catch (error) {
-        console.log(error);
         res.status(500).json({success: false , message: "Error"});
     }
 }
@@ -69,7 +68,6 @@ const loginDelBoy = async (req , res) => {
         
     } 
     catch (error) {
-        console.log(error);
         res.status(500).json({success: false , message: "Error"});
     }
 }
@@ -124,7 +122,6 @@ const registerDelBoy = async (req , res) => {
         res.status(201).json({success: true , token});
     } 
     catch (error) {
-        console.log(error);
         res.status(500).json({success: false , message: "Error"});
     }
 }
@@ -157,7 +154,6 @@ const sendOtp = async (req , res) => {
         
     } 
     catch (error) {
-        console.log(error);
         res.status(500).json({success: false , message: "Error"});
     }
 }
@@ -264,7 +260,6 @@ const listOrders = async (req , res) => {
         res.status(200).json({success: true , data: orders});
     } 
     catch (error) {
-        console.log(error);
         res.status(500).json({success: false , message: "Error"});
     }
 }
@@ -291,7 +286,6 @@ const updateStatusByDelBoy = async (req , res) => {
         res.status(200).json({ success: true, message: "Order status updated" });
     }
     catch(error){
-        console.log(error);
         res.status(500).json({ success: false, message: "Error updating order status" });
     }
 }
@@ -302,7 +296,6 @@ const getAvailableDelBoys = async (req, res) => {
 
         res.status(200).json({ success: true, data: delBoys });
     } catch (error) {
-        console.log(error);
         res.status(500).json({ success: false, message: "Error fetching available delivery boys" });
     }
 };

@@ -18,7 +18,7 @@ const addFood = async (req , res) => {
         res.status(201).json({success: true , message: "Food Added"});
     } 
     catch (error) {
-        console.log(error);
+
         res.status(500).json({success: false , message: "Error"});
     }
 }
@@ -29,7 +29,7 @@ const listFood = async (req , res) => {
         res.status(200).json({success: true , data: foods});
     } 
     catch (error) {
-        console.log(error);
+
         res.status(500).json({success: false , message: "Error"});
     }
 }
@@ -42,7 +42,7 @@ const removeFood = async (req , res) => {
         res.status(200).json({success: true , message: "Food Remove"});
     } 
     catch (error) {
-        console.log(error);
+
         res.status(500).json({success: false , message: "Error"});
     }
 }
@@ -76,7 +76,6 @@ const editFood = async (req, res) => {
           };
         })
         .catch((error) => {
-          console.log("error =======>>>", error);
           return {
             status: false,
             message: error?.message,
@@ -85,7 +84,6 @@ const editFood = async (req, res) => {
         });
       res.status(200).json(update);
     } catch (error) {
-      console.log(error);
       res.status(500).json({ success: false, message: "Error" });
     }
   };

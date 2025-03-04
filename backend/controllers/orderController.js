@@ -70,7 +70,6 @@ const placeOrder = async (req , res) => {
         res.status(200).json({ success: true , session_url: session.url });
     } 
     catch (error) {
-        console.log(error);
         res.status(500).json({success: false , message: "Error"});
     }
 }
@@ -89,7 +88,6 @@ const verifyOrder = async (req , res) => {
         }
     } 
     catch (error) {
-        console.log(error);
         res.status(500).json({success: false , message: "Error"});
     }
 }
@@ -100,7 +98,6 @@ const userOrder = async (req , res) => {
         res.status(200).json({success: true , data: orders});    
     } 
     catch (error) {
-        console.log(error);
         res.status(500).json({success: false , message: "Error"});
     }
 }
@@ -157,7 +154,6 @@ const listOrders = async (req , res) => {
         res.status(200).json({success: true , data: orders});   
     } 
     catch (error) {
-        console.log(error);
         res.status(500).json({success: false , message: "Error"});
     }
 }
@@ -168,7 +164,6 @@ const updateStatus = async (req , res) => {
         res.status(200).json({ success: true , message: "Status Updated" });
     } 
     catch (error) {
-        console.log(error);
         res.status(500).json({success: false , message: "Error"});
     }
 }
@@ -204,7 +199,6 @@ const cancelOrder = async (req , res) => {
         res.json({ success: true , message: "Order cancelled successfully", order });
     }
     catch (error) {
-        console.log(error);
         res.status(500).json({success: false , message: "Error"});
     }
 }
@@ -225,7 +219,6 @@ const assignDelBoy = async (req , res) => {
         res.status(200).json({ success: true, message: "Delivery Boy Assigned" });
     } 
     catch (error) {
-        console.log(error);
         res.status(500).json({ success: false, message: "Error assigning delivery boy" });
     }
 }

@@ -15,7 +15,6 @@ const addCategory = async (req , res) => {
         res.status(201).json({success: true , message: "Category Added"});
     } 
     catch (error) {
-        console.log(error);
         res.status(500).json({success: false , message: "Error"});
     }
 }
@@ -26,7 +25,6 @@ const listCategory = async (req , res) => {
         res.status(200).json({success: true , data: categorys});
     } 
     catch (error) {
-        console.log(error);
         res.status(500).json({success: false , message: "Error"});
     }
 }
@@ -39,7 +37,6 @@ const removeCategory = async (req , res) => {
         res.status(200).json({success: true , message: "Category Remove"});
     } 
     catch (error) {
-        console.log(error);
         res.status(500).json({success: false , message: "Error"});
     }
 }
@@ -70,7 +67,6 @@ const editCategory = async (req , res) => {
             };
           })
           .catch((error) => {
-            console.log("error =======>>>", error);
             return {
               status: false,
               message: error?.message,
@@ -80,7 +76,6 @@ const editCategory = async (req , res) => {
         res.status(200).json({success: true , message: "Category Updated"});
     } 
     catch (error) {
-        console.log(error);
         res.status(500).json({success: false , message: "Error"});
     }
 }
