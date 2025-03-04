@@ -39,16 +39,18 @@ const CategoryPopUp = ({
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      if (response.data.status) {
+      if (response.data.success) {
         Setcategory((prevCategories) =>
           prevCategories.map((cat) =>
             cat._id === category._id ? { ...cat, name: input.name, image: image || input.image } : cat
           )
         );
         toast.success(response.data.message);
+        window.location.reload();
         categorysetEditpopup(false);
       } else {
-        toast.error("Error: Try Again");
+        window.location.reload();
+        toast.success(response.data.message);
       }
     } catch (error) {
       toast.error("Error updating item");
