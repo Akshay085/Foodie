@@ -14,7 +14,7 @@
     "routes": [
       { "src": "/(.*)", "dest": "/" }
     ],
-    "functions": [
+    "functions": 
       { "api/*": {"runtime": "nodejs18.x"}}
-    ]
+    
 }
