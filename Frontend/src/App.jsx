@@ -22,6 +22,7 @@ import ForgetPassword from "./components/ForgetPassword/ForgetPassword";
 import ConfirmPassword from "./components/ConfirmPassword/ConfirmPassword";
 import EditProfile from "./components/EditProfile/EditProfile";
 import Verify from "./pages/Verify/Verify";
+import Loader from "./components/MyLottieAnimation/Loader";
 
 
 
@@ -38,6 +39,7 @@ const App = () => {
   
   return (
     <> 
+    
      <Toaster 
             position="top-right"
             reverseOrder={true}

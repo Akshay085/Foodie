@@ -108,7 +108,7 @@ const Orders = ({ SetloginPopUp }) => {
                 <p>Amount: {order.amount}</p>
               </div>
               {order.status == "Cancelled" ? (
-                <h2>Cancelled</h2>
+                <h5 style={{color:"red"}}>Cancelled</h5>
               ) : (
                 <select
                   onChange={(event) =>

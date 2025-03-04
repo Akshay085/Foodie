@@ -4,10 +4,13 @@ import { Imgs } from "../../assets/Imgs";
 import axios from "axios";
 // import { toast } from "react-toastify";
 import { toast } from 'react-hot-toast'
+import Loader from "../../Components/Animation/Loader";
+
 
 
 const Add = ({ showLogin,setShowLogin,url }) => {
   const [image, SetImage] = useState(false);
+  const [loading,setLoading]=useState(false);
   const [categorylist, setcategoryList] = useState([]);
   const [data, SetData] = useState({
     name: "",
@@ -22,6 +25,7 @@ const Add = ({ showLogin,setShowLogin,url }) => {
   };
   const onSubmitHandler = async (event) => {
     event.preventDefault();
+    setLoading(true);
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("description", data.description);
@@ -37,6 +41,7 @@ const Add = ({ showLogin,setShowLogin,url }) => {
         category: "Burger",
       });
       SetImage(false);
+      setLoading(false);
       toast.success(response.data.message);
     } else {
       toast.error(response.data.message);
@@ -125,10 +130,16 @@ const Add = ({ showLogin,setShowLogin,url }) => {
           </div>
         </div>
         
-              
-        <button type="submit" className="add-button">
-          ADD
-        </button>
+           
+        
+
+<button type="submit" className="add-food-button center-content">
+  {loading ? <div className="center-content">
+        <Loader /> 
+</div> : 'ADD'}
+</button>
+
+
       </form>
     </div>
   );
