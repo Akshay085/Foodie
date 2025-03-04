@@ -6,6 +6,7 @@ import { toast } from 'react-hot-toast'
 // import "react-toastify/dist/ReactToastify.css";
 
 const AddDeliveryBoy = ({url}) => {
+  const [loading, setLoading] = useState(false);
     const [input,setInput]=useState({
         name:"",
         contact:"",
@@ -21,6 +22,7 @@ const AddDeliveryBoy = ({url}) => {
     }
     const onSubmit=async(e)=>{
         e.preventDefault();
+        setLoading(true);
         console.log(input);
         const formData=new FormData();
         formData.append("name", input.name);
@@ -30,7 +32,8 @@ const AddDeliveryBoy = ({url}) => {
         formData.append("address",input.address);
         formData.append("city",input.city);
         formData.append("country",input.country);
-    const response = await axios.post(`${url}/api/delBoy/register`, input);
+        try {
+          const response = await axios.post(`${url}/api/delBoy/register`, input);
         if (response.data.success) {
             toast.success(response.data.message);
             setInput({
@@ -42,10 +45,17 @@ const AddDeliveryBoy = ({url}) => {
                 city:"",
                 country:"",
             });
-            
+            setLoading(false);
           } else {
-            toast.error(response.data.message);
+            setLoading(false);
+            toast.error("Error: Invalid Credential");
           }
+          
+        } catch (error) {
+          setLoading(false);
+          toast.error("Error: Invalid Credential");
+        }
+    
     }
   return (
     <div className='AddDeliveryBoy-main'>
@@ -64,8 +74,17 @@ const AddDeliveryBoy = ({url}) => {
         <input type="text" name='city' value={input.city} onChange={handleChange}  />
         <label htmlFor="country">Country:</label>
         <input type="text" name='country' value={input.country} onChange={handleChange}  />
-
-        <button type='submit'>Add</button>
+          <div style={{display:"flex" ,justifyContent:"center" }}>
+        <button type="submit" className="add-food-button center-content">
+          {loading ? (
+            <div className="center-content">
+                <Loader />
+            </div>
+          ) : (
+            "ADD"
+          )}
+        </button>
+        </div>
        </form>
     </div>
   )

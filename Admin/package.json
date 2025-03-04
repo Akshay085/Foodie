@@ -16,6 +16,7 @@
     "axios": "^1.7.9",
     "buffer": "^6.0.3",
     "chart.js": "^4.4.8",
+    "dotenv": "^16.4.7",
     "jspdf": "^2.5.2",
     "jspdf-autotable": "^3.8.4",
     "lottie-react": "^2.4.1",

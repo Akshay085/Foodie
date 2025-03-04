@@ -3,14 +3,16 @@ import axios from "axios";
 import { useState } from "react";
 import "./Editpopup.css";
 import { toast } from 'react-hot-toast'
+import Loader from "../Animation/Loader";
 // import { toast } from "react-toastify";
 
 const EditPopup = ({ url, editpopup, setEditpopup, food, SetFood }) => {
-  console.log(food);
+  // console.log(food);
+    const [loading, setLoading] = useState(false);
   const [categorylist, setcategoryList] = useState([]);
 
   const [image, SetImage] = useState(false);
-  console.log("image", image);
+  // console.log("image", image);
   
   const [input, setInput] = useState({
     name: "",
@@ -43,13 +45,14 @@ const EditPopup = ({ url, editpopup, setEditpopup, food, SetFood }) => {
   
   const editItem = async (event) => {
     event.preventDefault();
+    setLoading(true);
     const formData = new FormData();
     formData.append("_id", food._id);
     formData.append("name", input.name);
     formData.append("description", input.description);
     formData.append("price", Number(input.price));
     formData.append("category", input.category);
-    formData.append("image", image || input.image); // Ensure this is a valid file
+    formData.append("image", image || input.image); 
 
     try {
       const response = await axios.post(`${url}/api/food/edit`, formData, {
@@ -69,12 +72,16 @@ const EditPopup = ({ url, editpopup, setEditpopup, food, SetFood }) => {
         SetImage(false);
         closeEditpopup();
         fetchCategorylist();
+        setLoading(false);
+        window.location.reload();
         toast.success(response.data.message);
       } else {
+        setLoading(false);
         toast.error(response.data.message);
       }
     } catch (error) {
-      console.error(
+      setLoading(false);
+      console.log(
         "Error updating item:",
         error.response?.data || error.message
       );
@@ -153,9 +160,17 @@ const EditPopup = ({ url, editpopup, setEditpopup, food, SetFood }) => {
                 required
               ></textarea>
             </div>
-            <div className="edit-button">
-              <button type="submit">submit</button>
+            <div style={{display:"flex" ,justifyContent:"center" }}>
+        <button type="submit" className="add-food-button center-content">
+          {loading ? (
+            <div className="center-content">
+                <Loader />
             </div>
+          ) : (
+            "ADD"
+          )}
+        </button>
+        </div>
           </form>
         </div>
       </div>

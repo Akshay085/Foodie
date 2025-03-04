@@ -19,7 +19,7 @@ import LoginPopUp from "./Components/LoginPopUp/LoginPopUp";
 import Reports from "./Pages/Reports/Reports";
 
 const App = () => {
-  const url = "http://localhost:4000";
+  const url = import.meta.env.VITE_BACKEND_BASEURL;
   const [editpopup, setEditpopup] = useState(false);
   const [categoryeditpopup, categorysetEditpopup] = useState(false);
   const [showLogin, setShowLogin] = useState(!localStorage.getItem("isLoggedIn"));
