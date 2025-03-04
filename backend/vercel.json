@@ -9,9 +9,6 @@
       {
         "src": "src/**/*",
         "use": "@vercel/static"
-      },
-      {
-        "api/*": {"runtime": "nodejs18.x"}
       }
     ],
     "routes": [
