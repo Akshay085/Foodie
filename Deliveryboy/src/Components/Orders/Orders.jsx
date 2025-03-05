@@ -5,7 +5,7 @@ import { StoreContext } from "../../context/StoreContextdel";
 import DelBoy from "../Animation/DelBoy";
 import Foodprocessing from "../Animation/Foodprocessing";
 import Delivery from "../Animation/Delivered";
-import Delboygoing from "../Animation/delboygoing";
+import Delboygoing from "../Animation/Delboygoing";
 import Delivered from "../Animation/Delivered";
 import toast from "react-hot-toast";
 import Cancelorder from "../Animation/Cancelorder";
