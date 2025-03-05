@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./EditProfile.css";
 import { StoreContext } from "../../Context/StoreContext";
-import axios from "axios"; // Ensure axios is imported
-import { toast } from "react-toastify"; // Ensure toast is imported
+import axios from "axios"; 
+// import { toast } from "react-toastify"; 
+import { toast } from "react-hot-toast";
 
 const EditProfile = () => {
   const { url, userData } = useContext(StoreContext);
@@ -58,12 +59,13 @@ const EditProfile = () => {
           city:"",
           country:"",
         });
-        toast.success(response.data.message);
+        toast(response.data.message);
       } else {
-        toast.error(response.data.message);
+        toast(response.data.message);
       }
     } catch (error) {
-      console.error("Error updating item:", error.response?.data || error.message);
+      toast("Please Try Again");
+      // console.log("Error updating item:", error.response?.data || error.message);
     }
   };
 

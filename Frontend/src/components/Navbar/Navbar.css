@@ -41,10 +41,10 @@
     cursor: pointer;
     transition: 0.3s;
 }
-.btnsignin button:hover{
+/* .btnsignin button:hover{
     background-color: black;
     color: white;
-}
+} */
 .navbar .active{
     padding-bottom: 5px;
     border-bottom: 2px solid ;
@@ -86,6 +86,7 @@ button:hover{
     background-color: black;
     border:2px solid beige;
 }
+
 .Navbar-profile{
     position: relative;
     color: black;
@@ -129,11 +130,17 @@ button:hover{
   }
   
   .navbar-menu a.active {
-    color: #ff5733; /* Highlighted color */
+    color: #ff5733; 
     font-weight: bold;
     border-bottom: 2px solid #ff5733;
   }
   
+  .navbar  .navbar-right button:hover{
+   background-color: tomato;
+   color: white;
+   border: 2px solid tomato;
+ 
+}
 @media (max-width:1050px) {
     .navbar  .navbar .logo{
         width: 140px;
@@ -148,21 +155,23 @@ button:hover{
     .navbar  .navbar-right img{
         width: 22px;
     }
-    .navbar  .navbar-right button{
+    .navbar  .navbar-right button {
         padding: 8px 25px;
+     
     }
     
 }
 @media (max-width:900px) {
+    
     .navbar  .navbar .logo{
         width: 140px;
     }
     .navbar  .navbar-menu{
-        gap: 15px;
+        gap: 10px;
         font-size: 16px;
     }
     .navbar  .navbar-right{
-        gap:20px;
+        gap:10px;
     }
     .navbar  .navbar-right img{
         width: 15px;
@@ -175,6 +184,9 @@ button:hover{
     
 }
 @media (max-width:750px) {
+    .navbar{
+        padding: 0px;
+    }
     .navbar .navbar-menu{
        /* display: none; */
 
@@ -185,6 +197,11 @@ button:hover{
     }
     .navbar-menu a{
         padding:5px ;
+        font-size: x-small;
+    }
+    .login-button  button{
+        padding: 2;
+        font-size: 7px;
     }
 
  
@@ -209,5 +226,18 @@ button:hover{
         font-size: 10px;
         border-radius: 15px;
     }
+    .navbar  a{
+        font-size: 10px;
+    }
+    .login-button  button{
+        padding: 0;
+        font-size: 5px;
+    }
+}
+@media (max-width:350px) {
+    .navbar .navbar-menu{
+        display: none;
  
+     }
+    
 }

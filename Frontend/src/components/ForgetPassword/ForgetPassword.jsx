@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import './ForgetPassword.css'
-import { toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+// import { toast } from 'react-toastify';
+// import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-hot-toast";
 
 const ForgetPassword = ({email,setEmail,forget,SetForget,SetOtpPopup,Otpvarification ,SetOtpvarification,SetconfirmPopUP}) => {
   
@@ -23,17 +24,17 @@ const ForgetPassword = ({email,setEmail,forget,SetForget,SetOtpPopup,Otpvarifica
          const response = await axios.post(`${url}/api/user/sendOtp`, {email});
         if (response.data.success) {
           console.log("Email submitted:", email);
-            toast.success("Okk..");
+            toast("Okk..");
             SetOtpvarification(true);
         }
         else{
           // {<p>Error: Please sign up first.</p>}
-          toast.error("Error: Please sign up first.");
+          toast("Error: Please sign up first.");
            
         }
        }catch{
         console.log("Error In sending OTP:");
-        toast.error("Error: Please sign up first.");
+        toast("Error: Please sign up first.");
        }
     }
     const  OnVarify=async()=>{ 
@@ -42,7 +43,7 @@ const ForgetPassword = ({email,setEmail,forget,SetForget,SetOtpPopup,Otpvarifica
       const response = await axios.post(`${url}/api/user/verifyOtp`, {email , otp:OTP});
       if (response.data.success) {
           setOTP("");
-         toast.success("Okkk");
+         toast("Okkk");
           console.log(email);
           SetForget(false);
           SetOtpvarification(false);
@@ -50,7 +51,7 @@ const ForgetPassword = ({email,setEmail,forget,SetForget,SetOtpPopup,Otpvarifica
         
       }
       else{
-         toast.error("soory.. OTP is Not Valid") 
+         toast("soory.. OTP is Not Valid") 
       }
 
      }catch{

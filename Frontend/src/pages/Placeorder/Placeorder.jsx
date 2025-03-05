@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState  } from "react";
 import {useNavigate} from 'react-router-dom'
 import "./Placeorder.css";
 import { StoreContext } from "../../Context/StoreContext";
-import { toast } from "react-toastify";
-import'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-hot-toast";
+// import { toast } from "react-toastify";
+// import'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 
 const Placeorder = () => {
@@ -25,9 +26,11 @@ const Placeorder = () => {
   });
   useEffect(() => {
     if(!token){
-      navigate('/cart');
+      toast("Please Login First ")
+      navigate('/');
     }
     else if(getTotalCartAmount()==0){
+      toast("Please Login First ")
       navigate('/cart');
     }
     setInput({
@@ -67,7 +70,7 @@ const Placeorder = () => {
     window.location.replace(session_url);
   }
   else{
-    toast.error("Error")
+    toast("Error")
   }
    }
    

@@ -61,7 +61,13 @@
   
   .edit-button
   {
-     padding: 1%;
+    background-color: tomato;
+    color: white;
+    width: auto;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    
   }
  
   .place-order-right h2 {

@@ -6,20 +6,24 @@ import "./Cart.css";
 import DeliveryComponent from "../../components/DeliveryComponent/DeliveryComponent";
 import Home from "../Home/Home";
 import Search from "../Search/Search";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import'react-toastify/dist/ReactToastify.css';
+import EmptyCart from "../../components/MyLottieAnimation/EmptyCart";
 
 const Cart = () => {
   const { cartItems, foodlist,addtoCart, removefromCart , getTotalCartAmount } = useContext(StoreContext);
   // const [bool, setBool] = useState(false);
+  const [cartEmpty,setCartEmpty]=useState(false);
   const navigate=useNavigate(false);
   useEffect(() => {
     window.scrollTo(0,0);
     console.log(cartItems);
     const isCartEmpty = Object.values(cartItems).every((qty) => qty === 0);
     if (isCartEmpty) {
-      toast.warn("Please select some items");
-      navigate("/");
+      setCartEmpty(true);
+       toast("Please Add some items in to Cart");
+      // navigate("/");
     }
     // if (Object.keys(cartItems).length === 0) {
     //   navigate("/");
@@ -30,6 +34,16 @@ const Cart = () => {
   
   return (
     <div className="cart">
+      {cartEmpty==true ? 
+      
+      <div className="empty-cart">
+        <EmptyCart  />
+      <br />
+      <h1>Cart Is Empty...</h1>
+      <button onClick={()=>{navigate("/")}}>Buy Now</button>
+      <br />
+      </div>  
+      : <>
       <div className="cartItems">
         <div className="cart-item-titles">
           <p>Items</p>
@@ -54,7 +68,7 @@ const Cart = () => {
                   <p>{cartItems[item._id]}</p>
                   <p>₹{item.price * cartItems[item._id]}</p>
                   <img onClick={()=>addtoCart(item._id)} src="\Images\add_icon_green.png"  />
-                  <img onClick={()=>removefromCart(item._id)} src="\Images\bin.png"  />   
+                  <img onClick={()=>removefromCart(item._id)} src="\Images\remove_icon_red.png"  />   
                 </div>
                 <hr />
               </div>
@@ -93,6 +107,7 @@ const Cart = () => {
           </div>
         </div>
       </div>*/}
+</>}
     </div>
   );
 };

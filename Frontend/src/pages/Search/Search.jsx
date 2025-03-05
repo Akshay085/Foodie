@@ -5,13 +5,17 @@ import { StoreContext } from "../../Context/StoreContext";
 import FoodItem from "../../components/Food-Item/FoodItem";
 import axios from "axios";
 import Errormessage from "../../components/Errormessage/Errormessage";
+import { IconButton} from "@mui/material";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import { useNavigate } from "react-router-dom";
+import Loaderfrount from "../../components/MyLottieAnimation/Loaderfrount";
 
 const Search = () => {
   const { foodlist, url } = useContext(StoreContext);
   const [inputvalue, setInputvalue] = useState("");
   const [foods, setFoods] = useState({});
   const [loading, setLoading] = useState(false);
-
+  const navigate=useNavigate();
   const handleChange = (event) => {
     setInputvalue(event.target.value);
   };
@@ -40,7 +44,17 @@ const Search = () => {
 
   return (
     <div className="search-box-main">
+      {loading==true ?<Loaderfrount />:null}
       <div className="search-header">
+      <IconButton
+            color="inherit"
+            sx={{ color: "red" }}
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            <ExitToAppIcon />
+          </IconButton>
         <h1>All Foods</h1>{" "}
         <div className="search-box">
           <input
@@ -50,6 +64,7 @@ const Search = () => {
             placeholder="Search..."
             className="search-input"
           />
+          
           {/* <button onClick={handleSearch} className="search-button">
             Search
           </button> */}

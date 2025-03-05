@@ -5,8 +5,9 @@ import axios from 'axios';
 import { StoreContext } from "../../Context/StoreContext";
 import { useNavigate } from "react-router-dom";
 import './SelfService.css'
-import { toast } from "react-toastify";
-import'react-toastify/dist/ReactToastify.css';
+// import { toast } from "react-toastify";
+// import'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-hot-toast";
 
 const SelfService = () => {
   const { url,token,cartItems,userData, foodlist,addtoCart, removefromCart , getTotalCartAmount } = useContext(StoreContext);
@@ -18,7 +19,7 @@ const SelfService = () => {
       console.log(cartItems);
       const isCartEmpty = Object.values(cartItems).every((qty) => qty === 0);
       if (isCartEmpty) {
-        toast.warn("Please select some items");
+        toast("Please select some items");
         navigate("/");
       }
     
@@ -48,7 +49,7 @@ const SelfService = () => {
       window.location.replace(session_url);
     }
     else{
-      toast.error("Error")
+      toast("Please Login First ")
     }
  }
   return (

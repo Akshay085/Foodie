@@ -42,7 +42,7 @@
 
 @media (max-width: 500px) {
     .food-display-list {
-        grid-template-columns: repeat(auto-fill, minmax(80%, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(60%, 1fr));
         gap: 20px;
     }
 }

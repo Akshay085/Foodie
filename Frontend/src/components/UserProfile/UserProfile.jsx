@@ -2,8 +2,9 @@ import React, { useEffect, useContext, useState } from "react";
 import "./UserProfile.css";
 import { StoreContext } from "../../Context/StoreContext";
 import axios from "axios";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-hot-toast";
+// import { toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 
 const UserProfile = () => {
   const { userData, setUserData, url } = useContext(StoreContext);
@@ -51,17 +52,17 @@ const UserProfile = () => {
       });
 
       if (response.data.status) {
-        toast.success("Profile updated successfully!");
+        toast("Profile updated successfully!");
         console.log(response.data);
         setUserData(response.data.data);
         localStorage.setItem("user", JSON.stringify(response.data.data));
         setIsEditing(false);
       } else {
-        toast.error("Failed to update profile.");
+        toast("Failed to update profile.");
       }
     } catch (error) {
       console.log("Error updating profile:", error);
-      toast.error("Something went wrong.");
+      toast("Something went wrong.");
     }
   };
 

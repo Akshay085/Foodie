@@ -4,8 +4,9 @@ import { useContext } from "react";
 import { StoreContext } from "../../Context/StoreContext";
 import { useNavigate } from "react-router-dom";
 import './Homedelivery.css'
-import { toast } from "react-toastify";
-import'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-hot-toast";
+// import { toast } from "react-toastify";
+// import'react-toastify/dist/ReactToastify.css';
 
 const Homedelivery = () => {
   const { cartItems, foodlist,addtoCart, removefromCart , getTotalCartAmount } = useContext(StoreContext);
@@ -18,7 +19,7 @@ const Homedelivery = () => {
         console.log(cartItems);
         const isCartEmpty = Object.values(cartItems).every((qty) => qty === 0);
         if (isCartEmpty) {
-          toast.warn("Please select some items");
+          toast("Please select some items");
           navigate("/");
         }
       

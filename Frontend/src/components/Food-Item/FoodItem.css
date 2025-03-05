@@ -33,11 +33,12 @@
 .food-item-desc{
     color: tomato;
     font-size: 2vh;
+    font-weight: 300;
 }
 .food-item-price{
         color: tomato;
         font-size: 20px;
-        font-weight: 500;
+        font-weight: 900;
         margin: 10px 0px;
 }
 .food-item-img-container{
