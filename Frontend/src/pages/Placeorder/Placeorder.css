@@ -1,4 +1,5 @@
 /* General styles */
+
 .place-order-main {
     display: flex;
     gap: 20px;
@@ -113,4 +114,12 @@
   
   .payment-btn:hover {
     background-color: #0056b3;
+  }
+
+  @media  (max-width:700px) {
+    .place-order-main{
+      display: flex;
+      flex-direction: column;
+    }
+    
   }
