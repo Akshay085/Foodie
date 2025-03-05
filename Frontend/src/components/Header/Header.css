@@ -1,89 +1,91 @@
-.header{
-    height: 35vw; 
-    background:url('/Images/headerbg.png') no-repeat ;
-    margin: 30px auto ;
-    background-size:contain; 
-    position: relative;  
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    border: 0px solid beige;
-    border-radius: 10px;
+.header {
+  height: 35vw;
+  background: url("/Images/headerbg.png") no-repeat;
+  margin: 30px auto;
+  background-size: contain;
+  position: relative;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  border: 0px solid beige;
+  border-radius: 10px;
 }
-.header .headercontents{
-    position: absolute;
-    padding-top: 4%;
-    padding-left: 5%;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    gap: 1.5vw;
-    max-width: 50%;
-    bottom: 10; 
-    animation: fadeIn 2s;
+.header .headercontents {
+  position: absolute;
+  padding-top: 4%;
+  padding-left: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 1.5vw;
+  max-width: 50%;
+  bottom: 10;
+  animation: fadeIn 2s;
 }
-.headercontents h2{
-    font-weight:4vw ;
-    color: antiquewhite;
-    font-size: max(3.5vw , 20px);
-    animation: fadeIn 1s;
+.headercontents h4 {
+  font-weight: 4vw;
+  color: antiquewhite;
+  font-size: max(3.5vw, 20px);
+  animation: fadeIn 1s;
 }
-.headercontents p{
-    color: antiquewhite;
-    font-size: 1.5vw;
-    animation: fadeIn 4s;
+.headercontents p {
+  color: antiquewhite;
+  font-size: 1.5vw;
+  animation: fadeIn 4s;
 }
-.btnmenu button{
-    border:2px solid brown;
-    color: brown;
-    font-size: 20px;
-    font-weight: 500;
-    cursor: pointer;
-    background-color: transparent;
-    border-radius: 30px;
+.btnmenu button {
+  border: 2px solid brown;
+  color: brown;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 30px;
+  padding: 5px;
+  animation: fadeIn 4s;
+}
+.btnmenu button:hover {
+  color: beige;
+  background-color: brown;
+  border: 2px solid beige;
+}
+
+@media (max-width: 1050px) {
+  .headercontents {
+    max-width: 45%;
+  }
+}
+
+@media (max-width: 750px) {
+  .headercontents {
+    max-width: 65%;
+  }
+  .headercontents p {
+    display: none;
+  }
+  .headercontents button {
+    padding: 2vw 4vw;
+  }
+}
+@media (max-width: 500px) {
+  .headercontents {
+    max-width: 75%;
+  }
+  .headercontents p {
+    display: none;
+  }
+  .headercontents button {
+    font-size: 15px;
     padding: 5px;
-    animation: fadeIn 4s;
-}
-.btnmenu button:hover{
-    color: beige;
-    background-color: brown;
-    border:2px solid beige;
+  }
 }
 
-@media (max-width:1050px) {
-    .headercontents{
-        max-width: 45%;
-    }   
+@media (max-width: 400px) {
+  .btnmenu {
+    padding: 0;
+  }
 }
 
-@media (max-width:750px) {
-    
-    .headercontents{
-        max-width: 65%;
-    }
-    .headercontents p{
-        display: none;
-    }
-    .headercontents button{
-        padding: 2vw 4vw;
-    }
-}
-@media (max-width:500px) {
-   
-  
-    .headercontents{
-        max-width: 75%;
-    }
-    .headercontents p{
-        display: none;
-    }
-    .headercontents button{
-        font-size: 15px;
-        padding: 5px;
-    }
-}
-
-@media (max-width:400px) {
-    .btnmenu{
-       padding: 0;
-      
-    }
+@media (max-width: 350px) {
+  .headercontents h4 {
+    font-size: small;
+  }
 }
