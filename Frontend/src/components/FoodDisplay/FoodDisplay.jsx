@@ -15,7 +15,7 @@ const FoodDisplay = ({category}) => {
     <div className='food-display' id="fooddisplay">
     <h2>Top Dishes Are Here.</h2>
     <div className="food-display-list">
-        {foodlist==0?<Loaderfrount />:null}
+        {foodlist===0?<Loaderfrount />:null}
         {filteredFoodList.length > 0 ? (
             filteredFoodList.map((item, i) => (
                 <FoodItem 
