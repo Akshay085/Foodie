@@ -1,13 +1,16 @@
-import React,{useContext}  from 'react'
+import React,{useContext, useEffect}  from 'react'
 import './ExploreMenu.css'
 
 import { StoreContext } from '../../Context/StoreContext.jsx'
 import Loaderfrount from '../MyLottieAnimation/Loaderfrount.jsx';
 const ExploreMenu = ({category,setCategory}) => {
    const {categorylist} =useContext(StoreContext);
-   if (!categorylist || categorylist.length === 0) {
-    return <Loaderfrount/>;
-  }
+   
+//   useEffect(()=>{
+//     if (!categorylist || categorylist.length === 0) {
+//         return <Loaderfrount/>;
+//       }
+//   },[]);
     if(!category){
         setCategory((category)=>category="All");
       }
@@ -15,6 +18,7 @@ const ExploreMenu = ({category,setCategory}) => {
 
   return (
     <section className='explore-menu' id='exploremenu'>
+        
         <h1>Explore Menu</h1>
         <p className='explore-menu-text'>Choose From This Menu.</p>
         <div className="explore-menu-list">
@@ -23,9 +27,11 @@ const ExploreMenu = ({category,setCategory}) => {
             <p>All</p>
             </div>
             {     
+           
                 categorylist.map((item,i)=>{   
                     return (
                         <div onClick={()=>{setCategory(prev => prev===item.name ? "All" : item.name)}}  key={i} className='explore-menu-list-item'>
+                            {categorylist==0?<Loaderfrount />:null} 
                             <img  className={category===item.name ? "active" : " "} src={item.image} alt="items" />
                             <p>{item.name}</p>
                         </div>
