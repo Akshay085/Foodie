@@ -86,6 +86,11 @@ hr {
     align-items: center;
     justify-content: center;
 }
+.loader-category-list-loader{
+    height: 50px;
+    width: 50px;
+    transform: scale(2);
+}
 @media (max-width: 1050px) {
     .explore-menu-text {
         max-width: 100%;
