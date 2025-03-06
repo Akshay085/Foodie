@@ -23,6 +23,7 @@ const ExploreMenu = ({category,setCategory}) => {
         <p className='explore-menu-text'>Choose From This Menu.</p>
         <div className="explore-menu-list">
             <div className="explore-menu-list-all">
+            {categorylist===0? <Loaderfrount />:null} 
             <img  onClick={()=>setCategory("All")}  className={category=="All"? "active" :null} src="\Images\allfoods.jpg" alt="all image"  />
             <p>All</p>
             </div>
