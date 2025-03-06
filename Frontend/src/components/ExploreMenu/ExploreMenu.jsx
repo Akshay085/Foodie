@@ -2,12 +2,17 @@ import React,{useContext}  from 'react'
 import './ExploreMenu.css'
 
 import { StoreContext } from '../../Context/StoreContext.jsx'
+import Loaderfrount from '../MyLottieAnimation/Loaderfrount.jsx';
 const ExploreMenu = ({category,setCategory}) => {
    const {categorylist} =useContext(StoreContext);
+   if (!categorylist || categorylist.length === 0) {
+    return <Loaderfrount/>;
+  }
     if(!category){
         setCategory((category)=>category="All");
       }
       console.log(categorylist);
+
   return (
     <section className='explore-menu' id='exploremenu'>
         <h1>Explore Menu</h1>
