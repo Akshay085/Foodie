@@ -8,7 +8,7 @@ const ExploreMenu = ({ category, setCategory }) => {
 
     // Show loader while data is loading
     if (!categorylist || categorylist.length === 0) {
-        return <Loaderfrount />;
+        return <div className='loader-category-list'><Loaderfrount /></div>;
     }
 
     if (!category) {
