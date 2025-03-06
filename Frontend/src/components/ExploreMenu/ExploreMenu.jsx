@@ -6,11 +6,11 @@ import Loaderfrount from '../MyLottieAnimation/Loaderfrount.jsx';
 const ExploreMenu = ({category,setCategory}) => {
    const {categorylist} =useContext(StoreContext);
    
-//   useEffect(()=>{
-//     if (!categorylist || categorylist.length === 0) {
-//         return <Loaderfrount/>;
-//       }
-//   },[]);
+ 
+    if (!categorylist || categorylist.length === 0) {
+        return <Loaderfrount/>;
+      }
+ 
     if(!category){
         setCategory((category)=>category="All");
       }
