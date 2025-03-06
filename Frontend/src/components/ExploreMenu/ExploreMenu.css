@@ -75,6 +75,11 @@ hr {
     border: 4px solid coral;
 }
 
+.loader-frount-for-explore-menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 @media (max-width: 1050px) {
     .explore-menu-text {
         max-width: 100%;
