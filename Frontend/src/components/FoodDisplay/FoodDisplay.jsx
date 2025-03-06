@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import './FoodDisplay.css'
 import { StoreContext } from '../../Context/StoreContext'
 import FoodItem from '../Food-Item/FoodItem';
+import Loaderfrount from '../MyLottieAnimation/Loaderfrount';
 const FoodDisplay = ({category}) => {
     const {foodlist} =useContext(StoreContext);
     const filteredFoodList = foodlist.filter(item => 
@@ -11,6 +12,7 @@ const FoodDisplay = ({category}) => {
     <div className='food-display' id="fooddisplay">
     <h2>Top Dishes Are Here.</h2>
     <div className="food-display-list">
+        {!foodlist?<Loaderfrount />:null}
         {filteredFoodList.length > 0 ? (
             filteredFoodList.map((item, i) => (
                 <FoodItem 
