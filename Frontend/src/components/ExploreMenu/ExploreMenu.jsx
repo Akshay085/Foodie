@@ -31,7 +31,7 @@ const ExploreMenu = ({category,setCategory}) => {
                 categorylist.map((item,i)=>{   
                     return (
                         <div onClick={()=>{setCategory(prev => prev===item.name ? "All" : item.name)}}  key={i} className='explore-menu-list-item'>
-                            {categorylist==0? <div className='loader-frount-for-explore-menu'><Loaderfrount /></div>:null} 
+                            {categorylist==0? <Loaderfrount />:null} 
                             <img  className={category===item.name ? "active" : " "} src={item.image} alt="items" />
                             <p>{item.name}</p>
                         </div>
