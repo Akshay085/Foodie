@@ -27,6 +27,7 @@ const Verify = () => {
     }
     useEffect(()=>{
         verifyPayment();
+        window.scrollTo(0,0);
     },[])
   return (
     <div className='verify'>

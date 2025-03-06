@@ -48,7 +48,9 @@ const Search = () => {
       <div className="search-header">
       <IconButton
             color="inherit"
-            sx={{ color: "red" }}
+            sx={{ color: "red" ,transform: "rotate(180deg)" ,"&:hover": {
+      color: "black", background:"white",
+    },}}
             onClick={() => {
               navigate("/");
             }}

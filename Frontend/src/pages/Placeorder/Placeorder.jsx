@@ -25,6 +25,7 @@ const Placeorder = () => {
     contact: "",
   });
   useEffect(() => {
+    window.scrollTo(0,0);
     if(!token){
       toast("Please Login First ")
       navigate('/');

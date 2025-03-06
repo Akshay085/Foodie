@@ -2,7 +2,7 @@
   height: 35vw;
   background: url("/Images/headerbg.png") no-repeat;
   margin: 30px auto;
-  background-size: contain;
+  background-size: cover;
   position: relative;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   border: 0px solid beige;
