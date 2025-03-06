@@ -3,8 +3,9 @@ import "./LoginPopUp.css";
 import { StoreContext } from "../../Context/StoreContext";
 import axios from "axios"
 //import { Link, Links } from "react-router-dom";
-import { toast } from "react-toastify";
-import'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-hot-toast";
+// import { toast } from "react-toastify";
+// import'react-toastify/dist/ReactToastify.css';
 import Loader from "../MyLottieAnimation/Loader";
 
 const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
@@ -37,7 +38,7 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
         localStorage.setItem("user",JSON.stringify(response.data.userData));
         
         
-        toast.success("Welcome!");
+        toast("Welcome!");
         
         SetShowlogin(false);
         console.log("My Response:", response.data);
@@ -45,11 +46,11 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
         console.log(userData);
 
       } else {
-        toast.error(response.data.message);
+        toast(response.data.message);
       }
     } catch (error) {
-      console.error("Login error:", error);
-      toast.error("Something went wrong. Please try again.");
+      console.log("Login error:", error);
+      toast("Something went wrong. Please try again.");
     }
   };
 
@@ -64,16 +65,16 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
       if (response.data.success) {
         setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
-        toast.success("Registration successful. Please log in.");
+        toast("Registration successful. Please log in.");
         
         SetCurrentState("Login"); 
         setData({ email: "", password: "" });
       } else {
-        toast.error(response.data.message);
+        toast(response.data.message);
       }
     } catch (error) {
-      console.error("Signup error:", error);
-      toast.error("Something went wrong. Please try again.");
+      console.log("Signup error:", error);
+      toast("Something went wrong. Please try again.");
     }
   };
 
