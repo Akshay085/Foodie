@@ -82,10 +82,10 @@ hr {
 }
 .loader-category-list{
     min-height: 100px;
+    background-color: black;
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 @media (max-width: 1050px) {
     .explore-menu-text {
