@@ -79,6 +79,10 @@
 }
 
 @media (max-width: 400px) {
+  .header{
+    height: 45vw;
+    
+  }
   .btnmenu {
     padding: 0;
   }

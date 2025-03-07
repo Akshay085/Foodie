@@ -11,3 +11,11 @@
     background-color: aliceblue;
   }
  
+  @media (max-width:400px) {
+    .app{
+      width: 95%;
+      min-height: 70vh;
+      margin: auto;
+    }
+    
+  }
