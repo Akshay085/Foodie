@@ -28,7 +28,7 @@
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr 1fr 0.5fr 0.5fr;
     align-items: center;
-    text-align: center;
+    text-align: left;
     padding: 10px;
     border-bottom: 1px solid #ccc;
 }
@@ -91,6 +91,7 @@
     .list-food-table-format {
         grid-template-columns: 1fr 1.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
         font-size: 5px;
+        text-align: left;
         /* display: flex;
         flex-direction: column;
         align-items: center;
@@ -99,16 +100,16 @@
         border-bottom: 1px solid #ddd; */
     }
     .list-food-table-format b{
-        font-size: 12px;
-        text-align: center;
+        font-size: 10px;
+        text-align: left;
     }
     .list-food-table-format p{
-        font-size: 12px;
-        text-align: center;
+        font-size: 8px;
+        text-align: left;
     }
 
     .list-food-table-format.title {
-        display: none;
+        /* display: none; */
     }
 
     .list-food-table-format img {
@@ -116,12 +117,12 @@
         height: 50px;
     }
     .edit-delete-images img{
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
     }
 
     .delete-item, .update-item {
-        width: 30px;
-        height: 30px;
+        width: 20px;
+        height: 20px;
     }
 }

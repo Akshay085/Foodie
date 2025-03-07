@@ -54,18 +54,22 @@ const handleEditPopup=async(fooddetails)=>{
             <div key={index} className="list-category-table-format">
               <img src={item.image} alt="" />
               <p>{item.name}</p>
+              <div className="items-images-right">
               <img
                 onClick={() => removeFood(item._id)}
                 className="delete-item"
                 src="\Images\bin.png"
                 alt=""
               />
+              </div>
+              <div className="items-images-right">
               <img
                 onClick={() => handleEditPopup(item)}
                 className="update-item"
                 src="\Images\edit.png"
                 alt="edit icon"
               />
+              </div>
             </div>
           );
         })}
