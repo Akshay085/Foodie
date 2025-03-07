@@ -243,6 +243,8 @@ const listOrders = async (req , res) => {
                     delBoyId: 1,
                     items: 1,
                     delType: 1,
+                    subTotal: 1,
+                    gst: 1,
                     amount: 1,
                     status: 1,
                     date: 1,

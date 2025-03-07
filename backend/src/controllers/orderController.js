@@ -1,6 +1,8 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import delBoyModel from "../models/delBoyModel.js";
+import { sendMail } from "../helper/sendMail.js";
+import { billMail } from "../../public/usersEmail/billMail.js";
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -16,12 +18,15 @@ const placeOrder = async (req , res) => {
         {
             deliveryCharge = 50;
         }
-        const total = Number((subtotal + gst + deliveryCharge).toFixed(2));
+        const amount = Number((subtotal + gst + deliveryCharge).toFixed(2));
         const newOrder = new orderModel({
             userId: req.body.userId,
             items: req.body.items,
             delType: delType,
-            amount: total
+            subTotal: subtotal,
+            gst: gst,
+            delCharge: deliveryCharge,
+            amount: amount
         })
         
         const line_items = req.body.items.map((item)=>({
@@ -77,9 +82,21 @@ const placeOrder = async (req , res) => {
 const verifyOrder = async (req , res) => {
     const {orderId , success , userid} = req.body;
     try {
+        const order = await orderModel.findById({_id: orderId});
+        if(!order){
+            return res.status(404).json({success: false , message: "Order Doesn't exist"});
+        }
         if(success=="true"){
             await userModel.findByIdAndUpdate(userid, {cartData:{}});
-            await orderModel.findByIdAndUpdate(orderId , {payment: true});
+            const newOrder = await orderModel.findByIdAndUpdate(orderId , {payment: true});
+
+            const user = await userModel.findById({_id: userid});
+            if (!user) {
+                return res.status(404).json({ success: false, message: "User not found" });
+            }
+
+            const emailTemplate = billMail(newOrder);
+            sendMail(user.email , "Order Successfull! Here is your Bill" ,  emailTemplate);
             res.status(200).json({ success: true , message: "Paid" });
         }    
         else{
@@ -135,6 +152,8 @@ const listOrders = async (req , res) => {
                     delBoyId: 1,
                     items: 1,
                     delType: 1,
+                    subTotal: 1,
+                    gst: 1,
                     amount: 1,
                     status: 1,
                     date: 1,
