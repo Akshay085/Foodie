@@ -1,4 +1,5 @@
 import categoryModel from "../models/categoryModel.js";
+import foodModel from "../models/foodModel.js";
 import { uploadResult } from "../utils/cloudinary.js";
 import {v2 as cloudinary} from'cloudinary';
 
@@ -45,6 +46,7 @@ const editCategory = async (req , res) => {
     try {
         const category = await categoryModel.findById(req.body._id).exec();
         
+        const cateName = category.name;
         
         let image_filename;
         if(req.file){
@@ -73,6 +75,9 @@ const editCategory = async (req , res) => {
               code: 200,
             };
           });
+        
+        await foodModel.updateMany({category: cateName} , {$set:{category: newCategory.name}});
+        
         res.status(200).json({success: true , message: "Category Updated"});
     } 
     catch (error) {
