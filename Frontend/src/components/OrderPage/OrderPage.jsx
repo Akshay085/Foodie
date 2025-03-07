@@ -7,20 +7,24 @@ import FoodProccessing from '../MyLottieAnimation/FoodProccessing';
 import Delivered from '../MyLottieAnimation/Delivered';
 import OutForDelivery from '../MyLottieAnimation/OutForDelivery';
 import Canceled from '../MyLottieAnimation/Canceled';
-
+import Loader from "../../components/MyLottieAnimation/Loaderfrount.jsx"
 
 const OrderPage = () => {
 
   const {url,token}=useContext(StoreContext);
  const [data,setData]=useState([]);
+ const [loading,setLoading]=useState(false)
 
   const fetchOrders=async()=>{
+    setLoading(true);
     const response=await axios.post(url+"/api/order/userorder",{},{headers:{token}});
     if(response.data.success){
     setData(response.data.data);
     console.log(response.data.data);
+    setLoading(true);
     }
     else{
+      setLoading(true);
       console.log("error")
     }
   }
@@ -45,7 +49,10 @@ const OrderPage = () => {
 
     <div  className='OrderPage'>
       <h2>My Orders</h2>   
+      
       <div className="order-container">
+        
+        {loading ==true && <div className='loader-category-list'><Loader/></div>}
         {data.map((order,index)=>{
           return(
             <div  key={index}className='my-orders-order'>
