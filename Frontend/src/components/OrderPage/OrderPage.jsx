@@ -21,10 +21,10 @@ const OrderPage = () => {
     if(response.data.success){
     setData(response.data.data);
     console.log(response.data.data);
-    setLoading(true);
+    setLoading(false);
     }
     else{
-      setLoading(true);
+      setLoading(false);
       console.log("error")
     }
   }
