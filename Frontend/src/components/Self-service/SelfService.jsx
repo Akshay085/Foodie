@@ -60,7 +60,7 @@ const SelfService = () => {
           <p>Price</p>
           <p>Quantity</p>
           <p>Total</p>
-          <p>Add-Item</p>
+          <p>Add</p>
           <p>Remove</p>
         </div>
         <br />
@@ -76,8 +76,10 @@ const SelfService = () => {
                   <p>{item.price}</p>
                   <p>{cartItems[item._id]}</p>
                   <p>₹{item.price * cartItems[item._id]}</p>
-                  <img onClick={()=>addtoCart(item._id)} src="\Images\add_icon_green.png"  />
-                  <img onClick={()=>removefromCart(item._id)} src="\Images\bin.png"  />  
+                  
+                  <img onClick={()=>addtoCart(item._id)} src="\Images\add_icon_green.png"  className='add-icon-ss' />
+                  <img onClick={()=>removefromCart(item._id)} src="\Images\remove_icon_red.png"   className='remove-icon-ss'/>  
+                  
                 </div>
                 <hr />              
               </div>

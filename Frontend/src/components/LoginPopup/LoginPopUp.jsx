@@ -74,7 +74,7 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
       }
     } catch (error) {
       console.log("Signup error:", error);
-      toast("Something went wrong. Please try again.");
+      toast("Invalid Credential");
     }
   };
 

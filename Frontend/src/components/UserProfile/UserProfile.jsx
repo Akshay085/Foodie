@@ -159,13 +159,13 @@ const UserProfile = () => {
                     </>
                   ) : (
                     <>
-                      {/* <button
+                      <button
                         type="submit"
                         className="save-button"
                         style={{ display: "none" }}
                       >
                         Save
-                      </button> */}
+                      </button>
                       <button
                         type="button"
                         className="edit-button"
