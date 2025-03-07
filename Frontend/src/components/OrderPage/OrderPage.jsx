@@ -52,7 +52,7 @@ const OrderPage = () => {
       
       <div className="order-container">
         
-        {loading ==true && <div className='loader-category-list'><Loader/></div>}
+        {loading ==true ? <div className='loader-category-list'><Loader/></div>:null}
         {data.map((order,index)=>{
           return(
             <div  key={index}className='my-orders-order'>
