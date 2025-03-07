@@ -1,6 +1,6 @@
 import categoryModel from "../models/categoryModel.js";
 import foodModel from "../models/foodModel.js";
-import { uploadResult } from "../../src/utils/cloudinary.js";
+import { uploadResult } from "../utils/cloudinary.js";
 import {v2 as cloudinary} from'cloudinary';
 
 const addCategory = async (req , res) => {

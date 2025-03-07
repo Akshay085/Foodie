@@ -1,7 +1,7 @@
-import orderModel from "../../src/models/orderModel.js";
-import userModel from "../../src/models/userModel.js";
-import delBoyModel from "../../src/models/delBoyModel.js";
-import { sendMail } from "../../src/helper/sendMail.js";
+import orderModel from "../../public/models/orderModel.js";
+import userModel from "../../public/models/userModel.js";
+import delBoyModel from "../../public/models/delBoyModel.js";
+import { sendMail } from "../../public/helper/sendMail.js";
 import { billMail } from "../usersEmail/billMail.js";
 import Stripe from 'stripe';
 
