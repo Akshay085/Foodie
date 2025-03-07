@@ -1,8 +1,8 @@
-import orderModel from "../../public/models/orderModel.js";
-import userModel from "../../public/models/userModel.js";
-import delBoyModel from "../../public/models/delBoyModel.js";
-import { sendMail } from "../../public/helper/sendMail.js";
-import { billMail } from "../usersEmail/billMail.js";
+import orderModel from "../models/orderModel.js";
+import userModel from "../models/userModel.js";
+import delBoyModel from "../models/delBoyModel.js";
+import { sendMail } from "../helper/sendMail.js";
+import { billMail } from "../public/usersEmail/billMail.js";
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
