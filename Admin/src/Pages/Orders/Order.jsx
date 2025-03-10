@@ -17,13 +17,15 @@ const Order = ({ url }) => {
   const fetchAllOrders = async () => {
     try {
       const response = await axios.get(url + "/api/order/list");
+      // console.log("Orders Fetched:", response.data.data);
+
       if (response.data && response.data.success) {
         setOrders(response.data.data);
       } else {
-        toast.error("Error fetching orders");
+        toast("Error fetching orders");
       }
     } catch (error) {
-      toast.error("Failed to fetch orders");
+      toast("Failed to fetch orders");
     }
   };
 
@@ -33,10 +35,10 @@ const Order = ({ url }) => {
       if (response.data.success) {
         setDelboy(response.data.data);
       } else {
-        toast.error("Error fetching delivery boys");
+        toast("Error fetching delivery boys");
       }
     } catch (error) {
-      toast.error("Failed to fetch delivery boys");
+      toast("Failed to fetch delivery boys");
     }
   };
 
@@ -50,7 +52,7 @@ const Order = ({ url }) => {
         fetchAllOrders();
       }
     } catch (error) {
-      toast.error("Error updating status");
+      toast("Error updating status");
     }
   };
 
@@ -73,15 +75,15 @@ const Order = ({ url }) => {
           )
         );
       } else {
-        toast.error("Error Assigning Delivery Boy");
+        toast("Error Assigning Delivery Boy");
       }
     } catch (error) {
-      toast.error("Error: " + (error.response?.data?.message || error.message));
+      toast("Error: " + (error.response?.data?.message || error.message));
     }
   };
   const exportToExcel = () => {
     if (orders.length === 0) {
-      toast.error("No orders to export");
+      toast("No orders to export");
       return;
     }
     const data = orders.map((order, index) => ({
@@ -98,7 +100,7 @@ const Order = ({ url }) => {
       "Assigned Delivery Boy": order.delBoyId
         ? delboy.find((boy) => boy._id === order.delBoyId)?.name ||
           "Not Assigned"
-        : "Not Assigned",
+        : "Self service",
     }));
 
     const ws = XLSX.utils.json_to_sheet(data);
@@ -189,8 +191,12 @@ const Order = ({ url }) => {
                     <br />
                     <span className="ordrestatus-color">
                       <ul>
-                        {order.status=="Cancelled" ?<li style={{color:"red"}} >{order.status}</li>:<li style={{color:"green"}} >{order.status}</li> }
-                        {/* <li >{order.status=="Cencelled"?}</li> */}
+                        {order.status == "Cancelled" ? (
+                          <li style={{ color: "red" }}>{order.status}</li>
+                        ) : (
+                          <li style={{ color: "green" }}>{order.status}</li>
+                        )}
+                        {/* <li >{order.status=="Cancelled"?}</li> */}
                       </ul>
                     </span>
                   </p>
@@ -208,12 +214,14 @@ const Order = ({ url }) => {
                 )
               ) : order.status === "Cancelled" ? (
                 <h4 style={{ color: "red" }}>Cancelled</h4>
+              ) : order.status === "Received" ? (
+                <h4 style={{ color: "green" }}>Received</h4>
               ) : (
                 <select
                   onChange={(event) => statusHandler(event, order._id)}
                   value={order.status}
                 >
-                  {console.log(order.status)}
+                  {/* {console.log(order.status)} */}
                   <option value="Food Processing">Food Processing</option>
                   <option value="Receive Order">Receive Order</option>
                   <option value="Received">Received</option>

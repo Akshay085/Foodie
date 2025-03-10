@@ -1,15 +1,17 @@
 import React,{useContext, useState} from 'react'
 import './ConfirmPassword.css'
+import {useNavigate} from 'react-router-dom'
 import { toast } from 'react-hot-toast'
 import axios from 'axios';
 import { StoreContext } from '../../context/StoreContextdel';
 
 const ConfirmPassword = ({email,SetloginPopUp,SetconfirmPopUP,SetOtpvarification}) =>  {
+   const navigate = useNavigate();
      const { url } = useContext(StoreContext);
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
  console.log("----------------->",email);
-
+  
 const handleConfirm = async() => {
   
     try{
@@ -61,7 +63,7 @@ return (
       <button onClick={handleConfirm} className="popup-button">
         Confirm
       </button>
-      <span className="close-btn" onClick={() => SetconfirmPopUP(false)}>
+      <span className="close-btn" onClick={() => {SetconfirmPopUP(false),navigate("/login")}}>
         &times;
       </span>
     </div>

@@ -5,27 +5,27 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = ( props ) => {
   const url = import.meta.env.VITE_BACKEND_BASEURL;
-  const [token, setToken] = useState("");
-  const [itemId, setItemId] = useState(null); 
+  // const [token, setToken] = useState("");
+  // const [itemId, setItemId] = useState(null); 
 
-  const getToken = async () => {
-    if (token && itemId) {  
-      try {
-        await axios.post(url + "/api/cart/add", { headers: { token } });
-      } catch (error) {
-        console.log("Error adding item to cart:", error);
-      }
-    }
-  };
+  // const getToken = async () => {
+  //   if (token && itemId) {  
+  //     try {
+  //       await axios.post(url + "/api/cart/add", { headers: { token } });
+  //     } catch (error) {
+  //       console.log("Error adding item to cart:", error);
+  //     }
+  //   }
+  // };
 
-  useEffect(() => {
-    getToken(); 
-  }, [token, itemId]);
+  // useEffect(() => {
+  //   getToken(); 
+  // }, [token, itemId]);
 
   const contextValues = {
     url,
-    token,
-    setToken,
+    // token,
+    // setToken,
   };
 
   return (

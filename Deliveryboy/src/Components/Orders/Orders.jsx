@@ -9,13 +9,15 @@ import Delboygoing from "../Animation/Delboygoing";
 import Delivered from "../Animation/Delivered";
 import toast from "react-hot-toast";
 import Cancelorder from "../Animation/Cancelorder";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
 
 const Orders = ({ SetloginPopUp }) => {
   const { url } = useContext(StoreContext);
   const [orderData, SetorderData] = useState([]);
   const data = JSON.parse(localStorage.getItem("delboydata"));
   const delboyid = data._id;
-
+  const navigate = useNavigate();
   const fetchMyorders = async () => {
     try {
       const response = await axios.post(`${url}/api/delBoy/listOrder`, {
@@ -25,17 +27,18 @@ const Orders = ({ SetloginPopUp }) => {
       if (response.data.success) {
         SetorderData(response.data.data);
       } else {
-        console.log("Failed to fetch orders:", response.data.message);
+        toast("Error : Failed to fetch orders");
+        // console.log("Failed to fetch orders:", response.data.message);
       }
     } catch (error) {
-      console.log("Error fetching orders:", error);
+      toast("Error : Failed to fetch orders");
+      // console.log("Error fetching orders:", error);
     }
   };
 
   const statusHandler = async (event, delBoyId, orderId) => {
     try {
       const newStatus = event.target.value;
-
       const response = await axios.post(
         url + "/api/delBoy/updateStatusByDelBoy",
         {
@@ -56,10 +59,11 @@ const Orders = ({ SetloginPopUp }) => {
         fetchMyorders();
       }
     } catch (error) {
-      console.log("Error updating status:", error);
+      toast("Error updating status:");
+      // console.log("Error updating status:", error);
     }
   };
-
+ 
   useEffect(() => {
     SetloginPopUp(false);
     fetchMyorders();
@@ -67,9 +71,12 @@ const Orders = ({ SetloginPopUp }) => {
 
   return (
     <div className="orderdata-body">
+      <Navbar />
+      
       {orderData.length > 0 ? (
         orderData.map((order, index) => (
           <div key={index} className="order-item">
+            {/* {console.log(order)} */}
             <div className="order-status">
               {order.status == "Food Processing" ? <Foodprocessing /> : null}
               {order.status == "Out for Delivery" ? <Delboygoing /> : null}
@@ -108,8 +115,10 @@ const Orders = ({ SetloginPopUp }) => {
                 <p>Amount: {order.amount}</p>
               </div>
               {order.status == "Cancelled" ? (
-                <h5 style={{color:"red"}}>Cancelled</h5>
-              ) : (
+                <h5 style={{ color: "red" }}>Cancelled ❌</h5>
+              ) : order?.status == "Delivered" ? (
+                <h5 style={{ color: "green" }}>Delivered ✅</h5>
+              ):
                 <select
                   onChange={(event) =>
                     statusHandler(event, delboyid, order._id)
@@ -120,7 +129,8 @@ const Orders = ({ SetloginPopUp }) => {
                   <option value="Out for Delivery">Out for Delivery</option>
                   <option value="Delivered">Delivered</option>
                 </select>
-              )}
+              }
+            
             </div>
           </div>
         ))

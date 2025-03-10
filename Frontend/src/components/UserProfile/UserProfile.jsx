@@ -24,8 +24,9 @@ const UserProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    
+    setLoading(true);
     if (userData ) {
+      
       setInput({
         _id: userData?._id || "",
         name: userData?.name || localStorage.getItem("name") || "",
@@ -35,7 +36,7 @@ const UserProfile = () => {
         city: userData?.city || localStorage.getItem("city") || "",
         country: userData?.country || localStorage.getItem("country") || "",
       });
-     
+      setLoading(false);
     }
   }, [userData]);
 

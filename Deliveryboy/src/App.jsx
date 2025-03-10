@@ -22,9 +22,9 @@ const App = () => {
         position="top-right"
         reverseOrder={true}
         toastOptions={{
-          duration: 2000,
+          duration: 2500,
           style: {
-            background: "#333",
+            background: "tomato",
             color: "#fff",
           },
         }}
@@ -55,6 +55,7 @@ const App = () => {
       ) : null}
 
       <Routes>
+      <Route path="/" element={<LoginPopup  loginPopUp={loginPopUp} SetloginPopUp={SetloginPopUp} forgetPopUp={forgetPopUp} SetforgetPopUp={SetforgetPopUp} />} />
       <Route path="/login" element={<LoginPopup  loginPopUp={loginPopUp} SetloginPopUp={SetloginPopUp} forgetPopUp={forgetPopUp} SetforgetPopUp={SetforgetPopUp} />} />
         <Route path="/orders" element={<Orders  SetloginPopUp={SetloginPopUp}/>} />
       </Routes>
