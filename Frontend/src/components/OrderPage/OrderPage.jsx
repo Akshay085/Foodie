@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import './OrderPage.css'
+import React, { useContext, useEffect, useState } from 'react';
+import './OrderPage.css';
 import { StoreContext } from '../../Context/StoreContext';
 import axios from 'axios';
 import Bag from '../MyLottieAnimation/Bag';
@@ -7,83 +7,105 @@ import FoodProccessing from '../MyLottieAnimation/FoodProccessing';
 import Delivered from '../MyLottieAnimation/Delivered';
 import OutForDelivery from '../MyLottieAnimation/OutForDelivery';
 import Canceled from '../MyLottieAnimation/Canceled';
-import Loader from "../../components/MyLottieAnimation/Loaderfrount.jsx"
+import Loader from "../../components/MyLottieAnimation/Loaderfrount.jsx";
+import FeedBack from '../../components/Feedback/FeedBack.jsx';
+import { Rating } from '@mui/material';
 
 const OrderPage = () => {
+  const { url, token } = useContext(StoreContext);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [feedbackData, setFeedbackData] = useState({}); // Store feedback ratings
 
-  const {url,token}=useContext(StoreContext);
- const [data,setData]=useState([]);
- const [loading,setLoading]=useState(false)
 
-  const fetchOrders=async()=>{
+  const fetchOrders = async () => {
     setLoading(true);
-    const response=await axios.post(url+"/api/order/userorder",{},{headers:{token}});
-    if(response.data.success){
-    setData(response.data.data);
-    console.log(response.data.data);
-    setLoading(false);
-    }
-    else{
-      setLoading(false);
-      console.log("error")
-    }
-  }
-  const deleteOrder=async(orderid)=>{
-    console.log("****************",orderid);
-    const response =await axios.post(url +"/api/order/cancelOrder",{orderId: orderid},{headers:{token}});
-    if(response.data.success){
-    
-      fetchOrders();
-    }
-    else{
-      console.log("errror");
-      fetchOrders();
-    }
-  }
-  useEffect(()=>{
-      if(token){
-        fetchOrders();
-      }
-  },[token])
-  return (
+    const response = await axios.post(url + "/api/order/userorder", {}, { headers: { token } });
 
-    <div  className='OrderPage'>
-      <h2>My Orders</h2>   
-      
+    if (response.data.success) {
+      setData(response.data.data);
+      fetchFeedback(response.data.data); 
+    } else {
+      console.log("Error fetching orders");
+    }
+    setLoading(false);
+  };
+
+
+  const fetchFeedback = async (orders) => {
+    try {
+      const orderIds = orders.map(order => order._id);
+      const response = await axios.post(url + "/api/feedback/getFeedback", { orderIds }, { headers: { token } });
+
+      if (response.data.success) {
+        setFeedbackData(response.data.feedback);
+      }
+    } catch (error) {
+      console.log("Error fetching feedback:", error);
+    }
+  };
+
+  const deleteOrder = async (orderId) => {
+    const response = await axios.post(url + "/api/order/cancelOrder", { orderId }, { headers: { token } });
+
+    if (response.data.success) {
+      fetchOrders();
+    } else {
+      console.log("Error canceling order");
+      fetchOrders();
+    }
+  };
+
+  useEffect(() => {
+    if (token) {
+      fetchOrders();
+    }
+  }, [token]);
+
+  return (
+    <div className='OrderPage'>
+      <h2>My Orders</h2>
+
       <div className="order-container">
-        
-        {loading ==true ? <div className='loader-category-list'><Loader/></div>:null}
-        {data.map((order,index)=>{
-          return(
-            <div  key={index}className='my-orders-order'>
-              {/* <Bag /> */}
-              {order.status=="Food Processing"?<FoodProccessing />:null}
-              {order.status=="Receive Order"?<Delivered />:null}
-              {order.status=="Out for Delivery"?<OutForDelivery />:null}
-              {order.status=="Received"?<Delivered />:null}
-              {order.status=="Delivered"?<Delivered />:null}
-              {order.status=="Cancelled"?<Canceled />:null}
-                  {/* <img src="\Images\parcel_icon.png" alt="parcel icon" /> */}
-                  <p>{order.items.map((item,index)=>{
-                  
-                     if(index === order.items.length-1){
-                         return item.name + " x " + item.quantity
-                     }
-                     else{
-                      return item.name + " x " + item.quantity +","
-                     }
-                  })}</p>
-                  <p> ₹{order.amount}</p>
-                  <p>Items:{order.items.length}</p>
-                  <p><span>&#x25cf;</span><b>{order.status}</b></p>
-                  {/* {console.log("----------------->",order._id)} */}
-                 {order.status=="Food Processing"?<button onClick={()=>{deleteOrder(order._id)}}>Cancel</button>:null} 
-            </div>
-          )
-        })}
+        {loading && <div className='loader-category-list'><Loader /></div>}
+        {data.map((order, index) => (
+          <div key={index} className='my-orders-order'>
+            {order.status === "Food Processing" && <FoodProccessing />}
+            {order.status === "Receive Order" && <Delivered />}
+            {order.status === "Out for Delivery" && <OutForDelivery />}
+            {order.status === "Received" && <Delivered />}
+            {order.status === "Delivered" && <Delivered />}
+            {order.status === "Cancelled" && <Canceled />}
+
+            <p>
+              {order.items.map((item, idx) =>
+                idx === order.items.length - 1 ? `${item.name} x ${item.quantity}` : `${item.name} x ${item.quantity}, `
+              )}
+            </p>
+            <p> ₹{order.amount}</p>
+            <p>Items: {order.items.length}</p>
+            <p><span>&#x25cf;</span><b>{order.status}</b></p>
+
+            {order.status === "Food Processing" && (
+              <button onClick={() => deleteOrder(order._id)}>Cancel</button>
+            )}
+
+    
+            {(order.status === "Delivered" || order.status === "Received") && (
+              feedbackData[order._id] ? (
+                <div>
+                  <p>Your Rating:</p>
+                  <Rating value={feedbackData[order._id]} readOnly />
+                </div>
+              ) : (
+                <FeedBack orderId={order._id} fetchFeedback={fetchOrders} />
+              )
+            )}
+          </div>
+        ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default OrderPage
+export default OrderPage;

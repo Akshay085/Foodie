@@ -79,7 +79,7 @@ const ForgetPassword = ({email,setEmail,forget,SetForget,SetOtpPopup,Otpvarifica
         className="card-input"
         required 
       />}
-      {Otpvarification? <input type='number' placeholder='Enter OTP' name='OTP'
+      {Otpvarification? <input type='text' placeholder='Enter OTP' name='OTP'
         value={OTP}
         onChange={handleChange}
         className="card-input"/>:""}

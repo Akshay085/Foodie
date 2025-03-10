@@ -9,8 +9,13 @@ const StoreContextProvider = (props) => {
   const [token, setToken] = useState("");
   const [foodlist, setFoodList] = useState([]);
   const [categorylist, setcategoryList] = useState([]);
-  const [userData,setUserData]=useState([]);
    const [email,setEmail]=useState("");
+  //  const [userData, setUserData] = useState([]);
+   const [userData, setUserData] = useState(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+  
 
   const addtoCart = async (itemId) => {
     if (!cartItems[itemId]) {

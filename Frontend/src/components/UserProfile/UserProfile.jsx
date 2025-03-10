@@ -3,13 +3,14 @@ import "./UserProfile.css";
 import { StoreContext } from "../../Context/StoreContext";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import Loaderfrount from "../../components/MyLottieAnimation/Loaderfrount"
 // import { toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 
 const UserProfile = () => {
   const { userData, setUserData, url } = useContext(StoreContext);
   const [loading, setLoading] = useState(true);
-  console.log(userData);
+  // console.log(userData);
 
   const [input, setInput] = useState({
     _id: "",
@@ -23,20 +24,41 @@ const UserProfile = () => {
 
   const [isEditing, setIsEditing] = useState(false);
 
+  // useEffect(() => {
+  //   setLoading(true);
+  //   if (userData ) {
+      
+  //     setInput({
+  //       _id: userData?._id || "",
+  //       name: userData?.name || localStorage.getItem("name") || "",
+  //       email: userData?.email || localStorage.getItem("email") || "",
+  //       contact: userData?.contact || localStorage.getItem("contact") || "",
+  //       address: userData?.address || localStorage.getItem("address") || "",
+  //       city: userData?.city || localStorage.getItem("city") || "",
+  //       country: userData?.country || localStorage.getItem("country") || "",
+  //     });
+  //     setLoading(false);
+  //   }
+  // }, [userData]);
   useEffect(() => {
     setLoading(true);
-    if (userData ) {
-      
+  
+    if (userData) {
       setInput({
         _id: userData?._id || "",
-        name: userData?.name || localStorage.getItem("name") || "",
-        email: userData?.email || localStorage.getItem("email") || "",
-        contact: userData?.contact || localStorage.getItem("contact") || "",
-        address: userData?.address || localStorage.getItem("address") || "",
-        city: userData?.city || localStorage.getItem("city") || "",
-        country: userData?.country || localStorage.getItem("country") || "",
+        name: userData?.name || "",
+        email: userData?.email || "",
+        contact: userData?.contact || "",
+        address: userData?.address || "",
+        city: userData?.city || "",
+        country: userData?.country || "",
       });
       setLoading(false);
+    } else {
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) {
+        setUserData(JSON.parse(storedUser)); // Update context
+      }
     }
   }, [userData]);
 
@@ -44,6 +66,13 @@ const UserProfile = () => {
     const { name, value } = e.target;
     setInput((prevInput) => ({ ...prevInput, [name]: value }));
   };
+
+
+  // if (loading) {
+  //   return <div>
+  //     <Loaderfrount />
+  //   </div>;
+  // }
 
   const handleSave = async (e) => {
     e.preventDefault();
