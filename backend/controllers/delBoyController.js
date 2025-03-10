@@ -129,12 +129,12 @@ const registerDelBoy = async (req , res) => {
 const sendOtp = async(req , res) => {
     try {
         const { email } = req.body;
-        const user = await delBoyModel.findOne({email: email});
+        const delBoy = await delBoyModel.findOne({email: email});
 
-        if(!user){
+        if(!delBoy){
             return res.status(404).json({success: false , message: "Delivery Boy Doesn't exist"});
         }
-        const token = createToken(user._id);
+        const token = createToken(delBoy._id);
         const {otp , expiryTimestamp} = generateOTP();
         const newOtp = {
             otp: otp,
