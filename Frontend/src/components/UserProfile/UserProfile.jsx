@@ -44,7 +44,7 @@ const UserProfile = () => {
   useEffect(()=>{
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
-        setUserData(JSON.parse(storedUser)); // Update context
+        setUserData(JSON.parse(storedUser));
       }
   },[])
 
@@ -71,11 +71,11 @@ const UserProfile = () => {
   };
 
 
-  // if (loading) {
-  //   return <div>
-  //     <Loaderfrount />
-  //   </div>;
-  // }
+  if (loading) {
+    return <div>
+      <Loaderfrount />
+    </div>;
+  }
 
   const handleSave = async (e) => {
     e.preventDefault();
