@@ -33,7 +33,7 @@ const listDelBoy = async (req , res) => {
 const loginDelBoy = async (req , res) => {
     const {email , password} = req.body;
     try {
-        const delBoy = await delBoyModel.findOne({email});
+        const delBoy = await delBoyModel.findOne({email: email});
         
         if(!delBoy){
             return res.status(404).json({success: false , message: "Delivery Boy Doesn't exist"});
@@ -76,7 +76,7 @@ const registerDelBoy = async (req , res) => {
     const {name , email , contact , password , address , city ,country} = req.body;
 
     try {
-        const exists = await delBoyModel.findOne({email});
+        const exists = await delBoyModel.findOne({email: email});
         if(exists){
             return res.status(409).json({success: false , message: "Delivery Boy already exists"});
         }
@@ -129,7 +129,7 @@ const registerDelBoy = async (req , res) => {
 const sendOtp = async (req , res) => {
     try {
         const { email } = req.body;
-        const delBoy = await delBoyModel.findOne(email);
+        const delBoy = await delBoyModel.findOne({email: email});
 
         if(!delBoy){
             return res.status(404).json({success: false , message: "Delivery Boy Doesn't exist"});
@@ -140,7 +140,7 @@ const sendOtp = async (req , res) => {
             otp: otp,
             expriredOn: expiryTimestamp,
         }
-        const update = await delBoyModel.findOneAndUpdate(email, newOtp , { new: true } );
+        const update = await delBoyModel.findOneAndUpdate({email: email}, newOtp , { new: true } );
 
         let data = {
             otp: otp
@@ -149,7 +149,7 @@ const sendOtp = async (req , res) => {
             return template.replace(/{{(.*?)}}/g, (match, key) => data[key.trim()] || '');
         };
         let template = generateEmail(otpMail, data);
-        sendMail(email , "Reset Your Password - OTP Inside" , ` ${template}`);
+        sendMail(email , "Reset Your Password - OTP Inside" , `${template}`);
         res.status(201).json({success: true , token});
         
     } 
@@ -161,7 +161,7 @@ const sendOtp = async (req , res) => {
 const verifyOtp = async (req , res)=> {
     try {
         const { email , otp } = req.body;
-        const delBoy = await delBoyModel.findOne({email});
+        const delBoy = await delBoyModel.findOne({email: email});
         const otpNumber = parseInt(otp);
         if(!delBoy) {
             return res.status(404).json({success: false , message: "Delivery Boy Doesn't exist"});
@@ -194,7 +194,7 @@ const verifyOtp = async (req , res)=> {
 const updatePassword = async (req , res) => {
     try {
         const {email , newPassword} = req.body;
-        const delBoy = await delBoyModel.findOne({email});
+        const delBoy = await delBoyModel.findOne({email: email});
         
         if(!delBoy) {
             return res.status(404).json({success: false , message: "Delivery Boy Doesn't exist"});

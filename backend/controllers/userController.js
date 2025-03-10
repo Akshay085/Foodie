@@ -18,7 +18,7 @@ const generateOTP = (length = 6) => {
 const loginUser = async (req , res) => {
     const {email , password} = req.body;
     try {
-        const user = await userModel.findOne({email});
+        const user = await userModel.findOne({email: email});
 
         if(!user){
             return res.status(404).json({success: false , message: "User Doesn't exist"});
@@ -67,7 +67,7 @@ const registerUser = async (req , res) => {
     const {name , email , contact , password} = req.body;
     
     try {
-        const exists = await userModel.findOne({email});
+        const exists = await userModel.findOne({email: email});
         if(exists){
             return res.status(409).json({success: false , message: "User already exists"});
         }
@@ -106,7 +106,7 @@ const registerUser = async (req , res) => {
             return template.replace(/{{(.*?)}}/g, (match, key) => data[key.trim()] || '');
         };
         let template = generateEmail(registerMail, data);
-        sendMail(email , "Registration Successful - Welcome to FOODIES!" , ` ${template}`);
+        sendMail(email , "Registration Successful - Welcome to FOODIES!" , `${template}`);
         res.status(201).json({success: true , token});
 
     } 
@@ -119,7 +119,7 @@ const registerUser = async (req , res) => {
 const sendOtp = async(req , res) => {
     try {
         const { email } = req.body;
-        const user = await userModel.findOne({email});
+        const user = await userModel.findOne({email: email});
 
         if(!user){
             return res.status(404).json({success: false , message: "User Doesn't exist"});
@@ -130,7 +130,7 @@ const sendOtp = async(req , res) => {
             otp: otp,
             expriredOn: expiryTimestamp,
         }
-        const update = await userModel.findOneAndUpdate({email}, newOtp , { new: true } );
+        const update = await userModel.findOneAndUpdate({email: email}, newOtp , { new: true } );
 
         let data = {
             otp: otp
@@ -139,7 +139,7 @@ const sendOtp = async(req , res) => {
             return template.replace(/{{(.*?)}}/g, (match, key) => data[key.trim()] || '');
         };
         let template = generateEmail(otpMail, data);
-        sendMail(email , "Reset Your Password - OTP Inside" , ` ${template}`);
+        sendMail(email , "Reset Your Password - OTP Inside" , `${template}`);
         res.status(201).json({success: true , token});
         
     } 
@@ -151,7 +151,7 @@ const sendOtp = async(req , res) => {
 const verifyOtp = async (req , res)=> {
     try {
         const { email , otp } = req.body;
-        const user = await userModel.findOne({email});
+        const user = await userModel.findOne({email: email});
         const otpNumber = parseInt(otp);
         if(!user) {
             return res.status(404).json({success: false , message: "User Doesn't exist"});
@@ -184,7 +184,7 @@ const verifyOtp = async (req , res)=> {
 const updatePassword = async (req , res) => {
     try {
         const {email , newPassword} = req.body;
-        const user = await userModel.findOne({email});
+        const user = await userModel.findOne({email: email});
         
         if(!user) {
             return res.status(404).json({success: false , message: "User Doesn't exist"});
