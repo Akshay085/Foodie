@@ -10,7 +10,7 @@ import Loaderfrount from "../../components/MyLottieAnimation/Loaderfrount"
 const UserProfile = () => {
   const { userData, setUserData, url } = useContext(StoreContext);
   const [loading, setLoading] = useState(true);
-  // console.log(userData);
+  console.log(userData);
 
   const [input, setInput] = useState({
     _id: "",
@@ -40,9 +40,17 @@ const UserProfile = () => {
   //     setLoading(false);
   //   }
   // }, [userData]);
+
+  useEffect(()=>{
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+        setUserData(JSON.parse(storedUser)); // Update context
+      }
+  },[])
+
+
   useEffect(() => {
     setLoading(true);
-  
     if (userData) {
       setInput({
         _id: userData?._id || "",
@@ -54,12 +62,7 @@ const UserProfile = () => {
         country: userData?.country || "",
       });
       setLoading(false);
-    } else {
-      const storedUser = localStorage.getItem("user");
-      if (storedUser) {
-        setUserData(JSON.parse(storedUser)); // Update context
-      }
-    }
+    } 
   }, [userData]);
 
   const handleChange = (e) => {
