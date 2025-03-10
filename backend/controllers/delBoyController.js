@@ -129,7 +129,7 @@ const registerDelBoy = async (req , res) => {
 const sendOtp = async (req , res) => {
     try {
         const { email } = req.body;
-        const delBoy = await delBoyModel.findOne({email});
+        const delBoy = await delBoyModel.findOne(email);
 
         if(!delBoy){
             return res.status(404).json({success: false , message: "Delivery Boy Doesn't exist"});
@@ -140,7 +140,7 @@ const sendOtp = async (req , res) => {
             otp: otp,
             expriredOn: expiryTimestamp,
         }
-        const update = await delBoyModel.findOneAndUpdate({email}, newOtp , { new: true } );
+        const update = await delBoyModel.findOneAndUpdate(email, newOtp , { new: true } );
 
         let data = {
             otp: otp
