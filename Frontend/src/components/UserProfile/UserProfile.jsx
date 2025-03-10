@@ -148,6 +148,9 @@ const UserProfile = () => {
                     value={input.address}
                     onChange={handleChange}
                     readOnly={!isEditing}
+                      placeholder="Edit to fill this field"
+
+            
                   />
                 </td>
               </tr>
@@ -159,6 +162,7 @@ const UserProfile = () => {
                     value={input.city}
                     onChange={handleChange}
                     readOnly={!isEditing}
+                      placeholder="Edit to fill this field"
                   />
                 </td>
               </tr>
@@ -169,6 +173,7 @@ const UserProfile = () => {
                     name="country"
                     value={input.country}
                     onChange={handleChange}
+                    placeholder="Edit to fill this field"
                     readOnly={!isEditing}
                   />
                 </td>
