@@ -9,6 +9,7 @@ import 'dotenv/config';
 import orderRouter from './routes/orderRoute.js';
 import delBoyRouter from './routes/delBoyRoute.js';
 import adminRouter from './routes/adminRoute.js';
+import reviewRouter from './routes/reviewRoute.js';
 
 
 //app config
@@ -30,6 +31,7 @@ app.use("/api/cart" , cartRouter);
 app.use("/api/order" , orderRouter);
 app.use("/api/delBoy" , delBoyRouter);
 app.use("/api/admin" , adminRouter);
+app.use("/api/review" , reviewRouter);
 
 app.get('/',(req,res)=>{
     res.send("API Working");
