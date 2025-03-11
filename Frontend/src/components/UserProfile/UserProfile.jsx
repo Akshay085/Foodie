@@ -3,9 +3,7 @@ import "./UserProfile.css";
 import { StoreContext } from "../../Context/StoreContext";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import Loaderfrount from "../../components/MyLottieAnimation/Loaderfrount"
-// import { toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import Loaderfrount from "../../components/MyLottieAnimation/Loaderfrount";
 
 const UserProfile = () => {
   const { userData, setUserData, url } = useContext(StoreContext);
@@ -22,32 +20,12 @@ const UserProfile = () => {
     country: "",
   });
 
-  const [isEditing, setIsEditing] = useState(false);
-
-  // useEffect(() => {
-  //   setLoading(true);
-  //   if (userData ) {
-      
-  //     setInput({
-  //       _id: userData?._id || "",
-  //       name: userData?.name || localStorage.getItem("name") || "",
-  //       email: userData?.email || localStorage.getItem("email") || "",
-  //       contact: userData?.contact || localStorage.getItem("contact") || "",
-  //       address: userData?.address || localStorage.getItem("address") || "",
-  //       city: userData?.city || localStorage.getItem("city") || "",
-  //       country: userData?.country || localStorage.getItem("country") || "",
-  //     });
-  //     setLoading(false);
-  //   }
-  // }, [userData]);
-
-  useEffect(()=>{
+  useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
-        setUserData(JSON.parse(storedUser));
-      }
-  },[])
-
+      setUserData(JSON.parse(storedUser));
+    }
+  }, []);
 
   useEffect(() => {
     setLoading(true);
@@ -62,7 +40,7 @@ const UserProfile = () => {
         country: userData?.country || "",
       });
       setLoading(false);
-    } 
+    }
   }, [userData]);
 
   const handleChange = (e) => {
@@ -70,11 +48,12 @@ const UserProfile = () => {
     setInput((prevInput) => ({ ...prevInput, [name]: value }));
   };
 
-
   if (loading) {
-    return <div>
-      <Loaderfrount />
-    </div>;
+    return (
+      <div>
+        <Loaderfrount />
+      </div>
+    );
   }
 
   const handleSave = async (e) => {
@@ -89,7 +68,6 @@ const UserProfile = () => {
         console.log(response.data);
         setUserData(response.data.data);
         localStorage.setItem("user", JSON.stringify(response.data.data));
-        setIsEditing(false);
       } else {
         toast("Failed to update profile.");
       }
@@ -99,9 +77,22 @@ const UserProfile = () => {
     }
   };
 
+  const handleCancel = () => {
+    setInput({
+      _id: userData?._id || "",
+      name: userData?.name || "",
+      email: userData?.email || "",
+      contact: userData?.contact || "",
+      address: userData?.address || "",
+      city: userData?.city || "",
+      country: userData?.country || "",
+    });
+  };
+
   return (
     <div className="profile-main">
       <div className="form-container">
+        {loading && <center><Loaderfrount /></center>}
         <form onSubmit={handleSave}>
           <table>
             <tbody>
@@ -113,7 +104,6 @@ const UserProfile = () => {
                     name="name"
                     value={input.name}
                     onChange={handleChange}
-                    readOnly={!isEditing}
                   />
                 </td>
               </tr>
@@ -136,7 +126,7 @@ const UserProfile = () => {
                     name="contact"
                     value={input.contact}
                     onChange={handleChange}
-                    readOnly={!isEditing}
+                    readOnly
                   />
                 </td>
               </tr>
@@ -147,10 +137,7 @@ const UserProfile = () => {
                     name="address"
                     value={input.address}
                     onChange={handleChange}
-                    readOnly={!isEditing}
-                      placeholder="Click Edit to fill this field"
-
-            
+                    placeholder="Enter your address"
                   />
                 </td>
               </tr>
@@ -161,8 +148,7 @@ const UserProfile = () => {
                     name="city"
                     value={input.city}
                     onChange={handleChange}
-                    readOnly={!isEditing}
-                      placeholder="Click Edit to fill this field"
+                    placeholder="Enter your city"
                   />
                 </td>
               </tr>
@@ -173,47 +159,24 @@ const UserProfile = () => {
                     name="country"
                     value={input.country}
                     onChange={handleChange}
-                    placeholder="Click Edit to fill this field"
-                    readOnly={!isEditing}
+                    placeholder="Enter your country"
                   />
                 </td>
               </tr>
-      
             </tbody>
           </table>
           <div className="buttons-save-edit-cancel">
-                  {isEditing ? (
-                    <>
-                      <button type="submit" className="save-button">
-                        Save
-                      </button>
-                      <button
-                        type="button"
-                        className="cancel-button"
-                        onClick={() => setIsEditing(false)}
-                      >
-                        Cancel
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <button
-                        type="submit"
-                        className="save-button"
-                        style={{ display: "none" }}
-                      >
-                        Save
-                      </button>
-                      <button
-                        type="button"
-                        className="edit-button"
-                        onClick={() => setIsEditing(true)}
-                      >
-                        Edit
-                      </button>
-                    </>
-                  )}
-               </div>
+            <button type="submit" className="save-button">
+              Save
+            </button>
+            <button
+              type="button"
+              className="cancel-button"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       </div>
     </div>

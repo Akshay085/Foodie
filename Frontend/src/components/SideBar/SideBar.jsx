@@ -18,9 +18,9 @@ const SideBar = ({handleDrawerClose}) => {
       <div className="link-content">
         <h2>Dashboard</h2>
         <ul>
-          <li><Link to="profile">Profile</Link></li>
-          <li><Link to="orders">Orders</Link></li>
-          <li><Link to="logout">Logout</Link></li>
+          <li onClick={handleDrawerClose}><Link to="profile">Profile</Link></li>
+          <li onClick={handleDrawerClose}><Link to="orders">Orders</Link></li>
+          <li onClick={handleDrawerClose}><Link to="logout">Logout</Link></li>
         </ul>
       </div>
     </Box>

@@ -1,0 +1,81 @@
+
+.about-us-container {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  .about-us-hero {
+    background-color: tomato;
+    /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('') center/cover no-repeat; */
+    color: #fff;
+    text-align: center;
+    padding: 150px 20px;
+  }
+  
+  .about-us-hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+  }
+  
+  .about-us-hero p {
+    font-size: 1.2em;
+  }
+  
+  .about-us-section {
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .about-us-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: #e44d26; /* Example primary color */
+  }
+  
+  .about-us-section p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+  }
+  
+  .about-us-section ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .about-us-section li {
+    margin-bottom: 10px;
+  }
+  
+  .contact-section {
+    background-color: #f9f9f9;
+  }
+  
+  .about-us-footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-top: 1px solid #ddd;
+  }
+  
+  .about-us-footer p {
+    font-size: 0.9em;
+    color: #666;
+  }
+  
+
+  @media (max-width: 768px) {
+    .about-us-hero {
+      padding: 100px 20px;
+    }
+  
+    .about-us-hero h1 {
+      font-size: 2.5em;
+    }
+  
+    .about-us-section h2 {
+      font-size: 2em;
+    }
+  }

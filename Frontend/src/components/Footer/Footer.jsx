@@ -1,7 +1,9 @@
 import React from "react";
+import {useNavigate} from 'react-router-dom'
 import "./footer.css";
 
 const Footer = () => {
+   const navigate = useNavigate();
   const redirectToGmail=()=>{
     window.location.href = "mailto:foodies.0905@gmail.com";
   }
@@ -29,10 +31,10 @@ const Footer = () => {
           <div className="footer-content-center">
             <h2>COMPANY</h2>
             <ul>
-              <li>Home</li>
-              <li>About Us</li>
+              <li onClick={()=>{navigate('/') ,window.scrollTo(0,0)}}>Home</li>
+              <li onClick={()=>{navigate('/aboutus'),window.scrollTo(0,0)}}>About Us</li>
               <li>Delivery</li>
-              <li>Privacy Policy</li>
+              <li onClick={()=>{navigate('/privacypolicy'),window.scrollTo(0,0)}}>Privacy Policy</li>
             </ul>
           </div>
 

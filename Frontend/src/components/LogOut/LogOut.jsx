@@ -21,7 +21,7 @@ const LogOut = ({token,setToken}) => {
     <h2>Are you sure you want to log out?</h2>
     <div className="logout-buttons">
       <button onClick={logout} className="logout-btn">Yes, Logout</button>
-      <button  className="cancel-btn">Cancel</button>
+      <button  className="cancel-btn" onClick={()=>{navigate('/userprofile')}}>Cancel</button>
     
     </div>
     

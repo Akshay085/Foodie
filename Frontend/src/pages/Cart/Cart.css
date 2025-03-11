@@ -63,7 +63,7 @@
   cursor: pointer;
 }
 .empty-cart{
-  margin-top: 30px;
+  /* margin-top: 30px; */
   height: 60vh;
   display: flex;
   align-items: center;
@@ -71,13 +71,14 @@
   flex-direction: column;
 }
 .empty-cart button{
-  padding: 10px;
+  padding: 5px;
   margin-bottom: 0px;
   border: none;
   border-radius: 10px;
   color: white;
   background-color: tomato;
   cursor: pointer;
+  z-index: 2000;
 }
 /* .cart-promocode {
   flex: 1;

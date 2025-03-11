@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SideBar from "../../components/SideBar/SideBar";
+import HouseIcon from '@mui/icons-material/House';
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Navigate } from "react-router-dom";
 import "./ProfileMain.css";
@@ -65,7 +66,7 @@ const ProfileMain = () => {
               navigate("/");
             }}
           >
-            <ExitToAppIcon />
+            <HouseIcon />
           </IconButton>
         </Toolbar>
       </AppBar>

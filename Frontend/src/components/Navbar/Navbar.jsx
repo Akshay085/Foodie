@@ -93,6 +93,7 @@ const Navbar = ({ SetShowlogin }) => {
       <Link to="/">
         <MyLottieAnimation />
       </Link>
+      {location?.pathname == "/cart" || location?.pathname =="/cart/self-service" || location?.pathname =="/cart/home-delivery" || location?.pathname =="/Placeorder" ?null:
       <ul className="navbar-menu">
         <a
           href="#home"
@@ -116,6 +117,7 @@ const Navbar = ({ SetShowlogin }) => {
           Contact
         </a>
       </ul>
+      }
       <div className="navbar-right">
         
         <Link to="./search">

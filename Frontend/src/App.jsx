@@ -23,6 +23,8 @@ import ConfirmPassword from "./components/ConfirmPassword/ConfirmPassword";
 import EditProfile from "./components/EditProfile/EditProfile";
 import Verify from "./pages/Verify/Verify";
 import Loader from "./components/MyLottieAnimation/Loader";
+import AboutUs from "./components/AboutUs/AboutUs";
+import Privacypolicy from "./components/Privacypolicy/Privacypolicy";
 
 const App = () => {
   const [showlogin, SetShowlogin] = useState(false);
@@ -83,7 +85,7 @@ const App = () => {
           location?.pathname !== "/userprofile/orders" &&
           location?.pathname !== "/userprofile/logout" &&
           location?.pathname !== "/search" &&
-          location?.pathname !== "/cart" && (
+           (
             <Navbar SetShowlogin={SetShowlogin} />
           )}
 
@@ -96,6 +98,9 @@ const App = () => {
             <Route path="/cart/home-delivery" element={<Homedelivery />} />
             <Route path="/Placeorder" element={<Placeorder />} />
             <Route path="/verify" element={<Verify />}></Route>
+            <Route path="/aboutus" element={<AboutUs />}></Route>
+            <Route path="/privacypolicy" element={<Privacypolicy />}></Route>
+            
             {token ? (
               <Route path="/userprofile" element={<ProfileMain />}>
                 <Route index element={<UserProfile />} />
