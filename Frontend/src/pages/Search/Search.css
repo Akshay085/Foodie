@@ -100,7 +100,6 @@
   .search-input {
     width: 100%;
     max-width: 300px;
-    padding: 0px;
   }
 
   .search-button {
@@ -126,8 +125,5 @@
   .search-header{
     display: flex;
       flex-direction: row;
-  }
-  .search-box{
-    width: 50vw;
   }
 }
