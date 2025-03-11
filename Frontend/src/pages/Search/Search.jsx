@@ -1,12 +1,12 @@
-import React, { useContext, useEffect } from "react";
-import { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Search.css";
 import { StoreContext } from "../../Context/StoreContext";
 import FoodItem from "../../components/Food-Item/FoodItem";
 import axios from "axios";
 import Errormessage from "../../components/Errormessage/Errormessage";
-import { IconButton} from "@mui/material";
+import { IconButton } from "@mui/material";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import MicIcon from "@mui/icons-material/Mic";
 import { useNavigate } from "react-router-dom";
 import Loaderfrount from "../../components/MyLottieAnimation/Loaderfrount";
 
@@ -15,7 +15,9 @@ const Search = () => {
   const [inputvalue, setInputvalue] = useState("");
   const [foods, setFoods] = useState({});
   const [loading, setLoading] = useState(false);
-  const navigate=useNavigate();
+  const [isListening, setIsListening] = useState(false);
+  const navigate = useNavigate();
+
   const handleChange = (event) => {
     setInputvalue(event.target.value);
   };
@@ -35,29 +37,65 @@ const Search = () => {
     }
   };
 
+  const startListening = () => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+if (!SpeechRecognition) {
+  alert("Speech recognition is not supported in your browser. Try using Google Chrome.");
+  return;
+}
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = "en-US";
+    recognition.interimResults = false;
+    recognition.continuous = false;
+
+    recognition.onstart = () => {
+      setIsListening(true);
+    };
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setInputvalue(transcript);
+      handleSearch();
+    };
+
+    recognition.onerror = (event) => {
+      console.log("Speech recognition error:", event.error);
+    };
+
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+
+    recognition.start();
+  };
+
   const filteredFoods = foodlist.filter((foodname) =>
     foodname.name.toLowerCase().includes(inputvalue.toLowerCase())
   );
+
   useEffect(() => {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   }, []);
 
   return (
     <div className="search-box-main">
-      {loading==true ?<Loaderfrount />:null}
+      {loading && <Loaderfrount />}
       <div className="search-header">
-      <IconButton
-            color="inherit"
-            sx={{ color: "red" ,transform: "rotate(180deg)" ,"&:hover": {
-      color: "black", background:"white",
-    },}}
-            onClick={() => {
-              navigate("/");
-            }}
-          >
-            <ExitToAppIcon />
-          </IconButton>
-        <h1>All Foods</h1>{" "}
+        <IconButton
+          color="inherit"
+          sx={{
+            color: "red",
+            transform: "rotate(180deg)",
+            "&:hover": { color: "black", background: "white" },
+          }}
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          <ExitToAppIcon />
+        </IconButton>
+        <h1>All Foods</h1>
         <div className="search-box">
           <input
             type="text"
@@ -66,10 +104,23 @@ const Search = () => {
             placeholder="Search..."
             className="search-input"
           />
-          
-          {/* <button onClick={handleSearch} className="search-button">
-            Search
-          </button> */}
+         <IconButton
+  onClick={startListening}
+  sx={{
+    backgroundColor: "black",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "transparent",
+      color: "red",
+    },
+    "&:active": {
+      backgroundColor: "transparent",
+      color: "red",
+    },
+  }}
+>
+  <MicIcon />
+</IconButton>
         </div>
       </div>
 

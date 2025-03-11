@@ -21,7 +21,7 @@ const FeedBack = ({ orderId, fetchFeedback }) => {
       const response = await axios.post(
         url + "/api/feedback/add",
         { orderId, rating },
-        { headers: { token } }
+        // { headers: { token } }
       );
 
       if (response.data.success) {
