@@ -71,7 +71,8 @@ if (!SpeechRecognition) {
   };
 
   const filteredFoods = foodlist.filter((foodname) =>
-    foodname.name.toLowerCase().includes(inputvalue.toLowerCase())
+    foodname.name.toLowerCase().includes(inputvalue.toLowerCase())  ||
+  foodname.category.toLowerCase().includes(inputvalue.toLowerCase())
   );
 
   useEffect(() => {
