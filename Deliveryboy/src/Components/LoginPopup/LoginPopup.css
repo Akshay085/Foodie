@@ -88,7 +88,6 @@ button:hover {
     background: #e03b20;
 }
 
-/* Signup/Login toggle text */
 p {
     margin-top: 10px;
     font-size: 0.7rem;
@@ -125,7 +124,7 @@ p span:hover {
     }
 }
 
-/* Mobile Phones */
+
 @media (max-width: 480px) {
     .login-popup-container {
         width: 95%;
