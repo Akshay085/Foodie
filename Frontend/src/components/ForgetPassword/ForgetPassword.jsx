@@ -26,7 +26,7 @@ const ForgetPassword = ({
     };
 
     const OnSubmit = async (event) => {
-        event.preventDefault(); // Prevent default form submission
+        event.preventDefault(); 
         try {
             const response = await axios.post(`${url}/api/user/sendOtp`, { email });
             if (response.data.success) {
@@ -36,8 +36,10 @@ const ForgetPassword = ({
             } else {
                 toast('Error: Please sign up first.');
             }
-        } catch {
-            toast('Error: catch block ');
+        } catch(error) 
+    {
+        toast(error);
+            toast('Error:please try again ');
         }
     };
 
