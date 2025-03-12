@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast";
 const ConfirmPassword = ({email,SetconfirmPopUP,SetOtpvarification}) => {
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const url = "http://localhost:4000";
+    const url = import.meta.env.VITE_BACKEND_BASEURL;
       console.log(email);
 
     const handleConfirm = async() => {

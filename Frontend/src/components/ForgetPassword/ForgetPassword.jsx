@@ -14,7 +14,7 @@ const ForgetPassword = ({
   SetconfirmPopUP,
 }) => {
   const [OTP, setOTP] = useState("");
-  const url = "http://localhost:4000";
+  const url = import.meta.env.VITE_BACKEND_BASEURL;
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -37,7 +37,7 @@ const ForgetPassword = ({
         toast("Error: Please sign up first.");
       }
     } catch (error) {
-        alert(error)
+        // alert(error)
       // toast(error);
       toast("Error:please try again ");
     }
