@@ -49,7 +49,7 @@ const otpMail =
 <body>
     <div class="container">
         <h2>Password Reset Request</h2>
-        <p>Use the OTP below to reset your password. This OTP is valid for 3 minutes.</p>
+        <p>Use the OTP below to reset your password. This OTP is valid for 5 minutes.</p>
         <div class="otp">{{otp}}</div>
         <p>If you didn't request a password reset, please ignore this email.</p>
     </div>

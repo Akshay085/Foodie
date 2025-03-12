@@ -1,6 +1,5 @@
 import reviewModel from "../models/reviewModel.js";
 
-
 const addReview = async (req , res) => {
     try {
         const { orderId , userId , rating } = req.body;
@@ -16,7 +15,7 @@ const addReview = async (req , res) => {
         await newReview.save();
     
         res.json({ success: true, message: "Review added successfully!" });
-      } 
+    } 
     catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: "Server error" });
@@ -33,8 +32,7 @@ const getReview = async (req , res) => {
         reviews.forEach(r => reviewMap[r.orderId] = r.rating);
     
         res.json({ success: true, review: reviewMap });
-      } 
-
+    } 
     catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: "Server error" });

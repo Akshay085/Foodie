@@ -12,7 +12,7 @@ import crypto from 'crypto';
 
 const generateOTP = (length = 6) => {
     const otp = crypto.randomInt(100000, 999999); 
-    const expiryTimestamp = Date.now() + 3 * 60 * 1000;
+    const expiryTimestamp = Date.now() + 5 * 60 * 1000;
     return  {otp , expiryTimestamp};
 }
 
