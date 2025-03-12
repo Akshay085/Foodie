@@ -9,16 +9,19 @@ import Delboygoing from "../Animation/Delboygoing";
 import Delivered from "../Animation/Delivered";
 import toast from "react-hot-toast";
 import Cancelorder from "../Animation/Cancelorder";
+import Loader from "../../Components/Animation/Loader"
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 
 const Orders = ({ SetloginPopUp }) => {
   const { url } = useContext(StoreContext);
   const [orderData, SetorderData] = useState([]);
+  const [loading,setLoading]=useState(false);
   const data = JSON.parse(localStorage.getItem("delboydata"));
   const delboyid = data._id;
   const navigate = useNavigate();
   const fetchMyorders = async () => {
+    setLoading(true);
     try {
       const response = await axios.post(`${url}/api/delBoy/listOrder`, {
         delBoyId: delboyid,
@@ -34,10 +37,12 @@ const Orders = ({ SetloginPopUp }) => {
       toast("Error : Failed to fetch orders");
       // console.log("Error fetching orders:", error);
     }
+    setLoading(false);
   };
 
   const statusHandler = async (event, delBoyId, orderId) => {
     try {
+      setLoading(true);
       const newStatus = event.target.value;
       const response = await axios.post(
         url + "/api/delBoy/updateStatusByDelBoy",
@@ -62,8 +67,11 @@ const Orders = ({ SetloginPopUp }) => {
       toast("Error updating status:");
       // console.log("Error updating status:", error);
     }
+    setLoading(false);
   };
- 
+  if (loading==true) {
+    return <Loader />
+  }
   useEffect(() => {
     SetloginPopUp(false);
     fetchMyorders();

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { StoreContext } from "../../context/StoreContextdel";
+import Loader from "../Animation/Loader";
 const ForgetPassword = ({
   email,
   SetEmail,
@@ -17,6 +18,7 @@ const ForgetPassword = ({
   // const { url } = useContext(StoreContext);
   //   const [email, SetEmail] = useState();
   const url=import.meta.env.VITE_BACKEND_BASEURL;
+   const [loading,setLoading]=useState(false);
   const [OTP, setOTP] = useState();
   //   const [Otpvarification, SetOtpvarification] = useState(false);
 
@@ -30,6 +32,7 @@ const ForgetPassword = ({
   };
 
   const OnSubmit = async () => {
+    setLoading(true);
     try {
       const response = await axios.post(`${url}/api/delBoy/sendOtp`, { email });
       if (response.data.success) {
@@ -43,9 +46,11 @@ const ForgetPassword = ({
       console.log("Error In sending OTP:");
       toast.error("Error: Please sign up first.");
     }
+    setLoading(false);
   };
 
   const OnVarify = async () => {
+    setLoading(true);
     if (!email || !OTP) {
       toast.error("Email and OTP are required.");
       return;
@@ -74,6 +79,7 @@ const ForgetPassword = ({
       );
       toast.error("Error verifying OTP. Please try again.");
     }
+    setLoading(false);
   };
 
   return (
@@ -117,11 +123,11 @@ const ForgetPassword = ({
         )}
         {Otpvarification ? (
           <button className="card-button" onClick={OnVarify}>
-            Varify OTP
+           {loading==true ?<Loader /> : "Varify OTP"}
           </button>
         ) : (
           <button className="card-button" onClick={OnSubmit}>
-            Send OTP
+              {loading==true ?<Loader /> :"Send OTP" }
           </button>
         )}
       </div>

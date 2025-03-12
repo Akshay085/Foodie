@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./LoginPopup.css";
 import axios from "axios";
-
 import { toast } from "react-hot-toast";
 import { StoreContext } from "../../context/StoreContextdel";
 import {  useNavigate} from 'react-router-dom'
+import Loader from "../Animation/Loader";
 const LoginPopup = ({loginPopUp, SetloginPopUp ,forgetPopUp,SetforgetPopUp}) => {
   const url=import.meta.env.VITE_BACKEND_BASEURL;
   const { token, setToken, } = useContext(StoreContext);
+    const [loading,setLoading]=useState(false);
      const navigate=useNavigate();
   const [data, setData] = useState({
     email: "",
@@ -21,7 +22,8 @@ const LoginPopup = ({loginPopUp, SetloginPopUp ,forgetPopUp,SetforgetPopUp}) => 
 
   const onLogin = async (event) => {
     event.preventDefault();
-   console.log(data);
+    setLoading(true);
+   //console.log(data);
    
     try {
       const response = await axios.post(`${url}/api/delBoy/login`, data);
@@ -43,6 +45,7 @@ const LoginPopup = ({loginPopUp, SetloginPopUp ,forgetPopUp,SetforgetPopUp}) => 
       console.log("Login error:", error);
       toast.error("Something went wrong. Please try again.");
     }
+    setLoading(false);
   };
 
 
@@ -102,7 +105,7 @@ const LoginPopup = ({loginPopUp, SetloginPopUp ,forgetPopUp,SetforgetPopUp}) => 
            <span  > Forget Password ?</span>
         </div>
         <button type="submit">
-           Login
+         {loading==true?<Loader />:"Login"}  
         </button>
         
       </form>

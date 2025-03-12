@@ -4,9 +4,11 @@ import {useNavigate} from 'react-router-dom'
 import { toast } from 'react-hot-toast'
 import axios from 'axios';
 import { StoreContext } from '../../context/StoreContextdel';
+import Loader from '../Animation/Loader';
 
 const ConfirmPassword = ({email,SetloginPopUp,SetconfirmPopUP,SetOtpvarification}) =>  {
    const navigate = useNavigate();
+    const [loading,setLoading]=useState(false);
     //  const { url } = useContext(StoreContext);
     const url=import.meta.env.VITE_BACKEND_BASEURL;
     const [newPassword, setNewPassword] = useState("");
@@ -14,7 +16,7 @@ const ConfirmPassword = ({email,SetloginPopUp,SetconfirmPopUP,SetOtpvarification
  console.log("----------------->",email);
   
 const handleConfirm = async() => {
-  
+  setLoading(true);  
     try{
         if (!newPassword || !confirmPassword) {
             toast.warn("Please fill in both fields."); 
@@ -39,6 +41,7 @@ const handleConfirm = async() => {
     console.log("Error changing password:", error); 
   toast.error("Failed to change password. Please try again.");
    }  
+   setLoading(false);  
 };
 
 return (
@@ -62,7 +65,7 @@ return (
         className="popup-input"
       />
       <button onClick={handleConfirm} className="popup-button">
-        Confirm
+      {  loading ?<Loader />: "Confirm"}
       </button>
       <span className="close-btn" onClick={() => {SetconfirmPopUP(false),navigate("/login")}}>
         &times;
