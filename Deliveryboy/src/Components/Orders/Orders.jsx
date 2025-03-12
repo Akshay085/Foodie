@@ -77,8 +77,9 @@ const Orders = ({ SetloginPopUp }) => {
 
   return (
     <div className="orderdata-body">
-      <Navbar />
       {loading==true && <div style={{textAlign:"center"}}><Loader /></div>}
+      <Navbar />
+      
       {orderData.length > 0 ? (
         orderData.map((order, index) => (
           <div key={index} className="order-item">
