@@ -36,9 +36,10 @@ const ForgetPassword = ({
             } else {
                 toast('Error: Please sign up first.');
             }
-        } catch(error) 
+        }
+         catch(error) 
     {
-        toast(error);
+        // toast(error);
             toast('Error:please try again ');
         }
     };
