@@ -6,7 +6,8 @@ import { toast } from "react-hot-toast";
 import { StoreContext } from "../../context/StoreContextdel";
 import {  useNavigate} from 'react-router-dom'
 const LoginPopup = ({loginPopUp, SetloginPopUp ,forgetPopUp,SetforgetPopUp}) => {
-  const { url,token, setToken, } = useContext(StoreContext);
+  const url=import.meta.env.VITE_BACKEND_BASEURL;
+  const { token, setToken, } = useContext(StoreContext);
      const navigate=useNavigate();
   const [data, setData] = useState({
     email: "",

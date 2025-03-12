@@ -14,9 +14,9 @@ const ForgetPassword = ({
   SetOtpvarification,
   SetconfirmPopUP,
 }) => {
-  const { url } = useContext(StoreContext);
+  // const { url } = useContext(StoreContext);
   //   const [email, SetEmail] = useState();
-
+  const url=import.meta.env.VITE_BACKEND_BASEURL;
   const [OTP, setOTP] = useState();
   //   const [Otpvarification, SetOtpvarification] = useState(false);
 

@@ -7,7 +7,8 @@ import { StoreContext } from '../../context/StoreContextdel';
 
 const ConfirmPassword = ({email,SetloginPopUp,SetconfirmPopUP,SetOtpvarification}) =>  {
    const navigate = useNavigate();
-     const { url } = useContext(StoreContext);
+    //  const { url } = useContext(StoreContext);
+    const url=import.meta.env.VITE_BACKEND_BASEURL;
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
  console.log("----------------->",email);
