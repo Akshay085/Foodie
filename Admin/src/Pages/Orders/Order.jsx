@@ -200,7 +200,7 @@ const Order = ({ url }) => {
                       </ul>
                     </span>
                   </p>
-                ) : (
+                ) :  order.status === "Cancelled" ?  <h4 style={{ color: "red" }}>Cancelled</h4> :
                   <select
                     onChange={(e) => boyStatus(e.target.value, order._id)}
                   >
@@ -211,7 +211,7 @@ const Order = ({ url }) => {
                       </option>
                     ))}
                   </select>
-                )
+                
               ) : order.status === "Cancelled" ? (
                 <h4 style={{ color: "red" }}>Cancelled</h4>
               ) : order.status === "Received" ? (

@@ -38,11 +38,14 @@ const Search = () => {
   };
 
   const startListening = () => {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-if (!SpeechRecognition) {
-  alert("Speech recognition is not supported in your browser. Try using Google Chrome.");
-  return;
-}
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert(
+        "Speech recognition is not supported in your browser. Try using Google Chrome."
+      );
+      return;
+    }
 
     const recognition = new SpeechRecognition();
     recognition.lang = "en-US";
@@ -70,9 +73,10 @@ if (!SpeechRecognition) {
     recognition.start();
   };
 
-  const filteredFoods = foodlist.filter((foodname) =>
-    foodname.name.toLowerCase().includes(inputvalue.toLowerCase())  ||
-  foodname.category.toLowerCase().includes(inputvalue.toLowerCase())
+  const filteredFoods = foodlist.filter(
+    (foodname) =>
+      foodname.name.toLowerCase().includes(inputvalue.toLowerCase()) ||
+      foodname.category.toLowerCase().includes(inputvalue.toLowerCase())
   );
 
   useEffect(() => {
@@ -105,23 +109,23 @@ if (!SpeechRecognition) {
             placeholder="Search..."
             className="search-input"
           />
-         <IconButton
-  onClick={startListening}
-  sx={{
-    backgroundColor: "black",
-    color: "white",
-    "&:hover": {
-      backgroundColor: "transparent",
-      color: "red",
-    },
-    "&:active": {
-      backgroundColor: "transparent",
-      color: "red",
-    },
-  }}
->
-  <MicIcon />
-</IconButton>
+          <IconButton
+            onClick={startListening}
+            sx={{
+              backgroundColor: "black",
+              color: "white",
+              "&:hover": {
+                backgroundColor: "transparent",
+                color: "red",
+              },
+              "&:active": {
+                backgroundColor: "transparent",
+                color: "red",
+              },
+            }}
+          >
+            <MicIcon />
+          </IconButton>
         </div>
       </div>
 

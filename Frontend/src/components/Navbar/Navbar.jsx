@@ -10,13 +10,12 @@ const Navbar = ({ SetShowlogin }) => {
   const { getTotalCartAmount, token } = useContext(StoreContext);
   const navigate = useNavigate();
 
-  
   const handleMenuClick = (menuItem) => {
     Setmenu(menuItem);
   };
 
   useEffect(() => {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
     const sections = [
       { id: "home", value: "Home" },
       { id: "fooddisplay", value: "Menu" },
@@ -26,12 +25,14 @@ const Navbar = ({ SetShowlogin }) => {
     const observerOptions = {
       root: null,
       rootMargin: "0px 0px -20% 0px",
-      threshold: 0.2, 
+      threshold: 0.2,
     };
     const observerCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const matchedSection = sections.find((sec) => sec.id === entry.target.id);
+          const matchedSection = sections.find(
+            (sec) => sec.id === entry.target.id
+          );
           if (matchedSection) {
             Setmenu(matchedSection.value);
           }
@@ -39,8 +40,11 @@ const Navbar = ({ SetShowlogin }) => {
       });
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-    
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions
+    );
+
     sections.forEach((section) => {
       const element = document.getElementById(section.id);
       if (element) observer.observe(element);
@@ -52,10 +56,10 @@ const Navbar = ({ SetShowlogin }) => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
     const sections = document.querySelectorAll("section");
 
-    console.log("----",sections);
+    console.log("----", sections);
 
     const handleScroll = () => {
       let currentSection = "";
@@ -65,13 +69,14 @@ const Navbar = ({ SetShowlogin }) => {
           currentSection = section.getAttribute("id");
         }
       });
-    
-      
-      
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
+
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.offsetHeight - 10
+      ) {
         currentSection = "footer";
       }
-    
+
       if (currentSection === "exploremenu") {
         handleMenuClick("Menu");
       } else if (currentSection === "header") {
@@ -80,7 +85,6 @@ const Navbar = ({ SetShowlogin }) => {
         handleMenuClick("Contact us");
       }
     };
-    
 
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -93,33 +97,35 @@ const Navbar = ({ SetShowlogin }) => {
       <Link to="/">
         <MyLottieAnimation />
       </Link>
-      {location?.pathname == "/cart" || location?.pathname =="/cart/self-service" || location?.pathname =="/cart/home-delivery" || location?.pathname =="/Placeorder" ?null:
-      <ul className="navbar-menu">
-        <a
-          href="#home"
-          onClick={() => handleMenuClick("Home")}
-          className={menu === "Home" ? "active" : ""}
-        >
-          Home
-        </a>
-        <a
-          href="#fooddisplay"
-          onClick={() => handleMenuClick("Menu")}
-          className={menu === "Menu" ? "active" : ""}
-        >
-          Menu
-        </a>
-        <a
-          href="#footer"
-          onClick={() => handleMenuClick("Contact us")}
-          className={menu === "Contact us" ? "active" : ""}
-        >
-          Contact
-        </a>
-      </ul>
-      }
+      {location?.pathname == "/cart" ||
+      location?.pathname == "/cart/self-service" ||
+      location?.pathname == "/cart/home-delivery" ||
+      location?.pathname == "/Placeorder" ? null : (
+        <ul className="navbar-menu">
+          <a
+            href="#home"
+            onClick={() => handleMenuClick("Home")}
+            className={menu === "Home" ? "active" : ""}
+          >
+            Home
+          </a>
+          <a
+            href="#fooddisplay"
+            onClick={() => handleMenuClick("Menu")}
+            className={menu === "Menu" ? "active" : ""}
+          >
+            Menu
+          </a>
+          <a
+            href="#footer"
+            onClick={() => handleMenuClick("Contact us")}
+            className={menu === "Contact us" ? "active" : ""}
+          >
+            Contact
+          </a>
+        </ul>
+      )}
       <div className="navbar-right">
-        
         <Link to="./search">
           <img src="\Images\search_icon.png" alt="searchicon" />
         </Link>
