@@ -69,9 +69,7 @@ const Orders = ({ SetloginPopUp }) => {
     }
     setLoading(false);
   };
-  if (loading==true) {
-    return <Loader />
-  }
+  
   useEffect(() => {
     SetloginPopUp(false);
     fetchMyorders();
@@ -80,7 +78,7 @@ const Orders = ({ SetloginPopUp }) => {
   return (
     <div className="orderdata-body">
       <Navbar />
-      
+      {loading==true && <div style={{textAlign:"center"}}><Loader /></div>}
       {orderData.length > 0 ? (
         orderData.map((order, index) => (
           <div key={index} className="order-item">
@@ -145,6 +143,7 @@ const Orders = ({ SetloginPopUp }) => {
       ) : (
         <p>No orders found</p>
       )}
+      
     </div>
   );
 };

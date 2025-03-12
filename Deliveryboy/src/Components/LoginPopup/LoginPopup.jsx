@@ -105,7 +105,7 @@ const LoginPopup = ({loginPopUp, SetloginPopUp ,forgetPopUp,SetforgetPopUp}) => 
            <span  > Forget Password ?</span>
         </div>
         <button type="submit">
-         {loading==true?<Loader />:"Login"}  
+         {loading==true?<div style={{textAlign:"center"}}><Loader /></div>:"Login"}  
         </button>
         
       </form>

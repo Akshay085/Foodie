@@ -65,7 +65,7 @@ return (
         className="popup-input"
       />
       <button onClick={handleConfirm} className="popup-button">
-      {  loading ?<Loader />: "Confirm"}
+      {  loading ?<div style={{textAlign:"center"}}><Loader /></div>: "Confirm"}
       </button>
       <span className="close-btn" onClick={() => {SetconfirmPopUP(false),navigate("/login")}}>
         &times;
