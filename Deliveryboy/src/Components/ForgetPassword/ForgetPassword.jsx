@@ -123,11 +123,11 @@ const ForgetPassword = ({
         )}
         {Otpvarification ? (
           <button className="card-button" onClick={OnVarify}>
-           {loading==true ?<div style={{textAlign:"center"}}><Loader /></div> : "Varify OTP"}
+           {loading==true ?<div style={{display: "flex", alignItems: "center", justifyContent: "center"}}><Loader /></div> : "Varify OTP"}
           </button>
         ) : (
           <button className="card-button" onClick={OnSubmit}>
-              {loading==true ?<div style={{textAlign:"center"}}><Loader /></div> :"Send OTP" }
+              {loading==true ?<div style={{display: "flex", alignItems: "center", justifyContent: "center",backgroundColor:"black"}}><Loader /></div> :"Send OTP" }
           </button>
         )}
       </div>
