@@ -10,7 +10,7 @@ const Reports = ({ url }) => {
   const [selectedReport, setSelectedReport] = useState("");
   const [reportData, setReportData] = useState([]);
   const [orders, setOrders] = useState([]);
-
+  const [loader, setLoader] = useState(false);
   const fetchAllOrders = async () => {
     try {
       const response = await axios.get(url + "/api/order/list");
