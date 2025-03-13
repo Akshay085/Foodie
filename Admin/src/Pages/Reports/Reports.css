@@ -1,5 +1,5 @@
 .report-container {
-    width: 50%;
+    width: 80%;
     margin: auto;
     text-align: center;
     font-family: Arial, sans-serif;
@@ -14,9 +14,12 @@
   
   .report-display {
     background-color: #f9f9f9;
-    padding: 15px;
+    /* padding: 15px; */
     border-radius: 5px;
     margin-top: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   }
   
+  .download-btn{
+    background-color: tomato;
+  }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Reports.css';
 import axios from "axios";
-import { toast } from 'react-hot-toast';
+import { LoaderIcon, toast } from 'react-hot-toast';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
@@ -12,6 +12,7 @@ const Reports = ({ url }) => {
   const [orders, setOrders] = useState([]);
   const [loader, setLoader] = useState(false);
   const fetchAllOrders = async () => {
+    setLoader(true)
     try {
       const response = await axios.get(url + "/api/order/list");
       if (response.data && response.data.success) {
@@ -24,6 +25,7 @@ const Reports = ({ url }) => {
     } catch (error) {
       toast.error("Failed to fetch orders");
     }
+    setLoader(false)
   };
 
   useEffect(() => {
@@ -144,6 +146,7 @@ const Reports = ({ url }) => {
 
   return (
     <div className="report-container">
+      {loader==true?<LoaderIcon />:null}
       <h2>Generate Reports</h2>
       <select onChange={handleReportChange} value={selectedReport} className="report-dropdown">
         <option value="">Select Report Type</option>
@@ -168,7 +171,7 @@ const Reports = ({ url }) => {
       )}
 
       <button onClick={downloadPDF} className="download-btn">Download All Orders Report</button>
-    </div>
+      </div>
   );
 };
 
