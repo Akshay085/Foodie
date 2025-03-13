@@ -77,7 +77,7 @@ const Orders = ({ SetloginPopUp }) => {
 
   return (
     <div className="orderdata-body">
-      {loading==true && <div style={{textAlign:"center"}}><Loader /></div>}
+      {loading==true? <div style={{textAlign:"center"}}><Loader /></div>:<>
       <Navbar />
       
       {orderData.length > 0 ? (
@@ -145,7 +145,7 @@ const Orders = ({ SetloginPopUp }) => {
         <p>No orders found</p>
       )}
       
-    </div>
+      </>}</div>
   );
 };
 

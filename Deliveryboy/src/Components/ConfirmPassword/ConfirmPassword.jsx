@@ -1,7 +1,7 @@
 import React,{useContext, useState} from 'react'
 import './ConfirmPassword.css'
 import {useNavigate} from 'react-router-dom'
-import { toast } from 'react-hot-toast'
+import { LoaderIcon, toast } from 'react-hot-toast'
 import axios from 'axios';
 import { StoreContext } from '../../context/StoreContextdel';
 import Loader from '../Animation/Loader';
@@ -65,7 +65,7 @@ return (
         className="popup-input"
       />
       <button onClick={handleConfirm} className="popup-button">
-      {  loading ?<div style={{display: "flex", alignItems: "center", justifyContent: "center",backgroundColor:"white",border:"none"}}><Loader /></div>: "Confirm"}
+      {  loading ?<div style={{display: "flex", alignItems: "center", justifyContent: "center",border:"none"}}><LoaderIcon/></div>: "Confirm"}
       </button>
       <span className="close-btn" onClick={() => {SetconfirmPopUP(false),navigate("/login")}}>
         &times;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./LoginPopup.css";
 import axios from "axios";
-import { toast } from "react-hot-toast";
+import { LoaderIcon, toast } from "react-hot-toast";
 import { StoreContext } from "../../context/StoreContextdel";
 import {  useNavigate} from 'react-router-dom'
 import Loader from "../Animation/Loader";
@@ -105,7 +105,7 @@ const LoginPopup = ({loginPopUp, SetloginPopUp ,forgetPopUp,SetforgetPopUp}) => 
            <span  > Forget Password ?</span>
         </div>
         <button type="submit">
-         {loading==true?<div style={{display: "flex", alignItems: "center", justifyContent: "center",backgroundColor:"white" ,border:"none",outline:"none"}}><Loader /></div>:"Login"}  
+         {loading==true?<div style={{display: "flex", alignItems: "center", justifyContent: "center" ,border:"none",outline:"none"}}><LoaderIcon /></div>:"Login"}  
         </button>
         
       </form>

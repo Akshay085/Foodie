@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import "./ForgetPassword.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-hot-toast";
+import { LoaderIcon, toast } from "react-hot-toast";
 import { StoreContext } from "../../context/StoreContextdel";
 import Loader from "../Animation/Loader";
 const ForgetPassword = ({
@@ -123,11 +123,11 @@ const ForgetPassword = ({
         )}
         {Otpvarification ? (
           <button className="card-button" onClick={OnVarify}>
-           {loading==true ?<div style={{display: "flex", alignItems: "center", justifyContent: "center",backgroundColor:"white",border:"none",outline:"none"}}><Loader /></div> : "Varify OTP"}
+           {loading==true ?<div style={{display: "flex", alignItems: "center", justifyContent: "center",border:"none",outline:"none"}}><LoaderIcon /></div> : "Varify OTP"}
           </button>
         ) : (
           <button className="card-button" onClick={OnSubmit}>
-              {loading==true ?<div style={{display: "flex", alignItems: "center", justifyContent: "center",backgroundColor:"white",border:"none",outline:"none"}}><Loader /></div> :"Send OTP" }
+              {loading==true ?<div style={{display: "flex", alignItems: "center", justifyContent: "center",border:"none",outline:"none"}}><LoaderIcon /></div> :"Send OTP" }
           </button>
         )}
       </div>
