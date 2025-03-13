@@ -10,6 +10,7 @@ import Canceled from "../MyLottieAnimation/Canceled";
 import Loader from "../../components/MyLottieAnimation/Loaderfrount.jsx";
 import FeedBack from "../../components/Feedback/FeedBack.jsx";
 import { Rating } from "@mui/material";
+import { toast } from "react-hot-toast";
 
 const OrderPage = () => {
   const { url, token, userData } = useContext(StoreContext);
@@ -32,10 +33,11 @@ const OrderPage = () => {
         setData(response.data.data);
         await fetchFeedback(response.data.data);
       } else {
-        console.log("Error fetching orders");
+        toast.success("please try again")
+        // console.log("Error fetching orders");
       }
     } catch (error) {
-      console.error("Error fetching orders:", error);
+      //console.error("Error fetching orders:", error);
     }
     setLoading(false);
   };
@@ -44,14 +46,14 @@ const OrderPage = () => {
     try {
       const orderIds = orders.map((order) => order._id);
       const response = await axios.post(url + "/api/review/get", { orderIds });
-        console.log(response)
+       // console.log(response)
       if (response.data.success && response.data.review) {
         setFeedbackData(response.data.review);
       } else {
         setFeedbackData({});
       }
     } catch (error) {
-      console.error("Error fetching feedback:", error);
+      console.log("Error fetching feedback:", error);
       setFeedbackData({});
     }
   };

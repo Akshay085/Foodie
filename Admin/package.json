@@ -12,7 +12,8 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@mui/material": "^6.4.5",
+    "@mui/lab": "^6.0.0-beta.30",
+    "@mui/material": "^6.4.7",
     "axios": "^1.7.9",
     "buffer": "^6.0.3",
     "chart.js": "^4.4.8",

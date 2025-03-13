@@ -34,7 +34,7 @@ const App = () => {
   const [email, setEmail] = useState("");
   const [confirmPopUP, SetconfirmPopUP] = useState();
   const location = useLocation();
-  console.log(location);
+  
 
   return (
     <>

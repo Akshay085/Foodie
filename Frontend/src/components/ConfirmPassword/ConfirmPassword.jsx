@@ -10,7 +10,7 @@ const ConfirmPassword = ({email,SetconfirmPopUP,SetOtpvarification}) => {
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const url = import.meta.env.VITE_BACKEND_BASEURL;
-      console.log(email);
+   //   console.log(email);
 
     const handleConfirm = async() => {
       
@@ -24,17 +24,17 @@ const ConfirmPassword = ({email,SetconfirmPopUP,SetOtpvarification}) => {
               else{
                const response = await axios.post(`${url}/api/user/updatePassword`, {email ,newPassword});
                if (response.data.success) {
-                toast("Password is Changed Successfully");
+                toast.success("Password is Changed Successfully");
                SetOtpvarification(false);
                SetconfirmPopUP(false);
                }
                else{
-               toast("sorry..") 
+               toast("please try again") 
            }
           }
         }
        catch(error){
-        console.error("Error changing password:", error); 
+        //console.error("Error changing password:", error); 
       toast("Failed to change password. Please try again.");
        }  
     };

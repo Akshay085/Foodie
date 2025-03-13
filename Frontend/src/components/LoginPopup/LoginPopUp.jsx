@@ -41,15 +41,15 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
         toast("Welcome!");
         
         SetShowlogin(false);
-        console.log("My Response:", response.data);
+        //console.log("My Response:", response.data);
         setUserData(response.data);
-        console.log(userData);
+        //console.log(userData);
 
       } else {
         toast(response.data.message);
       }
     } catch (error) {
-      console.log("Login error:", error);
+      //console.log("Login error:", error);
       toast("Something went wrong. Please try again.");
     }
   };
@@ -66,14 +66,13 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
         setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
         toast("Registration successful. Please log in.");
-        
         SetCurrentState("Login"); 
         setData({ email: "", password: "" });
       } else {
         toast(response.data.message);
       }
     } catch (error) {
-      console.log("Signup error:", error);
+      //console.log("Signup error:", error);
       toast("Invalid Credential");
     }
   };
@@ -87,7 +86,6 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
   const forgetPopup=()=>{
     SetShowlogin(false)
     SetForget(true)
-   
   }
 
   return (
@@ -140,7 +138,7 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
             onChange={onChangeHandler}
             value={data.password}
             type="password"
-            placeholder="Password"
+            placeholder="Password (8 digit)"
             required
           />
         </div>

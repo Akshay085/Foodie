@@ -15,7 +15,7 @@ const ExploreMenu = ({ category, setCategory }) => {
         setCategory(() => "All");
     }
 
-    console.log(categorylist);
+    // console.log(categorylist);
 
     return (
         <section className='explore-menu' id='exploremenu'>

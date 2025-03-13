@@ -9,10 +9,12 @@ import Delboygoing from "../../Components/Animation/Delboygoing";
 import Delivered from "../../Components/Animation/Delivered";
 import Foodprocessing from "../../Components/Animation/Foodprocessing";
 import CancelOrder from "../../Components/Animation/CancelOrder";
+import { Rating } from "@mui/material";
 
 const Order = ({ url }) => {
   const [orders, setOrders] = useState([]);
   const [delboy, setDelboy] = useState([]);
+  const [feedbackData, setFeedbackData] = useState([]);
 
   const fetchAllOrders = async () => {
     try {
@@ -21,6 +23,7 @@ const Order = ({ url }) => {
 
       if (response.data && response.data.success) {
         setOrders(response.data.data);
+        await fetchFeedback(response.data.data);
       } else {
         toast("Error fetching orders");
       }
@@ -39,6 +42,21 @@ const Order = ({ url }) => {
       }
     } catch (error) {
       toast("Failed to fetch delivery boys");
+    }
+  };
+  const fetchFeedback = async (orders) => {
+    try {
+      const orderIds = orders.map((order) => order._id);
+      const response = await axios.post(url + "/api/review/get", { orderIds });
+      // console.log(response)
+      if (response.data.success && response.data.review) {
+        setFeedbackData(response.data.review);
+      } else {
+        setFeedbackData({});
+      }
+    } catch (error) {
+      console.log("Error fetching feedback:", error);
+      setFeedbackData({});
     }
   };
 
@@ -200,7 +218,9 @@ const Order = ({ url }) => {
                       </ul>
                     </span>
                   </p>
-                ) :  order.status === "Cancelled" ?  <h4 style={{ color: "red" }}>Cancelled</h4> :
+                ) : order.status === "Cancelled" ? (
+                  <h4 style={{ color: "red" }}>Cancelled</h4>
+                ) : (
                   <select
                     onChange={(e) => boyStatus(e.target.value, order._id)}
                   >
@@ -211,7 +231,7 @@ const Order = ({ url }) => {
                       </option>
                     ))}
                   </select>
-                
+                )
               ) : order.status === "Cancelled" ? (
                 <h4 style={{ color: "red" }}>Cancelled</h4>
               ) : order.status === "Received" ? (
@@ -227,6 +247,15 @@ const Order = ({ url }) => {
                   <option value="Received">Received</option>
                 </select>
               )}
+              {(order.status == "Delivered" || order.status == "Received") &&
+                (feedbackData[order._id] ? (
+                  <div>
+                    <p>Rating:</p>
+                    <Rating value={feedbackData[order._id]} readOnly />
+                  </div>
+                ) : (
+                  <p>No feedback yet.</p>
+                ))}
             </div>
           </div>
         ))}

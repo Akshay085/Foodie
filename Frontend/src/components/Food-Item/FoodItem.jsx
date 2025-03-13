@@ -4,7 +4,7 @@ import { StoreContext } from '../../Context/StoreContext';
 const FoodItem = ({id,name,price,description,image}) => {
 
       const {cartItems,addtoCart,removefromCart,url} =useContext(StoreContext);
-
+      
   return (
     <div className='food-item'>
         <div className="food-item-img-container">
@@ -13,8 +13,8 @@ const FoodItem = ({id,name,price,description,image}) => {
               cartItems[id]==null? <img className='add' onClick={()=>addtoCart(id)} src="\Images\add_icon_green.png" alt="add Item Img" />
                : <div className='Food-item-counter'> 
               {cartItems[id]<=0?"":<img onClick={() =>removefromCart(id)} src="\Images\remove_icon_red.png" alt="remove icon"  /> }
-              {cartItems[id]<=0?"":<p>{cartItems[id]}</p>}
-             
+              {cartItems[id]<=0?"":<p>{cartItems[id]}</p>} 
+              {console.log("------>",cartItems[id])}
               <img onClick={()=>addtoCart(id)} src="\Images\add_icon_green.png" alt="add icon" />
                </div>
            :null }
