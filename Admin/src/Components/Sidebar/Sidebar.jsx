@@ -13,36 +13,36 @@ const Sidebar = () => {
         </div>
         {visible && (
           <div className="sidebar-options">
-            <NavLink to="/add" className="sidebar-option">
+            <NavLink to="/add" className="sidebar-option" onClick={() => setVisible(!visible)}>
               <img src="/Images/add_icon.png" alt="add icon" />
               <p>Add Items</p>
             </NavLink>
 
-            <NavLink to="/list" className="sidebar-option">
+            <NavLink to="/list" className="sidebar-option" onClick={() => setVisible(!visible)}>
               <img src="/Images/order_icon.png" alt="order icon" />
               <p>List Items</p>
             </NavLink>
 
-            <NavLink to="/addcategory" className="sidebar-option">
+            <NavLink to="/addcategory" className="sidebar-option" onClick={() => setVisible(!visible)}>
               <img src="/Images/add_icon.png" alt="add category" />
               <p>Add Category</p>
             </NavLink>
 
-            <NavLink to="/listcategory" className="sidebar-option">
+            <NavLink to="/listcategory" className="sidebar-option"onClick={() => setVisible(!visible)}>
               <img src="/Images/order_icon.png" alt="list category" />
               <p>List Category</p>
             </NavLink>
 
-            <NavLink to="/order" className="sidebar-option">
+            <NavLink to="/order" className="sidebar-option" onClick={() => setVisible(!visible)}>
               <img src="/Images/order.png" alt="orders" />
               <p>Orders</p>
             </NavLink>
 
-            <NavLink to="/adddeliveryboy" className="sidebar-option">
+            <NavLink to="/adddeliveryboy" className="sidebar-option" onClick={() => setVisible(!visible)}>
               <img src="/Images/add_icon.png" alt="add deliveryboy" />
               <p>Add Deliveryboy</p>
             </NavLink>
-            <NavLink to="/reports" className="sidebar-option">
+            <NavLink to="/reports" className="sidebar-option" onClick={() => setVisible(!visible)}>
               <img src="/Images/reports.png" alt="reports" />
               <p>Reports</p>
             </NavLink>
