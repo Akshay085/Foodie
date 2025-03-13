@@ -5,6 +5,7 @@ import { LoaderIcon, toast } from 'react-hot-toast';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import Loader from '../../Components/Animation/Loader';
 
 const Reports = ({ url }) => {
   const [selectedReport, setSelectedReport] = useState("");
@@ -146,7 +147,7 @@ const Reports = ({ url }) => {
 
   return (
     <div className="report-container">
-      {loader==true?<LoaderIcon />:null}
+      {loader==true?<div style={{display:"flex" ,justifyContent:"center" }}><Loader /></div>:<>
       <h2>Generate Reports</h2>
       <select onChange={handleReportChange} value={selectedReport} className="report-dropdown">
         <option value="">Select Report Type</option>
@@ -171,6 +172,7 @@ const Reports = ({ url }) => {
       )}
 
       <button onClick={downloadPDF} className="download-btn">Download All Orders Report</button>
+      </>}
       </div>
   );
 };

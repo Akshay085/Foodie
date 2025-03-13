@@ -10,13 +10,16 @@ import Delivered from "../../Components/Animation/Delivered";
 import Foodprocessing from "../../Components/Animation/Foodprocessing";
 import CancelOrder from "../../Components/Animation/CancelOrder";
 import { Rating } from "@mui/material";
+import Loader from "../../Components/Animation/Loader";
 
 const Order = ({ url }) => {
   const [orders, setOrders] = useState([]);
   const [delboy, setDelboy] = useState([]);
   const [feedbackData, setFeedbackData] = useState([]);
+  const [loader, setLoader] = useState(false);
 
   const fetchAllOrders = async () => {
+    setLoader(true);
     try {
       const response = await axios.get(url + "/api/order/list");
       // console.log("Orders Fetched:", response.data.data);
@@ -30,9 +33,11 @@ const Order = ({ url }) => {
     } catch (error) {
       toast("Failed to fetch orders");
     }
+    setLoader(false);
   };
 
   const fetchAllDeliveryBoy = async () => {
+    setLoader(true);
     try {
       const response = await axios.get(url + "/api/delBoy/list");
       if (response.data.success) {
@@ -43,8 +48,10 @@ const Order = ({ url }) => {
     } catch (error) {
       toast("Failed to fetch delivery boys");
     }
+    setLoader(false);
   };
   const fetchFeedback = async (orders) => {
+    setLoader(true);
     try {
       const orderIds = orders.map((order) => order._id);
       const response = await axios.post(url + "/api/review/get", { orderIds });
@@ -58,9 +65,11 @@ const Order = ({ url }) => {
       console.log("Error fetching feedback:", error);
       setFeedbackData({});
     }
+    setLoader(false);
   };
 
   const statusHandler = async (event, orderId) => {
+    setLoader(true);
     try {
       const response = await axios.post(url + "/api/order/status", {
         orderId,
@@ -72,9 +81,11 @@ const Order = ({ url }) => {
     } catch (error) {
       toast("Error updating status");
     }
+    setLoader(false);
   };
 
   const boyStatus = async (dboyid, orderid) => {
+    setLoader(true);
     try {
       const response = await axios.post(
         url + "/api/order/assignDelBoy",
@@ -98,6 +109,7 @@ const Order = ({ url }) => {
     } catch (error) {
       toast("Error: " + (error.response?.data?.message || error.message));
     }
+    setLoader(false);
   };
   const exportToExcel = () => {
     if (orders.length === 0) {
@@ -135,6 +147,7 @@ const Order = ({ url }) => {
 
   return (
     <div className="order add">
+      {loader?<div><Loader /></div>:<>
       <div className="order-list">
         <div>
           <h3>Order Page</h3>
@@ -260,7 +273,7 @@ const Order = ({ url }) => {
           </div>
         ))}
       </div>
-    </div>
+      </>} </div>
   );
 };
 
