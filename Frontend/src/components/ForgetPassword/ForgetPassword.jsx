@@ -14,6 +14,7 @@ const ForgetPassword = ({
   SetconfirmPopUP,
 }) => {
   const [OTP, setOTP] = useState("");
+    const [loading,setLoading]=useState(false);
   const url = import.meta.env.VITE_BACKEND_BASEURL;
 
   const handleChange = (event) => {
@@ -27,6 +28,7 @@ const ForgetPassword = ({
 
   const OnSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post(`${url}/api/user/sendOtp`, { email });
       if (response.data.success) {
@@ -41,9 +43,11 @@ const ForgetPassword = ({
       // toast(error);
       toast("Error:please try again ");
     }
+    setLoading(false);
   };
 
   const OnVarify = async () => {
+    setLoading(true);
     try {
       const response = await axios.post(`${url}/api/user/verifyOtp`, {
         email,
@@ -62,6 +66,7 @@ const ForgetPassword = ({
     } catch {
       console.log("error");
     }
+    setLoading(false);
   };
 
   return (
@@ -100,13 +105,13 @@ const ForgetPassword = ({
             />
           ) : (
             <button type="submit" className="card-button">
-              Send OTP
+            {loading?<LoaderIcon />:"Send OTP"}
             </button>
           )}
         </form>
         {Otpvarification && (
           <button className="card-button" onClick={OnVarify}>
-            Varify OTP
+         {loading?<LoaderIcon />:"Varify OTP"}    
           </button>
         )}
       </div>

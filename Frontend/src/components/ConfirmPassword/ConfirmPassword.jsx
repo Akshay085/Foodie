@@ -4,16 +4,17 @@ import axios from 'axios';
 import './ConfirmPassword.css'
 // import "react-toastify/dist/ReactToastify.css";
 // import { toast } from 'react-toastify';
-import { toast } from "react-hot-toast";
+import { LoaderIcon, toast } from "react-hot-toast";
 
 const ConfirmPassword = ({email,SetconfirmPopUP,SetOtpvarification}) => {
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [loading,setLoading]=useState(false);
     const url = import.meta.env.VITE_BACKEND_BASEURL;
    //   console.log(email);
 
     const handleConfirm = async() => {
-      
+      setLoading(true);
         try{
             if (!newPassword || !confirmPassword) {
                 toast("Please fill in both fields."); 
@@ -36,7 +37,8 @@ const ConfirmPassword = ({email,SetconfirmPopUP,SetOtpvarification}) => {
        catch(error){
         //console.error("Error changing password:", error); 
       toast("Failed to change password. Please try again.");
-       }  
+       } 
+       setLoading(false) 
     };
   
     return (
@@ -60,7 +62,7 @@ const ConfirmPassword = ({email,SetconfirmPopUP,SetOtpvarification}) => {
             className="popup-input"
           />
           <button onClick={handleConfirm} className="popup-button">
-            Confirm
+            {loading?<LoaderIcon />:"Confirm"}
           </button>
           <span className="close-btn" onClick={() => SetconfirmPopUP(false)}>
             &times;

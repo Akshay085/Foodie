@@ -3,13 +3,14 @@ import "./LoginPopUp.css";
 import { StoreContext } from "../../Context/StoreContext";
 import axios from "axios"
 //import { Link, Links } from "react-router-dom";
-import { toast } from "react-hot-toast";
+import { LoaderIcon, toast } from "react-hot-toast";
 // import { toast } from "react-toastify";
 // import'react-toastify/dist/ReactToastify.css';
 import Loader from "../MyLottieAnimation/Loader";
 
 const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
   const { url, setToken,userData,setUserData } = useContext(StoreContext);
+  const [loading,setLoading]=useState(false);
   const [currentState, SetCurrentState] = useState("Login");
   const [data, setData] = useState({
     name: "",
@@ -26,7 +27,7 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
 
   const onLogin = async (event) => {
     event.preventDefault();
-
+    setLoading(true);
     try {
       const response = await axios.post(`${url}/api/user/login`, data);
 
@@ -52,11 +53,12 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
       //console.log("Login error:", error);
       toast("Something went wrong. Please try again.");
     }
+    setLoading(false);
   };
 
   const onRegister = async (event) => {
     event.preventDefault();
-
+    setLoading(true);
     try {
       const response = await axios.post(`${url}/api/user/register`, data);
 
@@ -75,6 +77,7 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
       //console.log("Signup error:", error);
       toast("Invalid Credential");
     }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -152,7 +155,9 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
        </div>
 
         <button type="submit">
+          {loading?<LoaderIcon />:<>
           {currentState === "Sign Up" ? "Create Account" : "Login"}
+          </>}
         </button>
         {currentState === "Login" ? (
           <p>
