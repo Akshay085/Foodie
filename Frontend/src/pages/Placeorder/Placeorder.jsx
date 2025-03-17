@@ -26,14 +26,16 @@ const Placeorder = () => {
   });
   useEffect(() => {
     window.scrollTo(0,0);
-    if(!token){
+    const Token=localStorage.getItem('token');
+    if(!Token){
       toast("Please Login First ")
-      navigate('/');
+      navigate('/')
     }
-    else if(getTotalCartAmount()==0){
-      toast("Please Login First ")
-      navigate('/cart');
-    }
+    // else if(getTotalCartAmount()==0){
+    //   toast("Add some item into cart")
+    //   navigate('/')
+     
+    // }
     setInput({
       name: userData.name || "",
       email:userData.email || "",
@@ -48,6 +50,10 @@ const Placeorder = () => {
 
    const placeOrder=async (event)=>{
     event.preventDefault();
+    if(!token){
+      toast("Please Login First ")
+      navigate('/')
+    }
     let orderItems =[];
     foodlist.map((item)=>{
       if(cartItems[item._id]>0){

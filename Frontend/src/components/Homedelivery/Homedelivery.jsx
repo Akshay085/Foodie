@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast";
 // import'react-toastify/dist/ReactToastify.css';
 
 const Homedelivery = () => {
-  const { cartItems, foodlist,addtoCart, removefromCart , getTotalCartAmount } = useContext(StoreContext);
+  const {token, cartItems, foodlist,addtoCart, removefromCart , getTotalCartAmount } = useContext(StoreContext);
   const subtotal = getTotalCartAmount();
   const gst =Math.floor (50+(subtotal * 12) / 100);
   const total = Math.floor(subtotal + gst);
@@ -24,6 +24,15 @@ const Homedelivery = () => {
         }
       
       }, [cartItems, navigate]);
+      const proceedToCheckOut=()=>{
+        if(!token){
+          toast("Please login first");
+          // navigate("/");
+        }else{
+          navigate('/Placeorder')
+        }
+        
+      }
   return (
     <div className="cartItems">
         <div className="cart-item-titles">
@@ -72,7 +81,7 @@ const Homedelivery = () => {
             <b>Total</b>
             <b>₹{total }</b>
           </div>
-          <button  onClick={()=>navigate('/Placeorder')}>Proceed to Checkout</button>
+          <button  onClick={proceedToCheckOut}>Proceed to Checkout</button>
         </div>
         {/*<div className="cart-promocode">
           <div>

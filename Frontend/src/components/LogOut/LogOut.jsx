@@ -9,7 +9,10 @@ const LogOut = ({token,setToken}) => {
  
   const navigate = useNavigate();
   const logout = () => {
-    localStorage.removeItem("token");    
+    localStorage.removeItem("token"); 
+    localStorage.removeItem("user"); 
+    localStorage.removeItem("cartItems"); 
+
     setToken("");
     navigate("/"); 
     window.location.reload();
