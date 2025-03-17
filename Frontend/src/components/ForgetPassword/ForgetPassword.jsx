@@ -105,13 +105,13 @@ const ForgetPassword = ({
             />
           ) : (
             <button type="submit" className="card-button">
-            {loading?<LoaderIcon />:"Send OTP"}
+            {loading?<div style={{display:'flex',justifyContent:'center'}}><LoaderIcon /></div>:"Send OTP"}
             </button>
           )}
         </form>
         {Otpvarification && (
           <button className="card-button" onClick={OnVarify}>
-         {loading?<LoaderIcon />:"Varify OTP"}    
+         {loading?<div style={{display:'flex',justifyContent:'center'}}><LoaderIcon /></div>:"Varify OTP"}    
           </button>
         )}
       </div>

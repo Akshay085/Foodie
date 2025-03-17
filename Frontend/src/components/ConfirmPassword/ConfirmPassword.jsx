@@ -62,7 +62,7 @@ const ConfirmPassword = ({email,SetconfirmPopUP,SetOtpvarification}) => {
             className="popup-input"
           />
           <button onClick={handleConfirm} className="popup-button">
-            {loading?<LoaderIcon />:"Confirm"}
+            {loading?<div style={{display:'flex',justifyContent:'center'}}><LoaderIcon /></div>:"Confirm"}
           </button>
           <span className="close-btn" onClick={() => SetconfirmPopUP(false)}>
             &times;
