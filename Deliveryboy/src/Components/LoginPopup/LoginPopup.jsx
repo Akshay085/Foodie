@@ -43,7 +43,7 @@ const LoginPopup = ({loginPopUp, SetloginPopUp ,forgetPopUp,SetforgetPopUp}) => 
       }
     } catch (error) {
       console.log("Login error:", error);
-      toast.error("Something went wrong. Please try again.");
+      toast.error("Invalid Credential Try Again..");
     }
     setLoading(false);
   };

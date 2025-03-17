@@ -155,7 +155,7 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
        </div>
 
         <button type="submit">
-          {loading?<LoaderIcon />:<>
+          {loading?<div style={{display:"flex" ,justifyContent:"center"}}><LoaderIcon /></div>:<>
           {currentState === "Sign Up" ? "Create Account" : "Login"}
           </>}
         </button>
