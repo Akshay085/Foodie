@@ -14,7 +14,7 @@ const placeOrder = async (req , res) => {
         const gst = (subtotal * 12)/100;
         var deliveryCharge = 0;
         const delType = req.body.type;
-        if(delType == "Home Delivery")
+        if(delType == "Home Delivery" && subtotal < 1000)
         {
             deliveryCharge = 50;
         }
