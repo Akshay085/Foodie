@@ -42,7 +42,7 @@ const Orders = ({ SetloginPopUp }) => {
 
   const statusHandler = async (event, delBoyId, orderId) => {
     try {
-      setLoading(true);
+      // setLoading(true);
       const newStatus = event.target.value;
       const response = await axios.post(
         url + "/api/delBoy/updateStatusByDelBoy",
@@ -67,7 +67,7 @@ const Orders = ({ SetloginPopUp }) => {
       toast("Error updating status:");
       // console.log("Error updating status:", error);
     }
-    setLoading(false);
+    // setLoading(false);
   };
   
   useEffect(() => {

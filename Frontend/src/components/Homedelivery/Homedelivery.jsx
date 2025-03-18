@@ -11,8 +11,12 @@ import { toast } from "react-hot-toast";
 const Homedelivery = () => {
   const {token, cartItems, foodlist,addtoCart, removefromCart , getTotalCartAmount } = useContext(StoreContext);
   const subtotal = getTotalCartAmount();
-  const gst =Math.floor (50+(subtotal * 12) / 100);
-  const total = Math.floor(subtotal + gst);
+  let delCharge = 0;
+  const gst =Math.floor ((subtotal * 12) / 100);
+  if(subtotal<1000){
+    delCharge=50;
+  }
+  const total = Math.floor(subtotal + gst + delCharge);
   const navigate=useNavigate(false);
      useEffect(() => {
         window.scrollTo(0,0);
@@ -73,8 +77,12 @@ const Homedelivery = () => {
           </div>
           <hr />
           <div className="cart-total-details">
-            <p>  GST + Delivery Fee </p>
+            <p>  GST  </p>
             {cartItems!=0?<p>₹{gst }</p>:""}
+          </div>
+          <div className="cart-total-details">
+            <p>  Delivery Fee </p>
+            {cartItems!=0?<p>₹{delCharge }</p>:""}
           </div>
           <hr />
           <div className="cart-total-details">

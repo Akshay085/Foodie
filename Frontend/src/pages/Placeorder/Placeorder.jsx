@@ -10,9 +10,13 @@ import axios from "axios";
 const Placeorder = () => {
   const { userData, foodlist,cartItems,url,token,getTotalCartAmount } = useContext(StoreContext);
   const subtotal = getTotalCartAmount();
-  const gst = (50+(subtotal * 12) / 100);
-  const total = subtotal + gst;
-  console.log(userData);
+  let delCharge = 0;
+  const gst =Math.floor ((subtotal * 12) / 100);
+  if(subtotal<1000){
+    delCharge=50;
+  }
+  const total = Math.floor(subtotal + gst + delCharge);
+  //console.log(userData);
 
   const navigate = useNavigate();
   
@@ -45,7 +49,7 @@ const Placeorder = () => {
       contact:userData.contact || "",
     });
   }, [userData]);
-   console.log("============>",input);
+   //console.log("============>",input);
 
 
    const placeOrder=async (event)=>{
@@ -70,7 +74,7 @@ const Placeorder = () => {
       amount:subtotal,
       type:"Home Delivery",
   }
-  console.log(orderData);
+  //console.log(orderData);
   let response = await axios.post(url+"/api/order/place",orderData,{headers:{token}});
   if(response.data.success){
     const {session_url}=response.data;
@@ -134,7 +138,7 @@ const Placeorder = () => {
           <hr />
           <div className="summary-item">
             <p>GST (12%) + Delivery Fee:</p>
-            <p>₹{gst.toFixed(2)}</p>
+            <p>₹{gst.toFixed(2) +delCharge}</p>
           </div>
           <hr />
           <div className="summary-item total">
