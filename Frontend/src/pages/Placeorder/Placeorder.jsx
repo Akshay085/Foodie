@@ -1,25 +1,24 @@
-import React, { useContext, useEffect, useState  } from "react";
-import {useNavigate} from 'react-router-dom'
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Placeorder.css";
 import { StoreContext } from "../../Context/StoreContext";
 import { toast } from "react-hot-toast";
-// import { toast } from "react-toastify";
-// import'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 
 const Placeorder = () => {
-  const { userData, foodlist,cartItems,url,token,getTotalCartAmount } = useContext(StoreContext);
-  const subtotal = getTotalCartAmount();
-  let delCharge = 0;
-  const gst =Math.floor ((subtotal * 12) / 100);
-  if(subtotal<1000){
-    delCharge=50;
-  }
-  const total = Math.floor(subtotal + gst + delCharge);
-  //console.log(userData);
-
+  const { userData, foodlist, cartItems, url, token, getTotalCartAmount } = useContext(StoreContext);
   const navigate = useNavigate();
-  
+
+ 
+  const subtotal = getTotalCartAmount();
+  const gst = Math.floor((subtotal * 12) / 100);
+  let delCharge = subtotal < 1000 ? 50 : 0;
+  const dummytotal = Math.floor(subtotal + gst + delCharge);
+
+
+  const discount = dummytotal > 1000 ? Math.floor((dummytotal * 20) / 100) : 0;
+  const total = dummytotal - discount;
+
   const [input, setInput] = useState({
     name: "",
     email: "",
@@ -28,63 +27,61 @@ const Placeorder = () => {
     country: "",
     contact: "",
   });
+
   useEffect(() => {
-    window.scrollTo(0,0);
-    const Token=localStorage.getItem('token');
-    if(!Token){
-      toast("Please Login First ")
-      navigate('/')
+    window.scrollTo(0, 0);
+    const Token = localStorage.getItem("token");
+    if (!Token) {
+      toast("Please Login First");
+      navigate("/");
     }
-    // else if(getTotalCartAmount()==0){
-    //   toast("Add some item into cart")
-    //   navigate('/')
-     
-    // }
     setInput({
       name: userData.name || "",
-      email:userData.email || "",
-      address:userData.address || "",
-      city:userData.city || "",
-      country:userData.country || "",
-      contact:userData.contact || "",
+      email: userData.email || "",
+      address: userData.address || "",
+      city: userData.city || "",
+      country: userData.country || "",
+      contact: userData.contact || "",
     });
-  }, [userData]);
-   //console.log("============>",input);
+  }, [userData, navigate]);
 
-
-   const placeOrder=async (event)=>{
+  const placeOrder = async (event) => {
     event.preventDefault();
-    if(!token){
-      toast("Please Login First ")
-      navigate('/')
+    if (!token) {
+      toast("Please Login First");
+      navigate("/");
     }
-    let orderItems =[];
-    foodlist.map((item)=>{
-      if(cartItems[item._id]>0){
-        let itemInfo =item;
-        itemInfo["quantity"]= cartItems[item._id];
+    let orderItems = [];
+    foodlist.forEach((item) => {
+      if (cartItems[item._id] > 0) {
+        let itemInfo = { ...item, quantity: cartItems[item._id] };
         orderItems.push(itemInfo);
       }
-    })
-     console.log(orderItems);
-     let orderData={
-      userId:userData._id,
-      // address:input,
-      items:orderItems,
-      amount:subtotal,
-      type:"Home Delivery",
-  }
-  //console.log(orderData);
-  let response = await axios.post(url+"/api/order/place",orderData,{headers:{token}});
-  if(response.data.success){
-    const {session_url}=response.data;
-    window.location.replace(session_url);
-  }
-  else{
-    toast("Error")
-  }
-   }
-   
+    });
+
+    let orderData = {
+      userId: userData._id,
+      items: orderItems,
+      amount: total, 
+      type: "Home Delivery",
+    };
+
+    try {
+      let response = await axios.post(url + "/api/order/place", orderData, {
+        headers: { token },
+      });
+      if (response.data.success) {
+        const { session_url } = response.data;
+        window.location.replace(session_url);
+      } else {
+        toast("Error");
+      }
+    } catch (error) {
+      toast("An error occurred. Please try again.");
+      console.error(error);
+    }
+  };
+
   return (
     <form className="place-order-main" onSubmit={placeOrder}>
       <div className="place-order-left">
@@ -94,38 +91,28 @@ const Placeorder = () => {
             <label>Name:</label>
             <input type="text" placeholder="First Name" name="name" value={input.name} readOnly required />
           </div>
-          {/* <div>
-            <label>Last Name</label>
-            <input type="text" placeholder="Last Name" required />
-          </div> */}
         </div>
         <div>
-          <label> Address:</label>
-          <input type="text" placeholder=" Address" name="address" value={input.address} readOnly required />
+          <label>Address:</label>
+          <input type="text" placeholder="Address" name="address" value={input.address} readOnly required />
         </div>
-        {/* <div>
-          <label>Street</label>
-          <input type="text" placeholder="Street" required />
-        </div> */}
         <div className="multi-fields">
           <div>
             <label>City:</label>
             <input type="text" placeholder="City" name="city" value={input.city} readOnly required />
           </div>
-          {/* <div>
-            <label>State</label>
-            <input type="text" placeholder="State" required />
-          </div> */}
         </div>
         <div>
           <label>Country:</label>
-          <input type="text" placeholder="Country"  name="country" value={input.country} readOnly required />
+          <input type="text" placeholder="Country" name="country" value={input.country} readOnly required />
         </div>
         <div>
           <label>Phone:</label>
-          <input type="text" placeholder="Phone"  name="contact" value={input.contact} readOnly  required/>
+          <input type="text" placeholder="Phone" name="contact" value={input.contact} readOnly required />
         </div>
-        <button  className="edit-button" type="button" onClick={()=>{navigate('/userprofile')}} >Edit</button>
+        <button className="edit-button" type="button" onClick={() => navigate("/userprofile")}>
+          Edit
+        </button>
       </div>
 
       <div className="place-order-right">
@@ -137,15 +124,33 @@ const Placeorder = () => {
           </div>
           <hr />
           <div className="summary-item">
-            <p>GST (12%) + Delivery Fee:</p>
-            <p>₹{gst.toFixed(2) +delCharge}</p>
+            <p>GST (12%):</p>
+            <p>₹{gst.toFixed(2)}</p>
+          </div>
+          <div className="summary-item">
+            <p>Delivery Fee:</p>
+            <p>₹{delCharge.toFixed(2)}</p>
           </div>
           <hr />
+
+        
+          {dummytotal > 1000 && (
+            <>
+              <div className="summary-item">
+                <p>Discount (20% on ₹{dummytotal.toFixed(2)}):</p>
+                <p>- ₹{discount.toFixed(2)}</p>
+              </div>
+              <hr />
+            </>
+          )}
+
           <div className="summary-item total">
             <b>Total:</b>
             <b>₹{total.toFixed(2)}</b>
           </div>
-          <button  type="submit" className="payment-btn">Proceed to Payment</button>
+          <button type="submit" className="payment-btn">
+            Proceed to Payment
+          </button>
         </div>
       </div>
     </form>

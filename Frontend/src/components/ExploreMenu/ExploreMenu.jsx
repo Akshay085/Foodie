@@ -26,7 +26,7 @@ const ExploreMenu = ({ category, setCategory }) => {
                     <img
                         onClick={() => setCategory("All")}
                         className={category === "All" ? "active" : null}
-                        src="\Images\allfoods.jpg"
+                        src="/Images/all-foods.jpg"
                         alt="all image"
                     />
                     <p>All</p>
