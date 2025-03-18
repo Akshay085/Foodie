@@ -28,6 +28,7 @@ const ExploreMenu = ({ category, setCategory }) => {
                         className={category === "All" ? "active" : null}
                         src="/Images/all-foods.jpg"
                         alt="all image"
+                     style={{borderRadius: '50%'}}
                     />
                     <p>All</p>
                 </div>

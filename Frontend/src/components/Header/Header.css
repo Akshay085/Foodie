@@ -93,3 +93,8 @@
     font-size: small;
   }
 }
+@media (max-width: 350px) {
+  .headercontents button {
+    display: none;
+  }
+}
