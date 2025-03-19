@@ -47,7 +47,7 @@ const SelfService = () => {
     let orderData = {
       userId: userData._id,
       items: orderItems,
-      amount: total, // Use the final total for payment
+      amount: subtotal, 
       type: "Self Service",
     };
 

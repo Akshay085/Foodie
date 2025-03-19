@@ -35,7 +35,7 @@ const Advertisement = () => {
         <CardMedia
           component="img"
           image={ad.img}
-          alt={`Ad ${ad.id}`}
+          alt={`Advertisement ${ad.id}`}
           sx={{
             width: "100%",
             objectFit: "fill",

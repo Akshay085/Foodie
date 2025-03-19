@@ -44,7 +44,7 @@ const Placeorder = () => {
       contact: userData.contact || "",
     });
   }, [userData, navigate]);
-
+  console.table(foodlist[0]._id);
   const placeOrder = async (event) => {
     event.preventDefault();
     if (!token) {
@@ -52,7 +52,9 @@ const Placeorder = () => {
       navigate("/");
     }
     let orderItems = [];
+    
     foodlist.forEach((item) => {
+    
       if (cartItems[item._id] > 0) {
         let itemInfo = { ...item, quantity: cartItems[item._id] };
         orderItems.push(itemInfo);
@@ -62,7 +64,7 @@ const Placeorder = () => {
     let orderData = {
       userId: userData._id,
       items: orderItems,
-      amount: total, 
+      amount: subtotal, 
       type: "Home Delivery",
     };
 
