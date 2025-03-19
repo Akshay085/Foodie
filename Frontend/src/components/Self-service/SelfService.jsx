@@ -22,7 +22,7 @@ const SelfService = () => {
   const subtotal = Math.floor(getTotalCartAmount());
   const gst = Math.floor((getTotalCartAmount() * 12) / 100);
   const dummytotal = Math.floor(subtotal + gst);
-  const discount = dummytotal > 1000 ? Math.floor((dummytotal * 20) / 100) : 0;
+  const discount = subtotal > 1000 ? Math.floor((subtotal * 20) / 100) : 0;
   const total = dummytotal - discount;
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const SelfService = () => {
     const isCartEmpty = Object.values(cartItems).every((qty) => qty === 0);
     if (isCartEmpty) {
       toast("Please select some items");
-      navigate("/");
+      navigate(-1);
     }
   }, [cartItems, navigate]);
 
@@ -128,7 +128,7 @@ const SelfService = () => {
           {dummytotal > 1000 && (
             <>
               <div className="cart-total-details">
-                <p>Discount (20% on <b>₹{dummytotal}</b>)</p>
+                <p>Discount (20% on <b>₹{subtotal}</b>)</p>
                 <p>- ₹{discount}</p>
               </div>
               <hr />

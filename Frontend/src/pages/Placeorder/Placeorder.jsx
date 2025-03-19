@@ -16,7 +16,7 @@ const Placeorder = () => {
   const dummytotal = Math.floor(subtotal + gst + delCharge);
 
 
-  const discount = dummytotal > 1000 ? Math.floor((dummytotal * 20) / 100) : 0;
+  const discount = subtotal > 1000 ? Math.floor((subtotal * 20) / 100) : 0;
   const total = dummytotal - discount;
 
   const [input, setInput] = useState({
@@ -137,7 +137,7 @@ const Placeorder = () => {
           {dummytotal > 1000 && (
             <>
               <div className="summary-item">
-                <p>Discount (20% on ₹{dummytotal.toFixed(2)}):</p>
+                <p>Discount (20% on ₹{subtotal.toFixed(2)}):</p>
                 <p>- ₹{discount.toFixed(2)}</p>
               </div>
               <hr />

@@ -7,24 +7,41 @@ import { toast } from "react-hot-toast";
 const Homedelivery = () => {
   const { token, cartItems, foodlist, addtoCart, removefromCart, getTotalCartAmount } = useContext(StoreContext);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true); // Add loading state
 
   const subtotal = getTotalCartAmount();
   const gst = Math.floor((subtotal * 12) / 100);
-  let delCharge = subtotal < 1000 ? 50 : 0; 
+  let delCharge = subtotal < 1000 ? 50 : 0;
   const dummytotal = Math.floor(subtotal + gst + delCharge);
 
-  const discount = dummytotal > 1000 ? Math.floor((dummytotal * 20) / 100) : 0;
+  const discount = subtotal > 1000 ? Math.floor((subtotal * 20) / 100) : 0;
   const total = dummytotal - discount;
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    console.log(cartItems);
-    const isCartEmpty = Object.values(cartItems).every((qty) => qty === 0);
-    if (isCartEmpty) {
-      toast("Please select some items");
-      navigate("/");
+
+    // Simulate fetching cartItems from localStorage or context
+    const fetchCartItems = () => {
+      const storedCart = localStorage.getItem("cartItems");
+      if (storedCart) {
+        const parsedCart = JSON.parse(storedCart);
+        // Update cartItems in context (if needed)
+      }
+      setLoading(false); // Set loading to false once data is loaded
+    };
+
+    fetchCartItems();
+  }, []);
+
+  useEffect(() => {
+    if (!loading) {
+      const isCartEmpty = Object.values(cartItems).every((qty) => qty === 0);
+      if (isCartEmpty) {
+        toast("Please select some items");
+        navigate(-1);
+      }
     }
-  }, [cartItems, navigate]);
+  }, [cartItems, navigate, loading]);
 
   const proceedToCheckOut = () => {
     if (!token) {
@@ -33,6 +50,11 @@ const Homedelivery = () => {
       navigate("/Placeorder");
     }
   };
+
+  // Show a loading spinner or message while data is being fetched
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="cartItems">
@@ -92,11 +114,10 @@ const Homedelivery = () => {
           </div>
           <hr />
 
-          
           {dummytotal > 1000 && (
             <>
               <div className="cart-total-details">
-                <p>Discount (20% on <b>₹{dummytotal}</b>)</p>
+                <p>Discount (20% on <b>₹{subtotal}</b>)</p>
                 <p>- ₹{discount}</p>
               </div>
               <hr />
