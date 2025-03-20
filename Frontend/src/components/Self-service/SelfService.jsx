@@ -18,11 +18,11 @@ const SelfService = () => {
   } = useContext(StoreContext);
   const navigate = useNavigate();
 
-  // Calculate subtotal, GST, discount, and total
+  
   const subtotal = Math.floor(getTotalCartAmount());
   const gst = Math.floor((getTotalCartAmount() * 12) / 100);
   const dummytotal = Math.floor(subtotal + gst);
-  const discount = subtotal > 1000 ? Math.floor((subtotal * 20) / 100) : 0;
+  const discount = subtotal >= 1000 ? Math.floor((subtotal * 20) / 100) : 0;
   const total = dummytotal - discount;
 
   useEffect(() => {

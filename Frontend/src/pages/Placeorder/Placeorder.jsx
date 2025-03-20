@@ -16,7 +16,7 @@ const Placeorder = () => {
   const dummytotal = Math.floor(subtotal + gst + delCharge);
 
 
-  const discount = subtotal > 1000 ? Math.floor((subtotal * 20) / 100) : 0;
+  const discount = subtotal >= 1000 ? Math.floor((subtotal * 20) / 100) : 0;
   const total = dummytotal - discount;
 
   const [input, setInput] = useState({
