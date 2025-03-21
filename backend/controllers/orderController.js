@@ -18,6 +18,10 @@ const placeOrder = async (req , res) => {
         {
             deliveryCharge = 50;
         }
+        if(subtotal >= 1000){
+            const discount =  (subtotal * 20)/100;
+            subtotal = subtotal - discount;
+        }
         const amount = Number((subtotal + gst + deliveryCharge).toFixed(2));
         const newOrder = new orderModel({
             userId: req.body.userId,
