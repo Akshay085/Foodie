@@ -10,7 +10,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const placeOrder = async (req , res) => {
     
     try {
-        const subtotal = req.body.amount;
+        var subtotal = req.body.amount;
         const gst = (subtotal * 12)/100;
         var deliveryCharge = 0;
         const delType = req.body.type;
@@ -39,7 +39,7 @@ const placeOrder = async (req , res) => {
                 product_data: {
                     name: item.name
                 },
-                unit_amount: Math.round(item.price*100)
+                unit_amount: Math.round((item.price*100)*80/100)
             },
             quantity: item.quantity
         }))
