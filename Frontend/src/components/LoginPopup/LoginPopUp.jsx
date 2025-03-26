@@ -6,6 +6,7 @@ import axios from "axios"
 import { LoaderIcon, toast } from "react-hot-toast";
 // import { toast } from "react-toastify";
 // import'react-toastify/dist/ReactToastify.css';
+import CloseTwoToneIcon from '@mui/icons-material/CloseTwoTone';
 import Loader from "../MyLottieAnimation/Loader";
 
 const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
@@ -101,11 +102,14 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
         <div className="login-popup-title">
           <h2>{currentState}</h2>
           
-          <img
-            onClick={() => SetShowlogin(false)}
-            src="/Images/cross_icon.png"
-            alt="Close"
-          />
+          <CloseTwoToneIcon 
+  onClick={() => SetShowlogin(false)}
+  style={{ 
+    cursor: "pointer",
+    color: "#000", // Customize color (optional)
+    fontSize: "24px" // Adjust size (optional)
+  }}
+  />
         </div>
         <div className="login-popup-input">
           {currentState === "Sign Up" && (

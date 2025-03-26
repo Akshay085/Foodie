@@ -25,6 +25,7 @@ import Verify from "./pages/Verify/Verify";
 import Loader from "./components/MyLottieAnimation/Loader";
 import AboutUs from "./components/AboutUs/AboutUs";
 import Privacypolicy from "./components/Privacypolicy/Privacypolicy";
+import Somethingwentwrong from "./components/Somethingwentwrong/Somethingwentwrong";
 
 const App = () => {
   const [showlogin, SetShowlogin] = useState(false);
@@ -100,6 +101,7 @@ const App = () => {
             <Route path="/verify" element={<Verify />}></Route>
             <Route path="/aboutus" element={<AboutUs />}></Route>
             <Route path="/privacypolicy" element={<Privacypolicy />}></Route>
+            <Route path="/*" element={<Somethingwentwrong />}></Route>
             
             {token ? (
               <Route path="/userprofile" element={<ProfileMain />}>
