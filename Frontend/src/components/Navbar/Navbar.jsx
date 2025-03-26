@@ -3,6 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { useContext } from "react";
 import { StoreContext } from "../../Context/StoreContext";
+import SearchIcon from "@mui/icons-material/Search";
+import ShoppingBagTwoToneIcon from "@mui/icons-material/ShoppingBagTwoTone";
+import AccountCircleTwoToneIcon from "@mui/icons-material/AccountCircleTwoTone";
 import MyLottieAnimation from "../MyLottieAnimation/MyLottieAnimation";
 
 const Navbar = ({ SetShowlogin }) => {
@@ -59,7 +62,7 @@ const Navbar = ({ SetShowlogin }) => {
     window.scrollTo(0, 0);
     const sections = document.querySelectorAll("section");
 
-    console.log("----", sections);
+    //console.log("----", sections);
 
     const handleScroll = () => {
       let currentSection = "";
@@ -127,11 +130,21 @@ const Navbar = ({ SetShowlogin }) => {
       )}
       <div className="navbar-right">
         <Link to="./search">
-          <img src="\Images\search_icon.png" alt="searchicon" />
+          {/* <img src="\Images\search_icon.png" alt="searchicon" /> */}
+          <SearchIcon
+            sx={{
+              fontSize: { xs: "1.5rem", sm: "2rem" },
+            }}
+          />
         </Link>
         <div className="navbar-search-icon">
           <Link to="/cart">
-            <img src="\Images\basket_icon.png" alt="basketicon" />
+            {/* <img src="\Images\basket_icon.png" alt="basketicon" /> */}
+            <ShoppingBagTwoToneIcon
+              sx={{
+                fontSize: { xs: "1.5rem", sm: "2rem" },
+              }}
+            />
           </Link>
           <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
         </div>
@@ -141,7 +154,11 @@ const Navbar = ({ SetShowlogin }) => {
           ) : (
             <div className="Navbar-profile">
               <Link to="/userprofile">
-                <img src="\Images\profile_icon.png" alt="profile icon" />
+                <AccountCircleTwoToneIcon
+                  sx={{
+                    fontSize: { xs: "1.5rem", sm: "2rem" },
+                  }}
+                />
               </Link>
             </div>
           )}
