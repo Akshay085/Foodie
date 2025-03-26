@@ -55,7 +55,7 @@ const ForgetPassword = ({
       });
       if (response.data.success) {
         setOTP("");
-        toast("Okkk");
+        toast("Verify Successfully");
        // console.log(email);
         SetForget(false);
         SetOtpvarification(false);
