@@ -1,8 +1,9 @@
 .footer-container {
     position: relative;
     width: 100vw;
-    /* background-color: tomato; */
+    background-color: #002233;
     background:url('../../../public/Images/footer-backgrounds.svg');
+    background-size: cover;
     overflow: hidden;
 }
 
