@@ -18,8 +18,7 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-content-left">
             <p>
-            Enjoy delicious meals delivered to your doorstep with Foodies – fast, fresh, and convenient! 🍽️🚀
-            Order your favorite dishes anytime and experience hassle-free online food delivery.
+            "Foodies" is an informal English word meaning "people who have a great love for food and enjoy exploring different cuisines and flavors." Foodies are passionate about tasting, cooking, and discovering new dishes, making every meal an experience to savor.
             </p>
             {/* <div className="footer-social-icons">
               <img src="/Images/facebook.png" alt="Facebook icon" />

@@ -68,7 +68,7 @@ const OrderPage = () => {
     if (response.data.success) {
       fetchOrders();
     } else {
-      console.log("Error canceling order");
+     // console.log("Error canceling order");
       fetchOrders();
     }
   };

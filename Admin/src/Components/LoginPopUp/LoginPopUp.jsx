@@ -21,7 +21,7 @@ const LoginPopUp = ({ url,onLoginSuccess }) => {
 
     const onLogin = async (e) => {
         e.preventDefault();
-        console.log(data);
+       // console.log(data);
       
         try {
           const response = await axios.post(url + "/api/admin/login", data);

@@ -36,7 +36,7 @@ const ForgetPassword = ({
     try {
       const response = await axios.post(`${url}/api/delBoy/sendOtp`, { email });
       if (response.data.success) {
-        console.log("Email submitted:", email);
+       // console.log("Email submitted:", email);
         toast.success("Okk..");
         SetOtpvarification(true);
       } else {

@@ -12,7 +12,7 @@ const SelfPlaceorder = () => {
         orderItems.push(itemInfo);
       }
     })
-     console.log(orderItems);
+    // console.log(orderItems);
      let orderData={
       userId:userData._id,
       // address:input,
@@ -20,7 +20,7 @@ const SelfPlaceorder = () => {
       amount:subtotal,
       type:"Home Delivery",
   }
-  console.log(orderData);
+ // console.log(orderData);
   let response = await axios.post(url+"/api/order/place",orderData,{headers:{token}});
   if(response.data.success){
     const {session_url}=response.data;

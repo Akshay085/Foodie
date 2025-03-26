@@ -31,7 +31,7 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
     try {
       const response = await axios.post(`${url}/api/user/login`, data);
 
-      console.log("Login Response:", response.data);
+      //console.log("Login Response:", response.data);
 
       if (response.data.success) {
         setToken(response.data.token);
@@ -62,7 +62,7 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
     try {
       const response = await axios.post(`${url}/api/user/register`, data);
 
-      console.log("Register Response:", response.data);
+    //  console.log("Register Response:", response.data);
 
       if (response.data.success) {
         setToken(response.data.token);
@@ -81,7 +81,7 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
   };
 
   useEffect(() => {
-    console.log("Current Data:", data);
+    //console.log("Current Data:", data);
   }, [data]);
 
 

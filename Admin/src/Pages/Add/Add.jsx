@@ -58,7 +58,7 @@ const Add = ({ showLogin,setShowLogin,url }) => {
     LoadData();
   }, []);
   
-     console.log(categorylist);
+   //  console.log(categorylist);
 
   
   return (
@@ -75,7 +75,7 @@ const Add = ({ showLogin,setShowLogin,url }) => {
           </label>
           <input
             onChange={(e) => {SetImage(e.target.files[0]);
-  console.log(e.target.files[0])
+ // console.log(e.target.files[0])
             }}
             type="file"
             id="image"

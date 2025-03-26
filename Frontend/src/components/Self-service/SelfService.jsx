@@ -27,7 +27,7 @@ const SelfService = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    console.log(cartItems);
+   // console.log(cartItems);
     const isCartEmpty = Object.values(cartItems).every((qty) => qty === 0);
     if (isCartEmpty) {
       toast("Please select some items");

@@ -23,7 +23,7 @@ const AddDeliveryBoy = ({url}) => {
     const onSubmit=async(e)=>{
         e.preventDefault();
         setLoading(true);
-        console.log(input);
+       // console.log(input);
         const formData=new FormData();
         formData.append("name", input.name);
         formData.append("contact",input.contact );

@@ -8,7 +8,7 @@ import Loaderfrount from "../../components/MyLottieAnimation/Loaderfrount";
 const UserProfile = () => {
   const { userData, setUserData, url } = useContext(StoreContext);
   const [loading, setLoading] = useState(true);
-  console.log(userData);
+  //console.log(userData);
 
   const [input, setInput] = useState({
     _id: "",
@@ -65,7 +65,7 @@ const UserProfile = () => {
 
       if (response.data.status) {
         toast("Profile updated successfully!");
-        console.log(response.data);
+       // console.log(response.data);
         setUserData(response.data.data);
         localStorage.setItem("user", JSON.stringify(response.data.data));
       } else {

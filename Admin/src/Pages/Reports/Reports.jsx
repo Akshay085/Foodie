@@ -18,7 +18,7 @@ const Reports = ({ url }) => {
       const response = await axios.get(url + "/api/order/list");
       if (response.data && response.data.success) {
         setOrders(response.data.data);
-        console.log(orders);
+        //console.log(orders);
         
       } else {
         toast.error("Error fetching orders");

@@ -14,7 +14,7 @@ const FoodItem = ({id,name,price,description,image}) => {
                : <div className='Food-item-counter'> 
               {cartItems[id]<=0?"":<img onClick={() =>removefromCart(id)} src="\Images\remove_icon_red.png" alt="remove icon"  /> }
               {cartItems[id]<=0?"":<p>{cartItems[id]}</p>} 
-              {console.log("------>",cartItems[id])}
+              {/* {console.log("------>",cartItems[id])} */}
               <img onClick={()=>addtoCart(id)} src="\Images\add_icon_green.png" alt="add icon" />
                </div>
            :null }

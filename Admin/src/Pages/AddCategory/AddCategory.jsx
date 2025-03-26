@@ -64,7 +64,7 @@ const AddCategory = ({ url }) => {
           <input
             onChange={(e) => {
               SetImage(e.target.files[0]);
-              console.log(e.target.files[0]);
+              //console.log(e.target.files[0]);
             }}
             type="file"
             id="image"

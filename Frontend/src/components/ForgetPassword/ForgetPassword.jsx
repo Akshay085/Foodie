@@ -32,7 +32,7 @@ const ForgetPassword = ({
     try {
       const response = await axios.post(`${url}/api/user/sendOtp`, { email });
       if (response.data.success) {
-        console.log("Email submitted:", email);
+       // console.log("Email submitted:", email);
         toast("Okk..");
         SetOtpvarification(true);
       } else {
@@ -56,7 +56,7 @@ const ForgetPassword = ({
       if (response.data.success) {
         setOTP("");
         toast("Okkk");
-        console.log(email);
+       // console.log(email);
         SetForget(false);
         SetOtpvarification(false);
         SetconfirmPopUP(true);

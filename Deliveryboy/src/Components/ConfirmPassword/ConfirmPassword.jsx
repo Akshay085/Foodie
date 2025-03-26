@@ -13,7 +13,7 @@ const ConfirmPassword = ({email,SetloginPopUp,SetconfirmPopUP,SetOtpvarification
     const url=import.meta.env.VITE_BACKEND_BASEURL;
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
- console.log("----------------->",email);
+// console.log("----------------->",email);
   
 const handleConfirm = async() => {
   setLoading(true);  

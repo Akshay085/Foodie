@@ -11,7 +11,7 @@ const Verify = () => {
     const orderId=searchParams.get("orderId");
       const user = JSON.parse(localStorage.getItem("user"));
       const userid=user._id;
-      console.log(userid);
+    //  console.log(userid);
       
     
     // console.log(success,orderid);
