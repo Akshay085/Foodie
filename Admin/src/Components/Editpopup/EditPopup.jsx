@@ -167,7 +167,7 @@ const EditPopup = ({ url, editpopup, setEditpopup, food, SetFood }) => {
                 <Loader />
             </div>
           ) : (
-            "ADD"
+            "Edit"
           )}
         </button>
         </div>

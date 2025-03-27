@@ -75,7 +75,7 @@ const AboutUs = () => {
           </section>
     
           <footer className="about-us-footer">
-            <p>&copy; {new Date().getFullYear()} Your Food Ordering System. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Your Foodies. All rights reserved.</p>
           </footer>
         </div>
       );

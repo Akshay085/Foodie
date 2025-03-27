@@ -71,7 +71,7 @@ input:focus {
 
 button {
     width: 100%;
-    background-color: #007bff;
+    background-color: tomato;
     color: white;
     padding: 12px;
     font-size: 16px;
@@ -81,7 +81,7 @@ button {
     transition: background 0.3s ease-in-out;
 }
 .forget-password-admin {
-    color: #007bff;
+    color: tomato;
     text-decoration: underline;
 }
 .forget-password-admin:hover{
