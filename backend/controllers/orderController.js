@@ -7,6 +7,50 @@ import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+const cashOnDel = async (req , res) => {
+    try {
+        var subtotal = req.body.amount;
+        const gst = (subtotal * 12)/100;
+        var deliveryCharge = 0;
+        const delType = req.body.type;
+        if(delType == "Home Delivery" && subtotal < 1000) {
+          deliveryCharge = 50;
+        }
+        if(subtotal >= 1000){
+          const discount = (subtotal * 20)/100;
+          subtotal = subtotal - discount;
+        }
+        const amount = Number((subtotal + gst + deliveryCharge).toFixed(2));
+        const newOrder = new orderModel({
+          userId: req.body.userId,
+          items: req.body.items,
+          delType: delType,
+          subTotal: subtotal,
+          gst: gst,
+          delCharge: deliveryCharge,
+          amount: amount,
+          payment: false, // Mark as unpaid initially
+          paymentMethod: "Cash",
+        });
+        await newOrder.save();
+        // Optionally send email confirmation
+        const user = await userModel.findById(req.body.userId);
+        if (user) {
+          const emailTemplate = billMail(newOrder);
+          sendMail(user.email, "Order Placed - Pay at Counter", emailTemplate);
+        }
+        res.status(200).json({ 
+          success: true, 
+          message: "Order placed successfully. Please pay at the counter.",
+          orderId: newOrder._id
+        });
+    } 
+    catch (error) {
+        console.error(error);
+        res.status(500).json({success: false, message: "Error placing order"});
+    }
+}
+
 const placeOrder = async (req , res) => {
     
     try {
@@ -30,7 +74,8 @@ const placeOrder = async (req , res) => {
             subTotal: subtotal,
             gst: gst,
             delCharge: deliveryCharge,
-            amount: amount
+            amount: amount,
+            paymentMethod: "Online Payment",
         })
         
         const line_items = req.body.items.map((item)=>({
@@ -246,4 +291,4 @@ const assignDelBoy = async (req , res) => {
     }
 }
 
-export { placeOrder , verifyOrder , userOrder , listOrders , cancelOrder , updateStatus , assignDelBoy }
+export { placeOrder , verifyOrder , userOrder , listOrders , cancelOrder , updateStatus , assignDelBoy , cashOnDel }

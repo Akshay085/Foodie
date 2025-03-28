@@ -10,6 +10,7 @@ const orderSchema = new mongoose.Schema({
     gst: { type: Number , required: true },
     delCharge: { type: Number , required: true },
     amount: { type: Number , required: true },
+    paymentMethod: { type: String , required: true },
     status: { type: String , default: "Food Processing" },
     date: { type: Date , default: Date.now() },
     payment: { type: Boolean , default: false }
