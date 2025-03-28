@@ -34,16 +34,15 @@ const cashOnDel = async (req , res) => {
         });
         await newOrder.save();
         // Optionally send email confirmation
-        const user = await userModel.findById(req.body.userId);
-        if (user) {
-          const emailTemplate = billMail(newOrder);
-          sendMail(user.email, "Order Placed - Pay at Counter", emailTemplate);
+        await userModel.findByIdAndUpdate(req.body.userId, {cartData:{}});
+        const user = await userModel.findById({_id: req.body.userId});
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
         }
-        res.status(200).json({ 
-          success: true, 
-          message: "Order placed successfully. Please pay at the counter.",
-          orderId: newOrder._id
-        });
+
+        const emailTemplate = billMail(newOrder);
+        sendMail(user.email , "Order Successfull! Here is your Bill" ,  emailTemplate);
+        res.status(200).json({ success: true , message: "Paid" });
     } 
     catch (error) {
         console.error(error);
@@ -207,6 +206,7 @@ const listOrders = async (req , res) => {
                     status: 1,
                     date: 1,
                     payment: 1,
+                    paymentMethod: 1,
                     "userData.name": 1,   
                     "userData.email": 1,
                     "userData.contact": 1,

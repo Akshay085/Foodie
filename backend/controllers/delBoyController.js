@@ -249,6 +249,7 @@ const listOrders = async (req , res) => {
                     status: 1,
                     date: 1,
                     payment: 1,
+                    paymentMethod: 1,
                     "userData.name": 1,   
                     "userData.email": 1,
                     "userData.contact": 1,
