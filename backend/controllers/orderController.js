@@ -29,7 +29,7 @@ const cashOnDel = async (req , res) => {
           gst: gst,
           delCharge: deliveryCharge,
           amount: amount,
-          payment: false, // Mark as unpaid initially
+          payment: true, // Mark as unpaid initially
           paymentMethod: "Cash",
         });
         await newOrder.save();
