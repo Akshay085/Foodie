@@ -29,11 +29,10 @@ const cashOnDel = async (req , res) => {
           gst: gst,
           delCharge: deliveryCharge,
           amount: amount,
-          payment: true, // Mark as unpaid initially
+          payment: true,
           paymentMethod: "Cash",
         });
         await newOrder.save();
-        // Optionally send email confirmation
         await userModel.findByIdAndUpdate(req.body.userId, {cartData:{}});
         const user = await userModel.findById({_id: req.body.userId});
         if (!user) {
@@ -291,4 +290,4 @@ const assignDelBoy = async (req , res) => {
     }
 }
 
-export { placeOrder , verifyOrder , userOrder , listOrders , cancelOrder , updateStatus , assignDelBoy , cashOnDel }
+export { placeOrder , verifyOrder , userOrder , listOrders , cancelOrder , updateStatus , assignDelBoy , cashOnDel}
