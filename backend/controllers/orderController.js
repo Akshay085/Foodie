@@ -52,9 +52,9 @@ const cashOnDel = async (req , res) => {
 const placeOrder = async (req , res) => {
     
     try {
-        var subtotal = req.body.amount;
+        let subtotal = req.body.amount;
         const gst = (subtotal * 12)/100;
-        var deliveryCharge = 0;
+        let deliveryCharge = 0;
         const delType = req.body.type;
         if(delType == "Home Delivery" && subtotal < 1000)
         {
@@ -75,17 +75,32 @@ const placeOrder = async (req , res) => {
             amount: amount,
             paymentMethod: "Online Payment",
         })
-        
-        const line_items = req.body.items.map((item)=>({
-            price_data: {
-                currency: "inr",
-                product_data: {
-                    name: item.name
+        let line_items
+        if(subtotal >= 1000){
+            line_items = req.body.items.map((item)=>({
+                price_data: {
+                    currency: "inr",
+                    product_data: {
+                        name: item.name
+                    },
+                    unit_amount: Math.round((item.price*100)*80/100)
                 },
-                unit_amount: Math.round((item.price*100)*80/100)
-            },
-            quantity: item.quantity
-        }))
+                quantity: item.quantity
+            }))
+        }
+
+        else{
+            line_items = req.body.items.map((item)=>({
+                price_data: {
+                    currency: "inr",
+                    product_data: {
+                        name: item.name
+                    },
+                    unit_amount: Math.round(item.price*100)
+                },
+                quantity: item.quantity
+            }))
+        }
 
         line_items.push({
             price_data:{
