@@ -110,6 +110,10 @@ const Orders = ({ SetloginPopUp }) => {
               </p>
               <p className="order-item-contact">
                 Contact: {order.userData.contact}
+                <br />
+              <br />
+               Payment Method:
+                <br /> {order.paymentMethod}
               </p>
             </div>
 
@@ -121,6 +125,7 @@ const Orders = ({ SetloginPopUp }) => {
               <div>
                 <p>Amount: {order.amount}</p>
               </div>
+              
               {order.status == "Cancelled" ? (
                 <h5 style={{ color: "red" }}>Cancelled ❌</h5>
               ) : order?.status == "Delivered" ? (

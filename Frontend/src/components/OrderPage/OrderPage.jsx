@@ -110,6 +110,10 @@ const OrderPage = () => {
             <p>
               <span>&#x25cf;</span>
               <b>{order.status}</b>
+              <br />
+              <br />
+               Payment Method:
+                <br /> {order.paymentMethod}
             </p>
 
             {order.status === "Food Processing" && (

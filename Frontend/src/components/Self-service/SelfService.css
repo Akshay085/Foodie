@@ -1,3 +1,7 @@
-.add-icon-ss{
-    
+.payment-mode{
+    display: flex;
+    justify-content: space-between;
+}
+.payment-mode button{
+    width: 30%
 }

@@ -207,6 +207,9 @@ const Order = ({ url }) => {
               <p>
                 Delivery Type:
                 <br /> {order.delType}
+                <br></br>
+                <br /> Payment Method:
+                <br /> {order.paymentMethod}
               </p>
             </div>
             <div>

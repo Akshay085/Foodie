@@ -27,13 +27,48 @@ const SelfService = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-   // console.log(cartItems);
+    //console.log("---->",userData._id);
     const isCartEmpty = Object.values(cartItems).every((qty) => qty === 0);
     if (isCartEmpty) {
       toast("Please select some items");
       navigate(-1);
     }
   }, [cartItems, navigate]);
+
+  const cashPayment = async () => {
+    let orderItems = [];
+    foodlist.forEach((item) => {
+      if (cartItems[item._id] > 0) {
+        let itemInfo = { ...item, quantity: cartItems[item._id] };
+        orderItems.push(itemInfo);
+      }
+    });
+  
+    let orderData = {
+      userId: userData._id,
+      items: orderItems,
+      amount: subtotal,
+      type: "Self Service",
+      paymentMethod: "Cash"
+    };
+  
+    try {
+      let response = await axios.post(url + "/api/order/cash", orderData, {
+        headers: { token },
+      });
+      if (response.data.success) {
+       // console.log("success");
+        toast.success("Order placed successfully! Please pay at the counter.");
+        navigate('/userprofile/orders'); 
+      } else {
+        console.log(err);
+        toast.error(response.data.message || "Failed to place order");
+      }
+    } catch (error) {
+      toast.error("An error occurred. Please try again.");
+     // console.error(error);
+    }
+  };
 
   const selfPayment = async () => {
     let orderItems = [];
@@ -139,10 +174,14 @@ const SelfService = () => {
             <b>Total</b>
             <b>₹{total}</b>
           </div>
-
-          <button type="button" onClick={selfPayment}>
-            Proceed To Payment
+            <div className='payment-mode' >
+            <button type="button" onClick={selfPayment}>
+           Online Payment
           </button>
+          <button type="button" onClick={cashPayment}>
+            Pay With Cash
+          </button>
+            </div>
         </div>
       </div>
     </div>
