@@ -39,6 +39,7 @@ const billMail = (order) =>  {
                     <p><strong>Subtotal:</strong> ₹${order.subTotal}</p>
                     <p><strong>GST:</strong> ₹${order.gst}</p>
                     <p><strong>Delivery Charge:</strong> ₹${order.delCharge}</p>
+                    <p><strong>Discount:</strong> -₹${order.discount}</p>
                     <p><strong>Total:</strong> ₹${order.amount}</p>
                     <p><strong>Payment Method:</strong> ${order.paymentMethod}</p>
                     <p><strong>Delivery Type:</strong> ${order.delType}</p>

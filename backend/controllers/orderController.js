@@ -16,8 +16,9 @@ const cashOnDel = async (req , res) => {
         if(delType == "Home Delivery" && subtotal < 1000) {
           deliveryCharge = 50;
         }
+        let discount = 0
         if(subtotal >= 1000){
-          const discount = (subtotal * 20)/100;
+          discount = (subtotal * 20)/100;
           subtotal = subtotal - discount;
         }
         const amount = Number((subtotal + gst + deliveryCharge).toFixed(2));
@@ -60,11 +61,11 @@ const placeOrder = async (req , res) => {
         {
             deliveryCharge = 50;
         }
+        let discount = 0
         if(subtotal >= 1000){
-            const discount =  (subtotal * 20)/100;
-            subtotal = subtotal - discount;
+            discount = (subtotal * 20)/100;
         }
-        const amount = Number((subtotal + gst + deliveryCharge).toFixed(2));
+        const amount = Number((subtotal + gst + deliveryCharge - discount).toFixed(2));
         const newOrder = new orderModel({
             userId: req.body.userId,
             items: req.body.items,
@@ -72,24 +73,12 @@ const placeOrder = async (req , res) => {
             subTotal: subtotal,
             gst: gst,
             delCharge: deliveryCharge,
+            discount: discount,
             amount: amount,
             paymentMethod: "Online Payment",
         })
         let line_items
-        if(subtotal >= 1000){
-            line_items = req.body.items.map((item)=>({
-                price_data: {
-                    currency: "inr",
-                    product_data: {
-                        name: item.name
-                    },
-                    unit_amount: Math.round((item.price*100)*80/100)
-                },
-                quantity: item.quantity
-            }))
-        }
-
-        else{
+        if(subtotal<1000){
             line_items = req.body.items.map((item)=>({
                 price_data: {
                     currency: "inr",
@@ -100,6 +89,18 @@ const placeOrder = async (req , res) => {
                 },
                 quantity: item.quantity
             }))
+        }
+        else{
+            line_items = req.body.items.map((item)=>({
+                price_data: {
+                    currency: "inr",
+                    product_data: {
+                        name: item.name
+                    },
+                    unit_amount: Math.round((item.price*100)*80/100)
+                },
+                quantity: item.quantity
+            })) 
         }
 
         line_items.push({

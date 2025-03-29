@@ -9,6 +9,7 @@ const orderSchema = new mongoose.Schema({
     subTotal: { type: Number , required: true },
     gst: { type: Number , required: true },
     delCharge: { type: Number , required: true },
+    discount: { type: Number , required: true },
     amount: { type: Number , required: true },
     paymentMethod: { type: String , required: true },
     status: { type: String , default: "Food Processing" },
