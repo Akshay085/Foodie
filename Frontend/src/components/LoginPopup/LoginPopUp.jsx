@@ -3,7 +3,7 @@ import "./LoginPopUp.css";
 import { StoreContext } from "../../Context/StoreContext";
 import axios from "axios"
 //import { Link, Links } from "react-router-dom";
-import { LoaderIcon, toast } from "react-hot-toast";
+import { toast,LoaderIcon } from "react-hot-toast";
 // import { toast } from "react-toastify";
 // import'react-toastify/dist/ReactToastify.css';
 import CloseTwoToneIcon from '@mui/icons-material/CloseTwoTone';
@@ -48,10 +48,13 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
         //console.log(userData);
 
       } else {
+        alert("response.data.message")
         toast(response.data.message);
       }
-    } catch (error) {
+    }
+     catch (error) {
       //console.log("Login error:", error);
+      alert("Invalid Credential");
       toast("Something went wrong. Please try again.");
     }
     setLoading(false);
@@ -72,11 +75,12 @@ const LoginPopUp = ({ SetShowlogin,forget , SetForget }) => {
         SetCurrentState("Login"); 
         setData({ email: "", password: "" });
       } else {
+        alert(response.data.message);
         toast(response.data.message);
       }
     } catch (error) {
-      //console.log("Signup error:", error);
-      toast("Invalid Credential");
+      alert("This Email Is already Used");
+      toast("Something went wrong. Please try again.");
     }
     setLoading(false);
   };

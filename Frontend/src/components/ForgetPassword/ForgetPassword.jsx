@@ -62,8 +62,11 @@ const ForgetPassword = ({
         SetconfirmPopUP(true);
       } else {
         toast("soory.. OTP is Not Valid");
+        alert("soory.. OTP is Not Valid");
       }
     } catch {
+      toast.error("soory.. OTP is Not Valid");
+      alert("soory.. OTP is Not Valid");
       console.log("error");
     }
     setLoading(false);
@@ -100,6 +103,7 @@ const ForgetPassword = ({
               placeholder="Enter OTP"
               name="OTP"
               value={OTP}
+              required
               onChange={handleChange}
               className="card-input"
             />

@@ -73,7 +73,7 @@ const AddCategory = ({ url }) => {
           />
         </div>
         <div className="add-product-name flex-col">
-          <p>Combo Name:</p>
+          <p>Category Name:</p>
           <input
             onChange={onChangeHandler}
             value={data.name}
