@@ -2,7 +2,7 @@
 const loginAdmin = (req , res) => {
     const {email , password} = req.body;
     try {
-        if(email==='foodies.0905@gmail.com' && password === process.env.ADMIN_PWD ){
+        if(email==='foodies.0905@gmail.com' && password==='foodies09'){
             return res.status(200).json({success: true , message: "Admin Login"})
         }
         else{
